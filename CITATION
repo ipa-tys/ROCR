@@ -1,0 +1,19 @@
+citHeader("To cite ROCR in publications use:")
+
+citEntry(entry="Manual",
+         title = "ROCR: Visualizing the performance of scoring classifiers",
+         author = personList(as.person("T. Sing"),
+                             as.person("O. Sander"),
+		             as.person("N. Beerenwinkel"),
+                             as.person("T. Lengauer")),
+         year         = "2005"
+         url          = "http://rocr.bioinf.mpi-sb.mpg.de",
+         textVersion =
+         paste("Sing, T. & Sander, O. & Beerenwinkel, N. & Lengauer, T. (2005). ",
+               "ROCR: Visualizing the performance of scoring classifiers ",
+               "URL http://rocr.bioinf.mpi-sb.mpg.de",
+               sep="")
+         )
+
+citFooter("We have invested a lot of time and effort in creating ROCR,",
+          "please cite it when using it for data analysis.")
