@@ -285,6 +285,7 @@ performance <- function(prediction.obj, measure,
     assign("cal", "window.size", envir=optional.arguments)
     assign("f", "alpha", envir=optional.arguments)
     assign("cost", c("cost.fp", "cost.fn"), envir=optional.arguments)
+    assign("auc", "fpr.stop", envir=optional.arguments)
         
     ## If a measure has additional arguments, list the default values
     ## for them here. Naming convention: e.g. "cal" has an optional
@@ -295,6 +296,7 @@ performance <- function(prediction.obj, measure,
     assign("f:alpha", 0.5, envir=default.values)
     assign("cost:cost.fp", 1, envir=default.values)
     assign("cost:cost.fn", 1, envir=default.values)
+    assign("auc:fpr.stop", 1, envir=default.values) 
     
     list(long.unit.names=long.unit.names, function.names=function.names,
          obligatory.x.axis=obligatory.x.axis,

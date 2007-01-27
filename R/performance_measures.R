@@ -218,7 +218,7 @@
 
 .performance.auc <-
   function(predictions, labels, cutoffs, fp, tp, fn, tn,
-           n.pos, n.neg, n.pos.pred, n.neg.pred) {
+           n.pos, n.neg, n.pos.pred, n.neg.pred, fpr.stop) {
       
       x <- fp / n.neg
       y <- tp / n.pos
@@ -229,6 +229,13 @@
       if (length(x) < 2) {
           stop(paste("Not enough distinct predictions to compute area",
                      "under the ROC curve."))
+      }
+
+      if (fpr.stop < 1) {
+        ind <- max(which( x <= fpr.stop ))
+        tpr.stop <- approxfun( x[ind:(ind+1)], y[ind:(ind+1)] )(fpr.stop)
+        x <- c(x[1:ind], fpr.stop)
+        y <- c(y[1:ind], tpr.stop)
       }
       
       ans <- list()

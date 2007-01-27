@@ -1,7 +1,7 @@
 Package: ROCR
 Title: Visualizing the performance of scoring classifiers.
-Version: 1.0-1
-Date: 2005-02-23
+Version: 1.0-2
+Date: 2007-01-27
 Depends: gplots
 Author: Tobias Sing, Oliver Sander, Niko Beerenwinkel, Thomas Lengauer
 Description: ROC graphs, sensitivity/specificity curves, lift charts,
@@ -23,4 +23,4 @@ Description: ROC graphs, sensitivity/specificity curves, lift charts,
 Maintainer: Tobias Sing <tobias.sing@mpi-sb.mpg.de>
 License: GPL (version 2 or later)
 URL: http://rocr.bioinf.mpi-sb.mpg.de/
-Packaged: Sat Feb 26 03:50:29 2005; root
+Packaged: Sat Jan 27 21:08:18 2007; tsing

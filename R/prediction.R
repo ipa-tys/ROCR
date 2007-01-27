@@ -88,10 +88,11 @@ prediction <- function(predictions, labels, label.ordering=NULL) {
             if ( label.format == "factor" ) levels <- sort(levels(labels[[1]]))
             else levels <- sort( unique( unlist( labels)))
         } else {
-            if (!setequal( levels, label.ordering)) {
-                stop("Label ordering does not match class labels.")
-            }
-            levels <- label.ordering
+          ## if (!setequal( levels, label.ordering)) {
+          if (!setequal( unique(unlist(labels)), label.ordering )) {
+            stop("Label ordering does not match class labels.")
+          }
+          levels <- label.ordering
         }
         for (i in 1:length(labels)) {
             if (is.factor(labels))

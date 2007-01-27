@@ -114,7 +114,10 @@ performance(prediction.obj, measure, x.measure="cutoff", \dots)
       classifier will score are randomly drawn positive sample higher than a
       randomly drawn negative sample. Since the output of
       \code{auc} is cutoff-independent, this
-      measure cannot be combined with other measures into a parametric curve.}
+      measure cannot be combined with other measures into a parametric
+      curve. The partial area under the ROC curve up to a given false
+      positive rate can be calculated by passing the optional parameter
+    \code{fpr.stop=0.5} (or any other value between 0 and 1) to \code{performance}.}
     \item{\code{prbe}:}{Precision-recall break-even point. The cutoff(s) where
       precision and recall are equal. At this point, positive and negative
       predictions are made at the same rate as their prevalence in the
