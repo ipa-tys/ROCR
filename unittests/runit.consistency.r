@@ -350,7 +350,7 @@ crashCases <- list(       ## cases that are ok to crash:
                           list(pred= c(0.1, 0.2, 0.5), lab= c(0,0,0)), #-> Number of classes is not equal to 2.
                           list(pred= c(0.1, 0.2, 0.5), lab= c("a", "a", "a")),  #-> Number of classes is not equal to 2.
                           list(pred= c(0.1, 0.2, 0.5), lab= c(T, T, T)), #-> Number of classes is not equal to 2.
-                          list(pred= c(0.1, 0.2, 0.5), lab= c(F, F, F)), #-> Number of classes is not equal to 2.
+                          list(pred= c(0.1, 0.2, 0.5), lab= c(F, F, F))  #-> Number of classes is not equal to 2.
 )
 
 

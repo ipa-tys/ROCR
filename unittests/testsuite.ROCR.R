@@ -1,4 +1,6 @@
 library(RUnit)
+library(ROCR)
+
 myTestSuite <- defineTestSuite("ROCR test suite", "unittests")
 isValidTestSuite(myTestSuite)
 testData <- runTestSuite(myTestSuite)

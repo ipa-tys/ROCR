@@ -2,7 +2,8 @@
 ## Demo file for ROCR; start with 'demo(ROCR)'
 ## -----------------------------------------------------------------------------------
 
-if(dev.cur() <= 1) get(getOption("device"))()
+# if(dev.cur() <= 1) get(getOption("device"))()
+if(dev.cur() <= 1) dev.new()
 
 opar <- par(ask = interactive() &&
             (.Device %in% c("X11", "GTK", "gnome", "windows","quartz")))

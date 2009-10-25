@@ -3,8 +3,9 @@
 
 \title{Function to create performance objects}
 \description{All kinds of predictor evaluations are performed using
-  this function.}
+  this function.
 }
+
 \usage{
 performance(prediction.obj, measure, x.measure="cutoff", \dots)
 }

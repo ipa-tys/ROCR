@@ -142,7 +142,7 @@
       chisq <- c()
       for (i in 1:length(cutoffs)) {
           A <- rbind( c( tn[i], fn[i]), c(fp[i], tp[i]) )
-          chisq <- c(chisq, chisq.test(A,correct=F)$statistic )
+          chisq <- c(chisq, chisq.test(A, correct=FALSE)$statistic )
       }
       list( cutoffs, chisq )
   }
