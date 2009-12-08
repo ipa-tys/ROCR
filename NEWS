@@ -1,5 +1,12 @@
 This file documents changes and updates to the ROCR package.
 
+
+Version 1.0-4 (Dec 08, 2009)
+- fixes bug with 1.0-3 that prevented plot arguments getting passed through
+
+Version 1.0-3
+- adapted to more strict R CMD CHECK rules in R > 2.9
+
 Version 1.0-2 (Jan 27, 2007)
 - fixed minor bug in 'prediction' function concerning the optional
   parameter 'label.ordering' (thanks to Robert Perdisci for notifying us).

@@ -7,7 +7,7 @@ simple package installation mechanism:
 
 Linux/Unix:
 -----------
-R CMD INSTALL ROCR_1.0-1.tar.gz
+R CMD INSTALL ROCR_1.0-4.tar.gz
 
 Windows:
 --------

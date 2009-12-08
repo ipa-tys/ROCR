@@ -12,7 +12,7 @@
 
 \usage{
 \S4method{plot}{performance,missing}(x, y, ..., avg="none", spread.estimate="none",
-  spread.scale=1, show.spread.at=c(), colorize=F,
+  spread.scale=1, show.spread.at=c(), colorize=FALSE,
   colorize.palette=rev(rainbow(256,start=0, end=4/6)),
   colorkey=colorize, colorkey.relwidth=0.25, colorkey.pos="right",
   print.cutoffs.at=c(), cutoff.label.function=function(x) { round(x,2) },
