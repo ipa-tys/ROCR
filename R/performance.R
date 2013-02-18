@@ -204,6 +204,7 @@ performance <- function(prediction.obj, measure,
     assign("rpp", "Rate of positive predictions", envir=long.unit.names)
     assign("rnp", "Rate of negative predictions", envir=long.unit.names)
     assign("auc","Area under the ROC curve", envir=long.unit.names)
+    assign("aucpr","Area under the Precision/Recall curve", envir=long.unit.names)
     assign("cal", "Calibration error", envir=long.unit.names)
     assign("mwp", "Median window position", envir=long.unit.names)
     assign("prbe","Precision/recall break-even point", envir=long.unit.names)
@@ -249,6 +250,7 @@ performance <- function(prediction.obj, measure,
     assign("rnp", ".performance.rate.of.negative.predictions",
            envir=function.names)
     assign("auc", ".performance.auc", envir=function.names)
+    assign("aucpr", ".performance.aucpr", envir=function.names)
     assign("cal", ".performance.calibration.error", envir=function.names)
     assign("prbe", ".performance.precision.recall.break.even.point",
            envir=function.names)
@@ -274,6 +276,7 @@ performance <- function(prediction.obj, measure,
     assign("rmse", "none", envir=obligatory.x.axis)
     assign("prbe", "none", envir=obligatory.x.axis)
     assign("auc", "none", envir=obligatory.x.axis)
+    assign("aucpr", "none", envir=obligatory.x.axis)
     assign("rch","none", envir=obligatory.x.axis)
     ## ecost requires probability cost function as x axis, which is handled
     ## implicitly, not as an explicit performance measure.
