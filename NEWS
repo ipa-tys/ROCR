@@ -1,5 +1,10 @@
 This file documents changes and updates to the ROCR package.
 
+Version 1.0-5 (May 12, 2013)
+- Used standardized license specification in DESCRIPTION file
+- Removed LICENCE file
+- Removed .First.lib in zzz.R
+- Moved CITATION into inst folder
 
 Version 1.0-4 (Dec 08, 2009)
 - fixes bug with 1.0-3 that prevented plot arguments getting passed through
