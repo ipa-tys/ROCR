@@ -49,15 +49,15 @@ setMethod("plot",signature(x="performance",y="missing"),
           })
 
 
-.First.lib <- function( libname, pkgname, where) {
-    if (!require(methods)) {
-        stop("Require Methods package")
-    }
-    if (!require(gplots)) {
-        stop("Require gplots package")
-    }
+## .First.lib <- function( libname, pkgname, where) {
+##     if (!require(methods)) {
+##         stop("Require Methods package")
+##     }
+##     if (!require(gplots)) {
+##         stop("Require gplots package")
+##     }
     
-    where <- match(paste("package:",pkgname, sep=""), search())
-}
+##     where <- match(paste("package:",pkgname, sep=""), search())
+## }
 
 
