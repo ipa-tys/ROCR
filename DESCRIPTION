@@ -1,8 +1,8 @@
 Package: ROCR
-Title: Visualizing the performance of scoring classifiers.
-Version: 1.0-5
-Date: 2013-05-12
-Depends: gplots, methods
+Title: Visualizing the Performance of Scoring Classifiers
+Version: 1.0-6
+Date: 2015-03-22
+Depends: R (>= 2.10), gplots, methods
 Author: Tobias Sing, Oliver Sander, Niko Beerenwinkel, Thomas Lengauer
 Description: ROC graphs, sensitivity/specificity curves, lift charts,
         and precision/recall plots are popular examples of trade-off
@@ -21,10 +21,12 @@ Description: ROC graphs, sensitivity/specificity curves, lift charts,
         mechanism. Despite its flexibility, ROCR is easy to use, with
         only three commands and reasonable default values for all
         optional parameters.
-Maintainer: Tobias Sing <tobias.sing@mpi-sb.mpg.de>
+Maintainer: Billy Aung Myint <r@use-r.com>
 License: GPL (>= 2)
 URL: http://rocr.bioinf.mpi-sb.mpg.de/
-Packaged: 2013-05-16 12:33:56 UTC; tys
+Packaged: 2015-03-22 07:15:36 UTC; billy
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2013-05-16 17:20:32
+Date/Publication: 2015-03-22 09:33:31
+X-CRAN-History: Orphaned on 2014-12-07 as maintainer address
+        <tobias.sing@mpi-sb.mpg.de> bounced.

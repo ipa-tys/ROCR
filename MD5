@@ -1,4 +1,4 @@
-d049cf7c66a67fd3ed44c1f40db78464 *DESCRIPTION
+8e4b4f05dc5bbcdf79bc4c46da85afed *DESCRIPTION
 5bcf86510d848a44f8d943b9231320be *INSTALL
 dc33bb94a44f11db390a8ab5510d1a42 *NAMESPACE
 8172e158dfb6a806339a3029d93a558b *NEWS
@@ -9,10 +9,9 @@ c1d7f42127f1fca5957f11086e8c3357 *R/performance_measures.R
 c6520d9937a5432bba0921b1c1ddc154 *R/prediction.R
 19c3994bf2948eb6a694b7b7e7ae4590 *R/zzz.R
 4913ca5661a5a89bd61706da40976871 *README
-252544c94f32bde5458fa7eea14002ec *README.unittests
-059483257ec3bdb9cc47bb832deb6e83 *data/ROCR.hiv.rda
-2b43bef554841b0008144a4a8aaa93e9 *data/ROCR.simple.rda
-2cdc114005f1471d597b992da649ed72 *data/ROCR.xval.rda
+aba9f92c9e04f0c67718a89dadd2f198 *data/ROCR.hiv.rda
+843b4ff3836fe148c0072ddd959aa643 *data/ROCR.simple.rda
+10e67c538d54f421ae89d6ebeadfec24 *data/ROCR.xval.rda
 abe80443628a3c11d359a0f49d81dad0 *data/datalist
 bede4a3f07350fa3132b98b4d73eee33 *demo/00Index
 618e74cf61daf4d6aa7419ebcd886bef *demo/ROCR.R
@@ -25,8 +24,3 @@ d15a50e5ff272d4885c6d54c37ee0f63 *man/performance.Rd
 729a749d6275f8c077351762e8494b6d *man/plot-methods.Rd
 8393928cc1e8a96ab92b68e7650de96a *man/prediction-class.Rd
 6e511f8b8439e40585eec050842a4665 *man/prediction.Rd
-09ff700221b6ed63f7144b7e33d4cd19 *unittests/XXXrunit.ROCR.aux.RXXX
-5056a46205152d57056250b299e17885 *unittests/runit.aux.r
-c0154cae711af582b73facb505446f7c *unittests/runit.consistency.r
-3408f3e11ddb96b430a14734e033f631 *unittests/runit.simple.r
-221863191a9bc6548f52a4711b9ac966 *unittests/testsuite.ROCR.R
