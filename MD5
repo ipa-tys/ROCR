@@ -1,7 +1,7 @@
-8e4b4f05dc5bbcdf79bc4c46da85afed *DESCRIPTION
+c43193465c01f2bc7036b1a21ac0938e *DESCRIPTION
 5bcf86510d848a44f8d943b9231320be *INSTALL
 dc33bb94a44f11db390a8ab5510d1a42 *NAMESPACE
-8172e158dfb6a806339a3029d93a558b *NEWS
+2fa08bdab7deee0de7bd50eec671f7b4 *NEWS
 8f3a897135420e5fb99b1adebc4c8765 *R/ROCR_aux.R
 08c4ee8081fb13b7da90b8a6faa28ea0 *R/performance.R
 c1d7f42127f1fca5957f11086e8c3357 *R/performance_measures.R
@@ -9,9 +9,9 @@ c1d7f42127f1fca5957f11086e8c3357 *R/performance_measures.R
 c6520d9937a5432bba0921b1c1ddc154 *R/prediction.R
 19c3994bf2948eb6a694b7b7e7ae4590 *R/zzz.R
 4913ca5661a5a89bd61706da40976871 *README
-aba9f92c9e04f0c67718a89dadd2f198 *data/ROCR.hiv.rda
-843b4ff3836fe148c0072ddd959aa643 *data/ROCR.simple.rda
-10e67c538d54f421ae89d6ebeadfec24 *data/ROCR.xval.rda
+497d34bf928630ed582476e043a68f18 *data/ROCR.hiv.rda
+a6b723208917a41ca8d978a95640f1cc *data/ROCR.simple.rda
+e4d3b38035f21f0bd36606cd08b3ded3 *data/ROCR.xval.rda
 abe80443628a3c11d359a0f49d81dad0 *data/datalist
 bede4a3f07350fa3132b98b4d73eee33 *demo/00Index
 618e74cf61daf4d6aa7419ebcd886bef *demo/ROCR.R
@@ -24,3 +24,9 @@ d15a50e5ff272d4885c6d54c37ee0f63 *man/performance.Rd
 729a749d6275f8c077351762e8494b6d *man/plot-methods.Rd
 8393928cc1e8a96ab92b68e7650de96a *man/prediction-class.Rd
 6e511f8b8439e40585eec050842a4665 *man/prediction.Rd
+252544c94f32bde5458fa7eea14002ec *tools/README.unittests
+09ff700221b6ed63f7144b7e33d4cd19 *tools/unittests/XXXrunit.ROCR.aux.RXXX
+5056a46205152d57056250b299e17885 *tools/unittests/runit.aux.r
+c0154cae711af582b73facb505446f7c *tools/unittests/runit.consistency.r
+3408f3e11ddb96b430a14734e033f631 *tools/unittests/runit.simple.r
+221863191a9bc6548f52a4711b9ac966 *tools/unittests/testsuite.ROCR.R

@@ -1,5 +1,8 @@
 This file documents changes and updates to the ROCR package.
 
+Version 1.0-7 (Mar 26, 2015)
+- Changed maintainer email address
+
 Version 1.0-5 (May 12, 2013)
 - Used standardized license specification in DESCRIPTION file
 - Removed LICENCE file

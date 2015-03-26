@@ -1,32 +1,29 @@
 Package: ROCR
 Title: Visualizing the Performance of Scoring Classifiers
-Version: 1.0-6
-Date: 2015-03-22
-Depends: R (>= 2.10), gplots, methods
+Version: 1.0-7
+Date: 2015-03-26
+Depends: gplots, methods
 Author: Tobias Sing, Oliver Sander, Niko Beerenwinkel, Thomas Lengauer
 Description: ROC graphs, sensitivity/specificity curves, lift charts,
-        and precision/recall plots are popular examples of trade-off
-        visualizations for specific pairs of performance measures. ROCR
-        is a flexible tool for creating cutoff-parameterized 2D
-        performance curves by freely combining two from over 25
-        performance measures (new performance measures can be added
-        using a standard interface).  Curves from different
-        cross-validation or bootstrapping runs can be averaged by
-        different methods, and standard deviations, standard errors or
-        box plots can be used to visualize the variability across the
-        runs. The parameterization can be visualized by printing cutoff
-        values at the corresponding curve positions, or by coloring the
-        curve according to cutoff. All components of a performance plot
-        can be quickly adjusted using a flexible parameter dispatching
-        mechanism. Despite its flexibility, ROCR is easy to use, with
-        only three commands and reasonable default values for all
-        optional parameters.
-Maintainer: Billy Aung Myint <r@use-r.com>
+  and precision/recall plots are popular examples of trade-off
+  visualizations for specific pairs of performance measures. ROCR is a
+  flexible tool for creating cutoff-parameterized 2D performance curves
+  by freely combining two from over 25 performance measures (new
+  performance measures can be added using a standard interface).
+  Curves from different cross-validation or bootstrapping runs can be
+  averaged by different methods, and standard deviations, standard
+  errors or box plots can be used to visualize the variability across
+  the runs. The parameterization can be visualized by printing cutoff
+  values at the corresponding curve positions, or by coloring the
+  curve according to cutoff. All components of a performance plot can
+  be quickly adjusted using a flexible parameter dispatching
+  mechanism. Despite its flexibility, ROCR is easy to use, with only
+  three commands and reasonable default values for all optional
+  parameters.
+Maintainer: Tobias Sing <tobias.sing@gmail.com>
 License: GPL (>= 2)
 URL: http://rocr.bioinf.mpi-sb.mpg.de/
-Packaged: 2015-03-22 07:15:36 UTC; billy
+Packaged: 2015-03-26 10:34:10 UTC; singto1
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2015-03-22 09:33:31
-X-CRAN-History: Orphaned on 2014-12-07 as maintainer address
-        <tobias.sing@mpi-sb.mpg.de> bounced.
+Date/Publication: 2015-03-26 17:12:17
