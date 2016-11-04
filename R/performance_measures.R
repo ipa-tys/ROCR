@@ -110,7 +110,7 @@
            n.pos, n.neg, n.pos.pred, n.neg.pred) {
 
       list(cutoffs,
-           (tn*tp - fn*fp) / sqrt(n.pos * n.neg * n.pos.pred * n.neg.pred) )
+           (tn*tp - fn*fp) / (sqrt(n.pos) * sqrt(n.neg) * sqrt(n.pos.pred) * sqrt(n.neg.pred) ))
   }
 
 .performance.mutual.information <-
