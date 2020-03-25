@@ -50,5 +50,3 @@ Have fun!
   http://rocr.bioinf.mpi-sb.mpg.de
 
 * Good luck!
-
-

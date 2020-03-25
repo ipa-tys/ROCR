@@ -1,5 +1,9 @@
 This file documents changes and updates to the ROCR package.
 
+Version 1.0-8 (Mar 26, 2020)
+- Changed maintainer email address
+- fixed issues for R 4.0
+
 Version 1.0-7 (Mar 26, 2015)
 - Changed maintainer email address
 
