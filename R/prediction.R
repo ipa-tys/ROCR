@@ -87,11 +87,12 @@ prediction <- function(predictions, labels, label.ordering=NULL) {
   } else if (is.vector(predictions) && !is.list(predictions)) {
     predictions <- list(predictions)
   } else if (!is.list(predictions)) {
-    stop("Format of predictions is invalid.")
+    stop("Format of predictions is invalid. It couldn't be coerced to a list.",
+         call. = FALSE)
   }
   ## if predictions is a list -> keep unaltered
   if(any(vapply(predictions,anyNA,logical(1)))){
-    stop("'predictions' contains NA.")
+    stop("'predictions' contains NA.", call. = FALSE)
   }
   
   ## convert labels into canonical list format
@@ -107,7 +108,8 @@ prediction <- function(predictions, labels, label.ordering=NULL) {
              !is.list(labels)) {
     labels <- list( labels)
   } else if (!is.list(labels)) {
-    stop("Format of labels is invalid.")
+    stop("Format of labels is invalid. It couldn't be coerced to a list.",
+         call. = FALSE)
   }
   ## if labels is a list -> keep unaltered
   

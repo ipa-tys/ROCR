@@ -114,6 +114,7 @@ This is the method to plot all objects of class performance.
 }
 \examples{
 # plotting a ROC curve:
+library(ROCR)
 data(ROCR.simple)
 pred <- prediction( ROCR.simple$predictions, ROCR.simple$labels )
 perf <- performance( pred, "tpr", "fpr" )

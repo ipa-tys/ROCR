@@ -22,6 +22,7 @@ would be obtained from 10-fold cross-validation.
 # plot ROC curves for several cross-validation runs (dotted
 # in grey), overlaid by the vertical average curve and boxplots
 # showing the vertical spread around the average.
+library(ROCR)
 data(ROCR.xval)
 pred <- prediction(ROCR.xval$predictions, ROCR.xval$labels)
 perf <- performance(pred,"tpr","fpr")

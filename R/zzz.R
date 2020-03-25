@@ -237,6 +237,7 @@ setClass("performance",
 #' 
 #' @examples 
 #' # plotting a ROC curve:
+#' library(ROCR)
 #' data(ROCR.simple)
 #' pred <- prediction( ROCR.simple$predictions, ROCR.simple$labels )
 #' perf <- performance( pred, "tpr", "fpr" )
@@ -318,6 +319,7 @@ setMethod("plot",
 #' @usage data(ROCR.hiv)
 #' 
 #' @examples 
+#' library(ROCR)
 #' data(ROCR.hiv)
 #' attach(ROCR.hiv)
 #' pred.svm <- prediction(hiv.svm$predictions, hiv.svm$labels)
@@ -356,6 +358,7 @@ setMethod("plot",
 #' @examples 
 #' # plot a ROC curve for a single prediction run
 #' # and color the curve according to cutoff.
+#' library(ROCR)
 #' data(ROCR.simple)
 #' pred <- prediction(ROCR.simple$predictions, ROCR.simple$labels)
 #' perf <- performance(pred,"tpr","fpr")
@@ -387,6 +390,7 @@ setMethod("plot",
 #' # plot ROC curves for several cross-validation runs (dotted
 #' # in grey), overlaid by the vertical average curve and boxplots
 #' # showing the vertical spread around the average.
+#' library(ROCR)
 #' data(ROCR.xval)
 #' pred <- prediction(ROCR.xval$predictions, ROCR.xval$labels)
 #' perf <- performance(pred,"tpr","fpr")

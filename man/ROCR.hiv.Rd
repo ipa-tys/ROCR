@@ -21,6 +21,7 @@ based on sequence data of the third variable loop of the HIV envelope
 protein.
 }
 \examples{
+library(ROCR)
 data(ROCR.hiv)
 attach(ROCR.hiv)
 pred.svm <- prediction(hiv.svm$predictions, hiv.svm$labels)

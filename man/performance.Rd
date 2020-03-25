@@ -182,6 +182,7 @@ evaluation plots:
 }
 \examples{
 # computing a simple ROC curve (x-axis: fpr, y-axis: tpr)
+library(ROCR)
 data(ROCR.simple)
 pred <- prediction( ROCR.simple$predictions, ROCR.simple$labels)
 perf <- performance(pred,"tpr","fpr")
