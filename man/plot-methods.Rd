@@ -24,6 +24,8 @@
   downsampling = 0,
   add = FALSE
 )
+
+\method{plot}{performance}(...)
 }
 \arguments{
 \item{x}{an object of class \code{performance}}

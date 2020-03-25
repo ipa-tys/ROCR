@@ -291,6 +291,11 @@ setMethod("plot",
           }
 )
 
+#' @rdname plot-methods
+#' @method plot performance
+#' @export
+"plot.performance" <- function(...) plot(...)
+
 #' @name ROCR.hiv
 #' 
 #' @docType data
