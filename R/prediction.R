@@ -88,8 +88,11 @@ prediction <- function(predictions, labels, label.ordering=NULL) {
     predictions <- list(predictions)
   } else if (!is.list(predictions)) {
     stop("Format of predictions is invalid.")
-  } 
+  }
   ## if predictions is a list -> keep unaltered
+  if(any(vapply(predictions,anyNA,logical(1)))){
+    stop("'predictions' contains NA.")
+  }
   
   ## convert labels into canonical list format
   if (is.data.frame(labels)) {
