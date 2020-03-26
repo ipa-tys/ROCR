@@ -1,4 +1,0 @@
-You need the R package 'RUnit' to run the unit tests for ROCR.
-You can start the test suite by typing:
-R --vanilla < unittests/runit.ROCR.R
-from _this_ directory.
