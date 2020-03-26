@@ -307,7 +307,6 @@ test_that("consistency:",{
   
   skip_on_cran()
   skip_on_ci()
-  skip_on_os()
   ##############################################################################
   # Combining
   measures <- c('tpr','fpr','acc','err','rec','sens','fnr','tnr','spec',
