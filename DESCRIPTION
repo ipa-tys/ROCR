@@ -1,5 +1,5 @@
 Package: ROCR
-Author: Tobias Sing, Oliver Sander, Niko Beerenwinkel, Thomas Lengauer, 
+Author: Tobias Sing, Oliver Sander, Niko Beerenwinkel, Thomas Lengauer,
   Felix G.M. Ernst
 Maintainer: Felix G.M. Ernst <felix.gm.ernst@outlook.com>
 Version: 1.0-9
@@ -26,13 +26,13 @@ License: GPL (>= 2)
 NeedsCompilation: no
 Depends:
   R (>= 4.0)
-Imports: 
+Imports:
   methods,
   graphics,
   grDevices,
   gplots,
   stats
-Suggests: 
+Suggests:
   testthat,
   roxygen2
 URL: http://rocr.bioinf.mpi-sb.mpg.de/

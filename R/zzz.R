@@ -3,23 +3,23 @@ NULL
 
 #' @name prediction-class
 #' @aliases prediction-class
-#' 
+#'
 #' @title Class \code{prediction}
-#' 
-#' @description 
+#'
+#' @description
 #' Object to encapsulate numerical predictions together with the
 #' corresponding true class labels, optionally collecting predictions and
 #' labels for several cross-validation or bootstrapping runs.
-#' 
+#'
 #' @section Objects from the Class:
 #' Objects can be created by using the \code{prediction} function.
-#' 
+#'
 #' @note
 #' Every \code{prediction} object contains information about the 2x2
 #' contingency table consisting of tp,tn,fp, and fn, along with the
 #' marginal sums n.pos,n.neg,n.pos.pred,n.neg.pred, because these form
-#' the basis for many derived performance measures.   
-#' 
+#' the basis for many derived performance measures.
+#'
 #' @slot predictions A list, in which each element is a vector of predictions
 #'   (the list has length > 1 for x-validation data.
 #' @slot labels Analogously, a list in which each element is a vector of true
@@ -40,21 +40,21 @@ NULL
 #'   samples predicted as positive at the cutoffs given in the corresponding
 #'   'cutoffs' entry.
 #' @slot n.neg.pred As n.pos.pred, but for negatively predicted samples.
-#' 
-#' @references 
-#' A detailed list of references can be found on the ROCR homepage at 
+#'
+#' @references
+#' A detailed list of references can be found on the ROCR homepage at
 #' \url{http://rocr.bioinf.mpi-sb.mpg.de}.
-#' 
-#' @author 
-#' Tobias Sing \email{tobias.sing@gmail.com}, Oliver Sander 
+#'
+#' @author
+#' Tobias Sing \email{tobias.sing@gmail.com}, Oliver Sander
 #' \email{osander@gmail.com}
-#' 
-#' @seealso 
+#'
+#' @seealso
 #' \code{\link{prediction}},
 #' \code{\link{performance}},
 #' \code{\link{performance-class}},
 #' \code{\link{plot.performance}}
-#' 
+#'
 #' @export
 setClass("prediction",
          representation(predictions = "list",
@@ -71,17 +71,17 @@ setClass("prediction",
 
 #' @name performance-class
 #' @aliases performance-class
-#' 
+#'
 #' @title Class \code{performance}
-#' 
-#' @description 
+#'
+#' @description
 #' Object to capture the result of a performance evaluation, optionally
 #' collecting evaluations from several cross-validation or bootstrapping runs.
-#' 
+#'
 #' @section Objects from the Class:
 #' Objects can be created by using the \code{performance} function.
-#' 
-#' @details 
+#'
+#' @details
 #' A \code{performance} object can capture information from four
 #' different evaluation scenarios:
 #'   \itemize{
@@ -105,7 +105,7 @@ setClass("prediction",
 #'     \code{y.values}, while \code{x.values} and \code{alpha.values} are
 #'     empty.
 #'   }
-#' 
+#'
 #' @slot x.name Performance measure used for the x axis.
 #' @slot y.name Performance measure used for the y axis.
 #' @slot alpha.name Name of the unit that is used to create the parametrized
@@ -119,21 +119,21 @@ setClass("prediction",
 #'   of this particular cross-validation run.
 #' @slot alpha.values A list in which each entry contains the cutoff values of
 #'   the curve of this particular cross-validation run.
-#' 
-#' @references 
-#' A detailed list of references can be found on the ROCR homepage at 
+#'
+#' @references
+#' A detailed list of references can be found on the ROCR homepage at
 #' \url{http://rocr.bioinf.mpi-sb.mpg.de}.
-#' 
-#' @author 
-#' Tobias Sing \email{tobias.sing@gmail.com}, Oliver Sander 
+#'
+#' @author
+#' Tobias Sing \email{tobias.sing@gmail.com}, Oliver Sander
 #' \email{osander@gmail.com}
-#' 
-#' @seealso 
+#'
+#' @seealso
 #' \code{\link{prediction}}
 #' \code{\link{performance}},
 #' \code{\link{prediction-class}},
 #' \code{\link{plot.performance}}
-#' 
+#'
 #' @export
 setClass("performance",
          representation(x.name       = "character",
@@ -145,12 +145,12 @@ setClass("performance",
 
 #' @name plot-methods
 #' @aliases plot,performance,missing-method plot.performance
-#' 
+#'
 #' @title Plot method for performance objects
-#' 
-#' @description 
+#'
+#' @description
 #' This is the method to plot all objects of class performance.
-#' 
+#'
 #' @param x an object of class \code{performance}
 #' @param y not used
 #' @param ... Optional graphical parameters to adjust different components of
@@ -218,31 +218,31 @@ setClass("performance",
 #'   performance values to which the curve(s) should be downsampled.
 #' @param add If \code{TRUE}, the curve(s) is/are added to an already existing
 #'   plot; otherwise a new plot is drawn.
-#' 
-#' @references 
-#' A detailed list of references can be found on the ROCR homepage at 
+#'
+#' @references
+#' A detailed list of references can be found on the ROCR homepage at
 #' \url{http://rocr.bioinf.mpi-sb.mpg.de}.
-#' 
-#' @author 
-#' Tobias Sing \email{tobias.sing@gmail.com}, Oliver Sander 
+#'
+#' @author
+#' Tobias Sing \email{tobias.sing@gmail.com}, Oliver Sander
 #' \email{osander@gmail.com}
-#' 
-#' @seealso 
+#'
+#' @seealso
 #' \code{\link{prediction}},
 #' \code{\link{performance}},
 #' \code{\link{prediction-class}},
 #' \code{\link{performance-class}}
-#' 
+#'
 #' @export
-#' 
-#' @examples 
+#'
+#' @examples
 #' # plotting a ROC curve:
 #' library(ROCR)
 #' data(ROCR.simple)
 #' pred <- prediction( ROCR.simple$predictions, ROCR.simple$labels )
 #' perf <- performance( pred, "tpr", "fpr" )
 #' plot( perf )
-#' 
+#'
 #' # To entertain your children, make your plots nicer
 #' # using ROCR's flexible parameter passing mechanisms
 #' # (much cheaper than a finger painting set)
@@ -273,7 +273,7 @@ setMethod("plot",
                    },
                    downsampling = 0,
                    add = FALSE ) {
-            
+
             .plot.performance(x,...,
                               avg = avg,
                               spread.estimate = spread.estimate,
@@ -297,33 +297,33 @@ setMethod("plot",
 "plot.performance" <- function(...) plot(...)
 
 #' @name ROCR.hiv
-#' 
+#'
 #' @docType data
 #' @keywords datasets
-#' 
+#'
 #' @title Data set: Support vector machines and neural networks applied to the
 #'   prediction of HIV-1 coreceptor usage
-#' 
-#' @description 
+#'
+#' @description
 #' Linear support vector machines (libsvm) and neural networks (R package
 #' nnet) were applied to predict usage of the coreceptors CCR5 and CXCR4
 #' based on sequence data of the third variable loop of the HIV envelope
 #' protein.
-#' 
-#' @format 
+#'
+#' @format
 #' A list consisting of the SVM (\code{ROCR.hiv$hiv.svm}) and NN
 #' (\code{ROCR.hiv$hiv.nn}) classification data. Each of those is in turn a list
 #' consisting of the two elements \code{$predictions} and \code{$labels} (10
 #' element list representing cross-validation data).
-#' 
-#' @references 
+#'
+#' @references
 #' Sing, T. & Beerenwinkel, N. & Lengauer, T.  "Learning mixtures
 #' of localized rules by maximizing the area under the ROC curve".  1st
 #'   International Workshop on ROC Analysis in AI, 89-96, 2004.
-#' 
+#'
 #' @usage data(ROCR.hiv)
-#' 
-#' @examples 
+#'
+#' @examples
 #' library(ROCR)
 #' data(ROCR.hiv)
 #' attach(ROCR.hiv)
@@ -343,24 +343,24 @@ setMethod("plot",
 
 
 #' @name ROCR.simple
-#' 
+#'
 #' @docType data
 #' @keywords datasets
-#' 
+#'
 #' @title Data set: Simple artificial prediction data for use with ROCR
-#' 
-#' @description 
+#'
+#' @description
 #' A mock data set containing a simple set of predictions and corresponding
 #' class labels.
-#' 
-#' @format 
+#'
+#' @format
 #' A two element list. The first element, \code{ROCR.simple$predictions}, is a
 #' vector of numerical predictions. The second element,
 #' \code{ROCR.simple$labels}, is a vector of corresponding class labels.
-#'  
+#'
 #' @usage data(ROCR.simple)
-#' 
-#' @examples 
+#'
+#' @examples
 #' # plot a ROC curve for a single prediction run
 #' # and color the curve according to cutoff.
 #' library(ROCR)
@@ -372,26 +372,26 @@ setMethod("plot",
 
 
 #' @name ROCR.xval
-#' 
+#'
 #' @docType data
 #' @keywords datasets
-#' 
+#'
 #' @title Data set: Artificial cross-validation data for use with ROCR
-#' 
-#' @description 
+#'
+#' @description
 #' A mock data set containing 10 sets of predictions and corresponding labels as
 #' would be obtained from 10-fold cross-validation.
-#' 
-#' @format 
+#'
+#' @format
 #' A two element list. The first element, \code{ROCR.xval$predictions}, is
 #' itself a 10 element list. Each of these 10 elements is a vector of numerical
 #' predictions for each cross-validation run. Likewise, the second list entry,
 #' \code{ROCR.xval$labels} is a 10 element list in which each element is a
 #' vector of true class labels corresponding to the predictions.
-#' 
+#'
 #' @usage data(ROCR.xval)
-#' 
-#' @examples 
+#'
+#' @examples
 #' # plot ROC curves for several cross-validation runs (dotted
 #' # in grey), overlaid by the vertical average curve and boxplots
 #' # showing the vertical spread around the average.

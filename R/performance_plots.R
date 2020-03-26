@@ -51,9 +51,9 @@
            },
            downsampling = 0,
            add = FALSE) {
-    
+
     arglist <- c(lapply(as.list(environment()), eval ), list(...) )
-    
+
     if (length(perf@y.values) != length(perf@x.values)) {
       stop("Performance object cannot be plotted.")
     }
@@ -67,9 +67,9 @@
       stop(paste("Threshold coloring or labeling is only well-defined for",
                  "'no' or 'threshold' averaging."))
     }
-    
+
     if (downsampling >0 ) perf <- .downsample( perf, downsampling)
-    
+
     ## for infinite cutoff, assign maximal finite cutoff + mean difference
     ## between adjacent cutoff pairs
     if (length(perf@alpha.values)!=0) perf@alpha.values <-
@@ -84,18 +84,18 @@
     for (i in 1:length(perf@x.values)) {
       ind.bool <- (is.finite(perf@x.values[[i]]) &
                      is.finite(perf@y.values[[i]]))
-      
+
       if (length(perf@alpha.values)>0)
         perf@alpha.values[[i]] <- perf@alpha.values[[i]][ind.bool]
-      
+
       perf@x.values[[i]] <- perf@x.values[[i]][ind.bool]
       perf@y.values[[i]] <- perf@y.values[[i]][ind.bool]
     }
     arglist <- .sarg( arglist, perf=perf)
-    
+
     if (add==FALSE) do.call( ".performance.plot.canvas", arglist )
-    
-    if (avg=="none") do.call(".performance.plot.no.avg", arglist)  
+
+    if (avg=="none") do.call(".performance.plot.no.avg", arglist)
     else if (avg=="vertical")
       do.call(".performance.plot.vertical.avg", arglist)
     else if (avg=="horizontal")
@@ -112,39 +112,39 @@
 #' @import stats
 #' @import graphics
 .performance.plot.canvas <- function(perf, avg, ...) {
-  
+
   requireNamespace("stats")
   requireNamespace("graphics")
-  
+
   arglist <- list(...)
-  
+
   axis.names <- list(x=perf@x.name, y=perf@y.name)
   if (avg=="horizontal" || avg=="threshold")
     axis.names$x <- paste("Average", tolower(axis.names$x))
   if (avg=="vertical" || avg=="threshold")
     axis.names$y <- paste("Average", tolower(axis.names$y))
   arglist <- .farg(arglist, xlab=axis.names$x, ylab=axis.names$y)
-  
+
   arglist <-
     .farg(arglist,
           xlim=c(min(unlist(perf@x.values)), max(unlist(perf@x.values))),
           ylim=c(min(unlist(perf@y.values)), max(unlist(perf@y.values))))
-  
+
   do.call("plot", .sarg(.slice.run(.get.arglist('plot', arglist)),
                         x=0.5, y=0.5, type='n', axes=FALSE))
   do.call( "axis", .sarg(.slice.run(.get.arglist('xaxis', arglist)),
                          side=1))
   do.call( "axis", .sarg(.slice.run(.get.arglist('yaxis', arglist)),
                          side=2))
-  
+
   if (.garg(arglist,'colorkey')==TRUE) {
     colors <- rev( .garg(arglist,'colorize.palette') )
     max.alpha <- max(unlist(perf@alpha.values))
     min.alpha <- min(unlist(perf@alpha.values))
     col.cutoffs <- rev(seq(min.alpha,max.alpha, length=length( colors )))
-    
+
     if ( .garg(arglist,'colorkey.pos')=="right") {
-      
+
       ## axis drawing (ticks + labels)
       ## The interval [min.alpha,max.alpha] needs to be mapped onto
       ## the interval [min.y,max.y], rather than onto the interval
@@ -164,11 +164,11 @@
               coloraxis.labels=.garg(arglist,
                                      'cutoff.label.function')(alpha.ticks),
               coloraxis.at=alpha2y(alpha.ticks))
-      
+
       do.call("axis",
               .sarg(.slice.run(.get.arglist('coloraxis', arglist)),
                     side=4))
-      
+
       ## draw colorkey
       ## each entry in display.bool corresponds to one rectangle of
       ## the colorkey.
@@ -204,11 +204,11 @@
       arglist <- .sarg(arglist,
                        coloraxis.labels=.garg(arglist,
                                               'cutoff.label.function')(alpha.ticks),
-                       coloraxis.at= alpha2x(alpha.ticks)) 
+                       coloraxis.at= alpha2x(alpha.ticks))
       do.call("axis",
               .sarg(.slice.run( .get.arglist('coloraxis', arglist)),
                     side=3))
-      
+
       ## draw colorkey
       display.bool <- (col.cutoffs >= min(alpha.ticks) &
                          col.cutoffs < max(alpha.ticks))
@@ -227,7 +227,7 @@
       }
     }
   }
-  
+
   do.call( "box", .slice.run( .get.arglist( 'box', arglist)))
 }
 
@@ -238,10 +238,10 @@
 #' @importFrom grDevices xy.coords
 #' @importFrom stats approxfun
 .performance.plot.no.avg <- function( perf, ... ) {
-  
+
   arglist <- list(...)
   arglist <- .farg(arglist, type= 'l')
-  
+
   if (.garg(arglist, 'colorize') == TRUE) {
     colors <- rev( .garg( arglist, 'colorize.palette') )
     max.alpha <- max(unlist(perf@alpha.values))
@@ -249,7 +249,7 @@
     col.cutoffs <- rev(seq(min.alpha,max.alpha, length=length(colors)+1))
     col.cutoffs <- col.cutoffs[2:length(col.cutoffs)]
   }
-  
+
   for (i in 1:length(perf@x.values)) {
     if (.garg(arglist, 'colorize') == FALSE) {
       do.call("plot.xy",
@@ -267,7 +267,7 @@
                       col= segment.coloring))
       }
     }
-    
+
     print.cutoffs.at <- .garg(arglist, 'print.cutoffs.at',i)
     if (! is.null(print.cutoffs.at)) {
       text.x <- stats::approxfun(perf@alpha.values[[i]], perf@x.values[[i]],
@@ -311,7 +311,7 @@
   perf.avg@y.values <- list(rowMeans( data.frame( perf.avg@y.values )))
   perf.avg@x.values <- list(x.values)
   perf.avg@alpha.values <- list()
-  
+
   ## y.values at show.spread.at (midpoint of error bars )
   show.spread.at.y.values <-
     lapply(as.list(1:length(perf@x.values)),
@@ -320,12 +320,12 @@
                               rule=2,
                               ties=mean)( .garg(arglist, 'show.spread.at'))
            })
-  
+
   show.spread.at.y.values <- as.matrix(data.frame(show.spread.at.y.values ))
   colnames(show.spread.at.y.values) <- c()
   ## now, show.spread.at.y.values[i,] contains the curve y values at the
   ## sampling x value .garg(arglist,'show.spread.at')[i]
-  
+
   if (.garg(arglist, 'spread.estimate') == "stddev" ||
       .garg(arglist, 'spread.estimate') == "stderror") {
     bar.width <- apply(show.spread.at.y.values, 1, stats::sd)
@@ -333,7 +333,7 @@
       bar.width <- bar.width / sqrt( ncol(show.spread.at.y.values) )
     }
     bar.width <- .garg(arglist, 'spread.scale') * bar.width
-    
+
     suppressWarnings(do.call(gplots::plotCI,
                              .farg(.sarg(.get.arglist('plotCI', arglist),
                                          x=.garg(arglist,
@@ -347,7 +347,7 @@
                                    gap= 0,
                                    type= 'n')))
   }
-  
+
   if (.garg(arglist, 'spread.estimate') == "boxplot") {
     do.call("boxplot",
             .farg(.sarg(.get.arglist( 'boxplot', arglist),
@@ -362,7 +362,7 @@
                   x= .garg(arglist, 'show.spread.at'),
                   y= rowMeans(show.spread.at.y.values)))
   }
-  
+
   do.call( ".plot.performance", .sarg(arglist,
                                       perf= perf.avg,
                                       avg= 'none',
@@ -391,7 +391,7 @@
   perf.avg@x.values <- list(rowMeans( data.frame( perf.avg@x.values )))
   perf.avg@y.values <- list(y.values)
   perf.avg@alpha.values <- list()
-  
+
   ## x.values at show.spread.at (midpoint of error bars )
   show.spread.at.x.values <-
     lapply(as.list(1:length(perf@y.values)),
@@ -404,7 +404,7 @@
   colnames(show.spread.at.x.values) <- c()
   ## now, show.spread.at.x.values[i,] contains the curve x values at the
   ## sampling y value .garg(arglist,'show.spread.at')[i]
-  
+
   if (.garg(arglist,'spread.estimate') == 'stddev' ||
       .garg(arglist,'spread.estimate') == 'stderror') {
     bar.width <- apply(show.spread.at.x.values, 1, stats::sd)
@@ -412,7 +412,7 @@
       bar.width <- bar.width / sqrt( ncol(show.spread.at.x.values) )
     }
     bar.width <- .garg(arglist,'spread.scale') * bar.width
-    
+
     suppressWarnings(do.call(gplots::plotCI,
                              .farg(.sarg(.get.arglist('plotCI', arglist),
                                          x= rowMeans(
@@ -426,7 +426,7 @@
                                    gap= 0,
                                    type= 'n')))
   }
-  
+
   if (.garg(arglist,'spread.estimate') == "boxplot") {
     do.call("boxplot",
             .farg(.sarg(.get.arglist( 'boxplot', arglist),
@@ -440,7 +440,7 @@
                             x= rowMeans(show.spread.at.x.values),
                             y= .garg(arglist,'show.spread.at')))
   }
-  
+
   do.call( ".plot.performance", .sarg(arglist,
                                       perf= perf.avg,
                                       avg= 'none',
@@ -458,7 +458,7 @@
                    show.spread.at= seq(min(unlist(perf@x.values)),
                                        max(unlist(perf@x.values)),
                                        length=11))
-  
+
   perf.sampled <- perf
   alpha.values <- rev(seq(min(unlist(perf@alpha.values)),
                           max(unlist(perf@alpha.values)),
@@ -471,13 +471,13 @@
       stats::approxfun(perf@alpha.values[[i]], perf@y.values[[i]],
                        rule=2, ties=mean)(alpha.values)
   }
-  
+
   ## compute average curve
   perf.avg <- perf.sampled
   perf.avg@x.values <- list( rowMeans( data.frame( perf.avg@x.values)))
   perf.avg@y.values <- list(rowMeans( data.frame( perf.avg@y.values)))
   perf.avg@alpha.values <- list( alpha.values )
-  
+
   x.values.spread <-
     lapply(as.list(1:length(perf@x.values)),
            function(i) {
@@ -492,10 +492,10 @@
                               rule=2, ties=mean)(.garg(arglist,'show.spread.at'))
            } )
   y.values.spread <- as.matrix(data.frame( y.values.spread ))
-  
+
   if (.garg(arglist,'spread.estimate')=="stddev" ||
       .garg(arglist,'spread.estimate')=="stderror") {
-    
+
     x.bar.width <- apply(x.values.spread, 1, stats::sd)
     y.bar.width <- apply(y.values.spread, 1, stats::sd)
     if (.garg(arglist,'spread.estimate')=="stderror") {
@@ -504,7 +504,7 @@
     }
     x.bar.width <- .garg(arglist,'spread.scale') * x.bar.width
     y.bar.width <- .garg(arglist,'spread.scale') * y.bar.width
-    
+
     suppressWarnings( do.call(gplots::plotCI,
                               .farg(.sarg(.get.arglist('plotCI', arglist),
                                           x= rowMeans(x.values.spread),
@@ -515,19 +515,19 @@
                                           add= TRUE),
                                     gap= 0,
                                     type= 'n')))
-    
+
     suppressWarnings( do.call(gplots::plotCI,
                               .farg(.sarg(.get.arglist('plotCI', arglist),
-                                          x= rowMeans(x.values.spread), 
+                                          x= rowMeans(x.values.spread),
                                           y= rowMeans(y.values.spread),
-                                          uiw= y.bar.width, 
-                                          liw= y.bar.width, 
-                                          err= 'y', 
+                                          uiw= y.bar.width,
+                                          liw= y.bar.width,
+                                          err= 'y',
                                           add= TRUE),
                                     gap= 0,
                                     type= 'n')))
   }
-  
+
   if (.garg(arglist,'spread.estimate')=="boxplot") {
     do.call("boxplot",
             .farg(.sarg(.get.arglist('boxplot', arglist),
@@ -548,10 +548,9 @@
                             x= rowMeans(x.values.spread),
                             y= rowMeans(y.values.spread)))
   }
-  
+
   do.call( ".plot.performance", .sarg(arglist,
                                       perf= perf.avg,
                                       avg= 'none',
                                       add= TRUE))
 }
-

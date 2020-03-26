@@ -1,12 +1,12 @@
 
 #' @name performance
-#' 
+#'
 #' @title Function to create performance objects
-#' 
-#' @description 
+#'
+#' @description
 #' All kinds of predictor evaluations are performed using this function.
-#' 
-#' @details 
+#'
+#' @details
 #' Here is the list of available performance measures. Let Y and
 #' \eqn{\hat{Y}}{Yhat} be random variables representing the class and the prediction for
 #' a randomly drawn sample, respectively. We denote by
@@ -149,8 +149,8 @@
 #'    negatives can be adjusted, respectively. By default, both are set
 #'    to 1.}
 #' }
-#' 
-#' @note 
+#'
+#' @note
 #' Here is how to call \code{performance()} to create some standard
 #' evaluation plots:
 #' \describe{
@@ -159,7 +159,7 @@
 #'   \item{Sensitivity/specificity plots:}{measure="sens", x.measure="spec".}
 #'   \item{Lift charts:}{measure="lift", x.measure="rpp".}
 #' }
-#' 
+#'
 #' @param prediction.obj An object of class \code{prediction}.
 #' @param measure Performance measure to use for the evaluation. A complete list
 #'   of the performance measures that are available for \code{measure} and
@@ -169,37 +169,37 @@
 #'   direction of the x axis, and \code{measure} to be the unit in direction of
 #'   the y axis, is created. This curve is parametrized with the cutoff.
 #' @param ... Optional arguments (specific to individual performance measures).
-#' 
+#'
 #' @return An S4 object of class \code{performance}.
-#' 
-#' @references 
-#' A detailed list of references can be found on the ROCR homepage at 
+#'
+#' @references
+#' A detailed list of references can be found on the ROCR homepage at
 #' \url{http://rocr.bioinf.mpi-sb.mpg.de}.
-#' 
-#' @author 
-#' Tobias Sing \email{tobias.sing@gmail.com}, Oliver Sander 
+#'
+#' @author
+#' Tobias Sing \email{tobias.sing@gmail.com}, Oliver Sander
 #' \email{osander@gmail.com}
-#' 
-#' @seealso 
+#'
+#' @seealso
 #' \code{\link{prediction}},
 #' \code{\link{prediction-class}},
 #' \code{\link{performance-class}},
 #' \code{\link{plot.performance}}
-#' 
+#'
 #' @export
-#' 
-#' @examples 
+#'
+#' @examples
 #' # computing a simple ROC curve (x-axis: fpr, y-axis: tpr)
 #' library(ROCR)
 #' data(ROCR.simple)
 #' pred <- prediction( ROCR.simple$predictions, ROCR.simple$labels)
 #' perf <- performance(pred,"tpr","fpr")
 #' plot(perf)
-#' 
+#'
 #' # precision/recall curve (x-axis: recall, y-axis: precision)
 #' perf1 <- performance(pred, "prec", "rec")
 #' plot(perf1)
-#' 
+#'
 #' # sensitivity/specificity curve (x-axis: specificity,
 #' # y-axis: sensitivity)
 #' perf1 <- performance(pred, "sens", "spec")
@@ -208,7 +208,7 @@ performance <- function(prediction.obj,
                         measure,
                         x.measure="cutoff",
                         ...) {
-  
+
   ## define the needed environments
   envir.list <- .define.environments()
   long.unit.names <- envir.list$long.unit.names
@@ -216,7 +216,7 @@ performance <- function(prediction.obj,
   obligatory.x.axis <- envir.list$obligatory.x.axis
   optional.arguments <- envir.list$optional.arguments
   default.values <- envir.list$default.values
-  
+
   ## abort in case of misuse
   if (class(prediction.obj) != 'prediction' ||
       !exists(measure, where=long.unit.names, inherits=FALSE) ||
@@ -225,7 +225,7 @@ performance <- function(prediction.obj,
                "'prediction'; second and optional third argument must",
                "be available performance measures!"))
   }
-  
+
   ## abort, if attempt is made to use a measure that has an obligatory
   ## x.axis as the x.measure (cannot be combined)
   if (exists( x.measure, where=obligatory.x.axis, inherits=FALSE )) {
@@ -236,16 +236,16 @@ performance <- function(prediction.obj,
                      get( x.measure, envir=obligatory.x.axis))
     stop(message)
   }
-  
+
   ## if measure is a performance measure with obligatory x.axis, then
   ## enforce this axis:
   if (exists( measure, where=obligatory.x.axis, inherits=FALSE )) {
     x.measure <- get( measure, envir=obligatory.x.axis )
   }
-  
+
   if (x.measure == "cutoff" ||
       exists( measure, where=obligatory.x.axis, inherits=FALSE )) {
-    
+
     ## fetch from '...' any optional arguments for the performance
     ## measure at hand that are given, otherwise fill up the default values
     optional.args <- list(...)
@@ -259,20 +259,20 @@ performance <- function(prediction.obj,
                                  envir=default.values, inherits=FALSE))
       }
       names(default.arglist) <- argnames
-      
+
       for (i in 1:length(argnames)) {
         templist <- list(optional.args,
                          default.arglist[[i]])
         names(templist) <- c('arglist', argnames[i])
-        
+
         optional.args <- do.call('.farg', templist)
       }
     }
     optional.args <- .select.args( optional.args, argnames )
-    
+
     ## determine function name
     function.name <- get( measure, envir=function.names )
-    
+
     ## for each x-validation run, compute the requested performance measure
     x.values <- list()
     y.values <- list()
@@ -289,17 +289,17 @@ performance <- function(prediction.obj,
                             n.neg= prediction.obj@n.neg[[i]],
                             n.pos.pred= prediction.obj@n.pos.pred[[i]],
                             n.neg.pred= prediction.obj@n.neg.pred[[i]])
-      
+
       ans <- do.call( function.name, argumentlist )
-      
+
       if (!is.null(ans[[1]])) x.values <- c( x.values, list( ans[[1]] ))
       y.values <- c( y.values, list( ans[[2]] ))
     }
-    
+
     if (! (length(x.values)==0 || length(x.values)==length(y.values)) ) {
       stop("Consistency error.")
     }
-    
+
     ## create a new performance object
     return( new("performance",
                 x.name       = get( x.measure, envir=long.unit.names ),
@@ -329,29 +329,29 @@ performance <- function(prediction.obj,
     stop(paste("Only performance objects with identical number of",
                "cross-validation runs can be combined."))
   }
-  
+
   x.values <- list()
   x.name <- p.obj.1@y.name
   y.values <- list()
   y.name <- p.obj.2@y.name
   alpha.values <- list()
   alpha.name <- p.obj.1@x.name
-  
+
   for (i in 1:length( p.obj.1@x.values )) {
     x.values.1 <- p.obj.1@x.values[[i]]
     y.values.1 <- p.obj.1@y.values[[i]]
     x.values.2 <- p.obj.2@x.values[[i]]
     y.values.2 <- p.obj.2@y.values[[i]]
-    
+
     ## cutoffs of combined object = merged cutoffs of simple objects
     cutoffs <- sort( unique( c(x.values.1, x.values.2)), decreasing=TRUE )
-    
+
     ## calculate y.values at cutoffs using step function
     y.values.int.1 <- stats::approxfun(x.values.1, y.values.1,
                                        method="constant",f=1,rule=2)(cutoffs)
     y.values.int.2 <- stats::approxfun(x.values.2, y.values.2,
                                        method="constant",f=1,rule=2)(cutoffs)
-    
+
     ## 'approxfun' ignores NA and NaN
     objs <- list( y.values.int.1, y.values.int.2)
     objs.x <- list( x.values.1, x.values.2 )
@@ -362,7 +362,7 @@ performance <- function(prediction.obj,
     bools <- list(na.cutoffs.1.bool, nan.cutoffs.1.bool,
                   na.cutoffs.2.bool, nan.cutoffs.2.bool)
     values <- c(NA,NaN,NA,NaN)
-    
+
     for (j in 1:4) {
       for (k in which(bools[[j]])) {
         interval.max <- objs.x[[ ceiling(j/2) ]][k]
@@ -374,12 +374,12 @@ performance <- function(prediction.obj,
                                  cutoffs > interval.min ] <- values[j]
       }
     }
-    
+
     alpha.values <- c(alpha.values, list(cutoffs))
     x.values <- c(x.values, list(objs[[1]]))
     y.values <- c(y.values, list(objs[[2]]))
   }
-  
+
   return( new("performance",
               x.name=x.name, y.name=y.name,
               alpha.name=alpha.name, x.values=x.values,
@@ -389,7 +389,7 @@ performance <- function(prediction.obj,
 .define.environments <- function() {
   ## There are five environments: long.unit.names, function.names,
   ## obligatory.x.axis, optional.arguments, default.values
-  
+
   ## Define long names corresponding to the measure abbreviations.
   long.unit.names <- new.env()
   assign("none","None", envir=long.unit.names)
@@ -429,7 +429,7 @@ performance <- function(prediction.obj,
   assign("sar", "SAR", envir=long.unit.names)
   assign("ecost", "Expected cost", envir=long.unit.names)
   assign("cost", "Explicit cost", envir=long.unit.names)
-  
+
   ## Define function names corresponding to the measure abbreviations.
   function.names <- new.env()
   assign("acc", ".performance.accuracy", envir=function.names)
@@ -475,7 +475,7 @@ performance <- function(prediction.obj,
   assign("sar", ".performance.sar", envir=function.names)
   assign("ecost", ".performance.expected.cost", envir=function.names)
   assign("cost", ".performance.cost", envir=function.names)
-  
+
   ## If a measure comes along with an obligatory x axis (including "none"),
   ## list it here.
   obligatory.x.axis <- new.env()
@@ -486,8 +486,8 @@ performance <- function(prediction.obj,
   assign("rch","none", envir=obligatory.x.axis)
   ## ecost requires probability cost function as x axis, which is handled
   ## implicitly, not as an explicit performance measure.
-  assign("ecost","none", envir=obligatory.x.axis)  
-  
+  assign("ecost","none", envir=obligatory.x.axis)
+
   ## If a measure has optional arguments, list the names of the
   ## arguments here.
   optional.arguments <- new.env()
@@ -495,7 +495,7 @@ performance <- function(prediction.obj,
   assign("f", "alpha", envir=optional.arguments)
   assign("cost", c("cost.fp", "cost.fn"), envir=optional.arguments)
   assign("auc", "fpr.stop", envir=optional.arguments)
-  
+
   ## If a measure has additional arguments, list the default values
   ## for them here. Naming convention: e.g. "cal" has an optional
   ## argument "window.size" the key to use here is "cal:window.size"
@@ -505,8 +505,8 @@ performance <- function(prediction.obj,
   assign("f:alpha", 0.5, envir=default.values)
   assign("cost:cost.fp", 1, envir=default.values)
   assign("cost:cost.fn", 1, envir=default.values)
-  assign("auc:fpr.stop", 1, envir=default.values) 
-  
+  assign("auc:fpr.stop", 1, envir=default.values)
+
   list(long.unit.names=long.unit.names, function.names=function.names,
        obligatory.x.axis=obligatory.x.axis,
        optional.arguments=optional.arguments,

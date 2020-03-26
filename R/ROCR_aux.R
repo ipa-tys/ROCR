@@ -19,7 +19,7 @@
     if (complement==TRUE) match.bool <- !match.bool
     arglist <- arglist[ match.bool]
     names(arglist) <- sub( match.expr, '', names(arglist))
-    
+
     return( arglist )
 }
 
@@ -59,7 +59,7 @@
     if (x1==x2) {
         stop("Cannot construct a function from data.")
     }
-    
+
     lf <- eval(parse(text=paste("function(x) {",
                                 "m <- (",y2,"-",y1,") / (",x2,"-",x1,");",
                                 "c <- ",y1," - m * ",x1,";",
@@ -73,7 +73,7 @@
     if (f(1)-f(0) == g(1)-g(0)) {
         return( c(Inf,Inf) )
     }
-    
+
     ## otherwise, choose search interval
     imin <- -1
     imax <- 1
@@ -82,7 +82,7 @@
         imax <- 2*imax
     }
     h <- function(x) { f(x) - g(x) }
-    
+
     intersect.x <- stats::uniroot( h, interval=c(imin-1,imax+1) )$root
     intersect.y <- f( intersect.x )
     return( c(intersect.x, intersect.y ))
