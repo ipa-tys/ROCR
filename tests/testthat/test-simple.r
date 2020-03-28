@@ -148,55 +148,6 @@ test_that("simple:",{
   }
   
   ##############################################################################
-  # ecost
-  ecost.x.reference <- c(0,1/3,0.5,1)
-  ecost.y.reference <- c(0,0.2,0.2,0)
-  
-  pred <- prediction(some.predictions, some.labels)
-  perf <- performance(pred, "ecost")
-  ecost.x <- perf@x.values[[1]]
-  ecost.y <- perf@y.values[[1]]
-  
-  expect_equal( ecost.x, ecost.x.reference )
-  
-  expect_equal( ecost.y, ecost.y.reference )
-  
-  ##############################################################################
-  # test cal
-  pred <- prediction(some.predictions, some.labels)
-  cal <- performance(pred, "cal", window.size=floor(length(pred@predictions[[1]])/3))@y.values[[1]]
-  cal.x <- performance(pred, "cal", window.size=floor(length(pred@predictions[[1]])/3))@x.values[[1]]
-  cal.x.reference <- rev(sort( some.predictions ))[2:(length(some.predictions)-1)]
-  
-  expect_equal( cal, cal.reference)
-  expect_equal( cal.x, cal.x.reference)
-  
-  ##############################################################################
-  # test cost
-  pred <- prediction(some.predictions, some.labels)
-  
-  for (cost.fp in rnorm(50)) {
-    cost.fn <- rnorm(1)
-    
-    perf <- performance(pred, "cost", cost.fp=cost.fp, cost.fn=cost.fn)
-    cost <- perf@y.values[[1]]
-    my.cost.reference <- (fpr.reference * n.reference/length(some.labels) * cost.fp +
-                            fnr.reference * p.reference/length(some.labels) * cost.fn)
-    
-    expect_equal( cost, my.cost.reference)
-  }
-  
-  ##############################################################################
-  # test Rch
-  pred <- prediction(some.predictions, some.labels)
-  perf <- performance( pred, "rch")
-  rch.x <- perf@x.values[[1]]
-  rch.y <- perf@y.values[[1]]
-  
-  expect_equal( rch.x, rch.reference.x )
-  expect_equal( rch.y, rch.reference.y )
-  
-  ##############################################################################
   # test PerformanceMeasuresReference
   pred <- prediction(some.predictions, some.labels)
   measures <- expect_warning(.get.performance.measures(pred),
@@ -243,6 +194,54 @@ test_that("simple:",{
   expect_equal(sar,sar.reference)
   
   expect_equal(cost, cost.reference)
+  
+  ##############################################################################
+  # ecost
+  ecost.x.reference <- c(0,1/3,0.5,1)
+  ecost.y.reference <- c(0,0.2,0.2,0)
+  
+  pred <- prediction(some.predictions, some.labels)
+  perf <- performance(pred, "ecost")
+  ecost.x <- perf@x.values[[1]]
+  ecost.y <- perf@y.values[[1]]
+  
+  expect_equal( ecost.x, ecost.x.reference )
+  
+  expect_equal( ecost.y, ecost.y.reference )
+  
+  ##############################################################################
+  # test cal
+  pred <- prediction(some.predictions, some.labels)
+  cal <- performance(pred, "cal", window.size=floor(length(pred@predictions[[1]])/3))@y.values[[1]]
+  cal.x <- performance(pred, "cal", window.size=floor(length(pred@predictions[[1]])/3))@x.values[[1]]
+  cal.x.reference <- rev(sort( some.predictions ))[2:(length(some.predictions)-1)]
+  
+  expect_equal( cal, cal.reference)
+  expect_equal( cal.x, cal.x.reference)
+  
+  ##############################################################################
+  # test cost
+  pred <- prediction(some.predictions, some.labels)
+  for (cost.fp in rnorm(50)) {
+    cost.fn <- rnorm(1)
+    
+    perf <- performance(pred, "cost", cost.fp=cost.fp, cost.fn=cost.fn)
+    cost <- perf@y.values[[1]]
+    my.cost.reference <- (fpr.reference * n.reference/length(some.labels) * cost.fp +
+                            fnr.reference * p.reference/length(some.labels) * cost.fn)
+    
+    expect_equal( cost, my.cost.reference)
+  }
+  
+  ##############################################################################
+  # test Rch
+  pred <- prediction(some.predictions, some.labels)
+  perf <- performance( pred, "rch")
+  rch.x <- perf@x.values[[1]]
+  rch.y <- perf@y.values[[1]]
+  
+  expect_equal( rch.x, rch.reference.x )
+  expect_equal( rch.y, rch.reference.y )
   
   ##############################################################################
   # test RMSE
