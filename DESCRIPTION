@@ -33,10 +33,10 @@ Imports:
   gplots,
   stats
 Suggests:
-    testthat,
-    roxygen2,
-    knitr,
-    rmarkdown
+  testthat,
+  roxygen2,
+  knitr,
+  rmarkdown
 URL: http://rocr.bioinf.mpi-sb.mpg.de/
 BugReports: https://github.com/ipa-tys/ROCR/issues
 RoxygenNote: 7.1.0
