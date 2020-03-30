@@ -7,6 +7,14 @@ name: pkgdown
 jobs:
   pkgdown:
     runs-on: ubuntu-18.04
+    
+    name: Pkgdown (Ubuntu-18.04)
+    
+    env:
+      R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
+      RSPM: "https://demo.rstudiopm.com/all/__linux__/bionic/latest"
+      GITHUB_PAT: ${{secrets.GITHUB_PAT}}
+      
     steps:
       - uses: actions/checkout@v2
 
@@ -14,9 +22,14 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@master
 
-      - name: Query dependencies
+      - name: Install R packages for CI
         run: |
           install.packages('remotes')
+          remotes::install_github('r-hub/sysreqs')
+        shell: Rscript {0}
+        
+      - name: Query dependencies
+        run: |
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), "depends.Rds", version = 2)
         shell: Rscript {0}
 
@@ -24,9 +37,16 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ${{ env.R_LIBS_USER }}
-          key: ubuntu-r-3.6-${{ hashFiles('depends.Rds') }}
-          restore-keys: ubuntu-r-3.6-
-
+          key: ubuntu-r-3.6-pkgdown-${{ hashFiles('depends.Rds') }}
+          restore-keys: ubuntu-r-3.6-pkgdown-
+          
+      - name: Install system dependencies
+        env:
+          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
+        run: |
+          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
+          sudo -s eval "$sysreqs"
+        
       - name: Install dependencies
         run: |
           install.packages("remotes")
@@ -35,7 +55,10 @@ jobs:
         shell: Rscript {0}
 
       - name: Install package
-        run: R CMD INSTALL .
+        run: |
+          R CMD INSTALL .
+          git config --global user.name ${{secrets.GH_USER}}
+          git config --global user.email ${{secrets.GH_EMAIL}}
 
       - name: Deploy package
         run: pkgdown::deploy_to_branch(new_process = FALSE)
