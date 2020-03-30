@@ -16,24 +16,24 @@ par(mfrow=c(2,2))
 pred<- prediction(pp, ll)
 
 perf <- performance(pred, "tpr", "fpr")
-plot(perf, avg= "threshold", colorize=T, lwd= 3,
+plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
      main= "With ROCR you can produce standard plots like ROC curves ...")
-plot(perf, lty=3, col="grey78", add=T)
+plot(perf, lty=3, col="grey78", add=TRUE)
 
 perf <- performance(pred, "prec", "rec")
-plot(perf, avg= "threshold", colorize=T, lwd= 3,
+plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
      main= "... Precision/Recall graphs ...")
-plot(perf, lty=3, col="grey78", add=T)
+plot(perf, lty=3, col="grey78", add=TRUE)
 
 perf <- performance(pred, "sens", "spec")
-plot(perf, avg= "threshold", colorize=T, lwd= 3,
+plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
      main="... Sensitivity/Specificity plots ...")
-plot(perf, lty=3, col="grey78", add=T)
+plot(perf, lty=3, col="grey78", add=TRUE)
 
 perf <- performance(pred, "lift", "rpp")
-plot(perf, avg= "threshold", colorize=T, lwd= 3,
+plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
      main= "... and Lift charts.")
-plot(perf, lty=3, col="grey78", add=T)
+plot(perf, lty=3, col="grey78", add=TRUE)
 
 # ------------------------------------------------------------------------------------
 
@@ -43,10 +43,10 @@ ll <- ROCR.xval$labels
 pred <- prediction(pp,ll)
 perf <- performance(pred,'tpr','fpr')
 par(mfrow=c(2,2))
-plot(perf, colorize=T, lwd=2,main='ROC curves from 10-fold cross-validation')
+plot(perf, colorize=TRUE, lwd=2,main='ROC curves from 10-fold cross-validation')
 plot(perf, avg='vertical', spread.estimate='stderror',lwd=3,main='Vertical averaging + 1 standard error',col='blue')
 plot(perf, avg='horizontal', spread.estimate='boxplot',lwd=3,main='Horizontal averaging + boxplots',col='blue')
-plot(perf, avg='threshold', spread.estimate='stddev',lwd=2, main='Threshold averaging + 1 standard deviation',colorize=T)
+plot(perf, avg='threshold', spread.estimate='stddev',lwd=2, main='Threshold averaging + 1 standard deviation',colorize=TRUE)
 
 
 # ------------------------------------------------------------------------------------
@@ -62,12 +62,12 @@ par(mfrow=c(2,2))
 pred<- prediction(pp, ll)
 perf <- performance(pred, "tpr", "fpr")
 
-plot(perf, avg= "threshold", colorize=T, lwd= 3,
+plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
      coloraxis.at=seq(0,1,by=0.2),
      main= "ROC curve")
-plot(perf, col="gray78", add=T)
-plot(perf, avg= "threshold", colorize=T, colorkey=F,lwd= 3,
-     main= "ROC curve",add=T)
+plot(perf, col="gray78", add=TRUE)
+plot(perf, avg= "threshold", colorize=TRUE, colorkey=FALSE,lwd= 3,
+     main= "ROC curve",add=TRUE)
 
 perf <- performance(pred, "acc")
 plot(perf, avg= "vertical", spread.estimate="boxplot", lwd=3,col='blue',
@@ -95,14 +95,14 @@ par(mfrow= c(2,2))
 data(ROCR.xval)
 pred <- prediction(ROCR.xval$predictions, ROCR.xval$labels)
 perf <- performance(pred,"pcmiss","lift")
-# plot(perf, colorize=T)
-plot(perf, colorize=T, print.cutoffs.at=seq(0,1,by=0.1), text.adj=c(1.2,1.2), avg="threshold", lwd=3,
+# plot(perf, colorize=TRUE)
+plot(perf, colorize=TRUE, print.cutoffs.at=seq(0,1,by=0.1), text.adj=c(1.2,1.2), avg="threshold", lwd=3,
      main= "You can freely combine performance measures ...")
 
 data(ROCR.simple)
 pred <- prediction(ROCR.simple$predictions, ROCR.simple$labels)
 perf <- performance(pred,"tpr","fpr")
-plot(perf, colorize=T, colorkey.pos="top", print.cutoffs.at=seq(0,1,by=0.1), text.cex=1,
+plot(perf, colorize=TRUE, colorkey.pos="top", print.cutoffs.at=seq(0,1,by=0.1), text.cex=1,
      text.adj=c(1.2, 1.2), lwd=2)
 
 # ... cutoff stacking
@@ -122,8 +122,8 @@ plot(perf,
 data(ROCR.xval)
 pred <- prediction(ROCR.xval$predictions, ROCR.xval$labels)
 perf <- performance(pred,"acc","lift")
-plot(perf, colorize=T, main="Truly parametrized curves")
-plot(perf, colorize=T, print.cutoffs.at=seq(0,1,by=0.1), add=T, text.adj=c(1.2, 1.2), avg="threshold", lwd=3)
+plot(perf, colorize=TRUE, main="Truly parametrized curves")
+plot(perf, colorize=TRUE, print.cutoffs.at=seq(0,1,by=0.1), add=TRUE, text.adj=c(1.2, 1.2), avg="threshold", lwd=3)
 
 # --------------------------------------------------------------------
 # (Expected cost) curve + ROC convex hull
@@ -144,7 +144,7 @@ for (i in 1:length(perf1@x.values)) {
     }
 }
 perf<-performance(pred,'ecost')
-plot(perf,lwd=1.5,xlim=c(0,1),ylim=c(0,1),add=T)
+plot(perf,lwd=1.5,xlim=c(0,1),ylim=c(0,1),add=TRUE)
 
 # RCH
 data(ROCR.simple)
@@ -154,7 +154,7 @@ pred <- prediction(ROCR.simple$predictions, ROCR.simple$labels)
 perf <- performance(pred,'tpr','fpr')
 plot(perf, main="ROC curve with concavities (suboptimal) and ROC convex hull (Fawcett)")
 perf1 <- performance(pred,'rch')
-plot(perf1,add=T,col='red',lwd=2)
+plot(perf1,add=TRUE,col='red',lwd=2)
 
 
 #---------------------------------------------------------------------
@@ -184,7 +184,7 @@ par(mfrow=c(6,6))
 for (i in 1:(length(measures)-1)) {
     for (j in (i+1):length(measures)) {
         perf <- performance(pred, measures[i], measures[j])
-        plot(perf, avg="threshold", colorize=T)
+        plot(perf, avg="threshold", colorize=TRUE)
     }
 }
 
@@ -201,61 +201,61 @@ pred <- prediction(pp, ll)
 
 par(mfrow=c(3,3))
 perf <- performance(pred, "odds", "fpr")
-plot(perf, colorize=T)
-plot(perf, avg="threshold", lwd=2, add=T)
+plot(perf, colorize=TRUE)
+plot(perf, avg="threshold", lwd=2, add=TRUE)
 
 perf <- performance(pred, "phi", "err")
-plot(perf, colorize=T)
-plot(perf, avg="threshold", lwd=2, add=T)
+plot(perf, colorize=TRUE)
+plot(perf, avg="threshold", lwd=2, add=TRUE)
 perf <- performance(pred, "f", "err")
-plot(perf, colorize=T)
-plot(perf, avg="threshold", lwd=2, add=T)
+plot(perf, colorize=TRUE)
+plot(perf, avg="threshold", lwd=2, add=TRUE)
 perf <- performance(pred, "f", "ppv")
-plot(perf, colorize=T)
-plot(perf, avg="threshold", lwd=2, add=T)
+plot(perf, colorize=TRUE)
+plot(perf, avg="threshold", lwd=2, add=TRUE)
 perf <- performance(pred, "mat", "ppv")
-plot(perf, colorize=T)
-plot(perf, avg="threshold", lwd=2, add=T)
+plot(perf, colorize=TRUE)
+plot(perf, avg="threshold", lwd=2, add=TRUE)
 perf <- performance(pred, "npv", "ppv")
-plot(perf, colorize=T)
-plot(perf, avg="threshold", lwd=2, add=T)
+plot(perf, colorize=TRUE)
+plot(perf, avg="threshold", lwd=2, add=TRUE)
 perf <- performance(pred, "acc", "phi")
-plot(perf, colorize=T)
-plot(perf, avg="threshold", lwd=2, add=T)
+plot(perf, colorize=TRUE)
+plot(perf, avg="threshold", lwd=2, add=TRUE)
 perf <- performance(pred, "lift", "phi")
-plot(perf, colorize=T)
-plot(perf, avg="threshold", lwd=2, add=T)
+plot(perf, colorize=TRUE)
+plot(perf, avg="threshold", lwd=2, add=TRUE)
 perf <- performance(pred, "f", "phi")
-plot(perf, colorize=T)
-plot(perf, avg="threshold", lwd=2, add=T)
+plot(perf, colorize=TRUE)
+plot(perf, avg="threshold", lwd=2, add=TRUE)
 
 perf <- performance(pred, "mi", "phi")
-plot(perf, colorize=T)
-plot(perf, avg="threshold", lwd=2, add=T)
+plot(perf, colorize=TRUE)
+plot(perf, avg="threshold", lwd=2, add=TRUE)
 perf <- performance(pred, "chisq", "phi")
-plot(perf, colorize=T)
-plot(perf, avg="threshold", lwd=2, add=T)
+plot(perf, colorize=TRUE)
+plot(perf, avg="threshold", lwd=2, add=TRUE)
 perf <- performance(pred, "acc", "mi")
-plot(perf, colorize=T)
-plot(perf, avg="threshold", lwd=2, add=T)
+plot(perf, colorize=TRUE)
+plot(perf, avg="threshold", lwd=2, add=TRUE)
 perf <- performance(pred, "fall", "odds")
-plot(perf, colorize=T)
-plot(perf, avg="threshold", lwd=2, add=T)
+plot(perf, colorize=TRUE)
+plot(perf, avg="threshold", lwd=2, add=TRUE)
 perf <- performance(pred, "tpr", "lift")
-plot(perf, colorize=T)
-plot(perf, avg="threshold", lwd=2, add=T)
+plot(perf, colorize=TRUE)
+plot(perf, avg="threshold", lwd=2, add=TRUE)
 perf <- performance(pred, "fall", "lift")
-plot(perf, colorize=T)
-plot(perf, avg="threshold", lwd=2, add=T)
+plot(perf, colorize=TRUE)
+plot(perf, avg="threshold", lwd=2, add=TRUE)
 perf <- performance(pred, "npv", "f")
-plot(perf, colorize=T)
-plot(perf, avg="threshold", lwd=2, add=T)
+plot(perf, colorize=TRUE)
+plot(perf, avg="threshold", lwd=2, add=TRUE)
 perf <- performance(pred, "prec", "f")
-plot(perf, colorize=T)
-plot(perf, avg="threshold", lwd=2, add=T)
+plot(perf, colorize=TRUE)
+plot(perf, avg="threshold", lwd=2, add=TRUE)
 perf <- performance(pred, "tpr", "f")
-plot(perf, colorize=T)
-plot(perf, avg="threshold", lwd=2, add=T)
+plot(perf, colorize=TRUE)
+plot(perf, avg="threshold", lwd=2, add=TRUE)
 
 par(opar)
 
