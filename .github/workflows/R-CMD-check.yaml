@@ -40,7 +40,7 @@ jobs:
       - name: Install R packages for CI
         run: |
           install.packages('remotes')
-          Rscript -e "remotes::install_github('r-hub/sysreqs')"
+          remotes::install_github('r-hub/sysreqs')
         shell: Rscript {0}
         
       - name: Query dependencies
