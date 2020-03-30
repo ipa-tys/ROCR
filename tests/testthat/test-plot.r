@@ -81,6 +81,11 @@ test_that("plot:",{
              main= "With ROCR you can produce standard plots like ROC curves ...")
         plot(perf, lty=3, col="grey78", add=TRUE)
     })
+    expect_null({
+        plot.performance(perf, avg= "threshold", colorize=TRUE, lwd= 3,
+             main= "With ROCR you can produce standard plots like ROC curves ...")
+        plot.performance(perf, lty=3, col="grey78", add=TRUE)
+    })
     perf <- performance(pred, "prec", "rec")
     expect_null({
         plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
@@ -136,13 +141,43 @@ test_that("plot:",{
              main='Vertical averaging + 1 standard error',col='blue')
     })
     expect_null({
+        plot(perf, avg='horizontal', spread.estimate='stderror',lwd=3,
+             main='Horizontal averaging + boxplots',col='blue')
+    })
+    expect_null({
         plot(perf, avg='horizontal', spread.estimate='boxplot',lwd=3,
+             main='Horizontal averaging + boxplots',col='blue')
+    })
+    expect_null({
+        plot(perf, avg='vertical', spread.estimate='boxplot',lwd=3,
              main='Horizontal averaging + boxplots',col='blue')
     })
     expect_null({
         plot(perf, avg='threshold', spread.estimate='stddev',lwd=2,
              main='Threshold averaging + 1 standard deviation',colorize=TRUE)
     })
+    expect_null({
+        plot(perf, avg='threshold', spread.estimate='boxplot',lwd=2,
+             main='Threshold averaging + 1 standard deviation',colorize=TRUE)
+    })
+    expect_null({
+        plot(perf, avg='threshold', spread.estimate='boxplot',lwd=2,
+             main='Threshold averaging + 1 standard deviation',colorize=TRUE,
+             colorkey.pos="top")
+    })
+    expect_null({
+        plot(perf,
+             print.cutoffs.at=seq(0,1,by=0.2),
+             text.cex=0.8,
+             text.y=lapply(as.list(seq(0,0.5,by=0.05)),
+                           function(x) { rep(x,length(perf@x.values[[1]])) } ),
+             col= as.list(terrain.colors(10)),
+             text.col= as.list(terrain.colors(10)), 
+             points.col= as.list(terrain.colors(10)), 
+             main= "Cutoff stability")
+    })
+    
+   
     
     ############################################################################
     # removed because vdiffr is not available on mac
@@ -229,6 +264,10 @@ test_that("plot:",{
     # })
     # vdiffr::expect_doppelganger("ROC-horizontal-avg",{
     #     plot(perf, avg='horizontal', spread.estimate='boxplot',lwd=3,
+    #          main='Horizontal averaging + boxplots',col='blue')
+    # })
+    # vdiffr::expect_doppelganger("ROC-vertical-avg-box",{
+    #     plot(perf, avg='vertical', spread.estimate='boxplot',lwd=3,
     #          main='Horizontal averaging + boxplots',col='blue')
     # })
     # vdiffr::expect_doppelganger("ROC-threshold-avg",{
