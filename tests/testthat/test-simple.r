@@ -149,7 +149,35 @@ test_that("simple:",{
   
   ##############################################################################
   # test PerformanceMeasuresReference
+  expect_error(prediction(some.predictions[-1], some.labels),
+               "Number of predictions in each run must be equal")
+  expect_error(prediction(c(NA,some.predictions[-1]), some.labels),
+               "'predictions' contains NA.")
+  expect_error(prediction(as.list(matrix(some.predictions)), some.labels),
+               "Number of cross-validation runs must be equal")
+  expect_error(prediction(some.predictions, factor(some.labels,ordered = TRUE),
+                          label.ordering = c(1,0)),
+               "'labels' is already ordered. No additional 'label.ordering'")
+  expect_error()
+  
   pred <- prediction(some.predictions, some.labels)
+  actual <- prediction(some.predictions, factor(some.labels),
+                       label.ordering = c(0,1))
+  expect_equal(pred, actual)
+  expect_error(performance("tpr",pred),
+               "Wrong argument types")
+  expect_error(performance(pred,"tpr","mxe"),
+               "The performance measure mxe can only be used as 'measure'")
+  actual1 <- performance(pred, "tpr")
+  actual2 <- performance(pred, "fpr")
+  actual <- ROCR:::.combine.performance.objects(actual1,actual2)
+  expect_s4_class(actual,"performance")
+  actual3 <- performance(pred, "mxe")
+  expect_error(ROCR:::.combine.performance.objects(actual1,actual3),
+               "Objects need to have identical x axis")
+  expect_error(ROCR:::.combine.performance.objects(actual,actual),
+               "At least one of the two objects has already been merged")
+  
   measures <- expect_warning(.get.performance.measures(pred),
                              "Chi-squared approximation may be incorrect")
   attach(measures)

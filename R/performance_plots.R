@@ -57,8 +57,8 @@
     if (length(perf@y.values) != length(perf@x.values)) {
       stop("Performance object cannot be plotted.")
     }
-    if (is.null(perf@alpha.values) && (colorize==TRUE ||
-                                       length(print.cutoffs.at)>0)) {
+    if ((is.null(perf@alpha.values) || length(perf@alpha.values) == 0L) && 
+        (colorize==TRUE || length(print.cutoffs.at)>0)) {
       stop(paste("Threshold coloring or labeling cannot be performed:",
                  "performance object has no threshold information."))
     }

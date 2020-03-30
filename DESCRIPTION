@@ -34,6 +34,7 @@ Imports:
   stats
 Suggests:
   testthat,
+  vdiffr,
   roxygen2
 URL: http://rocr.bioinf.mpi-sb.mpg.de/
 RoxygenNote: 7.1.0
