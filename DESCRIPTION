@@ -35,5 +35,8 @@ Imports:
 Suggests:
     testthat,
     roxygen2,
+    knitr,
+    rmarkdown
 URL: http://rocr.bioinf.mpi-sb.mpg.de/
 RoxygenNote: 7.1.0
+VignetteBuilder: knitr
