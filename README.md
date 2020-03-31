@@ -75,10 +75,6 @@ plot(perf, col=rainbow(10))
  - Slide deck for a tutorial talk (feel free to re-use for teaching, but please give appropriate credits and write us an email) [[PPT](http://rocr.bioinf.mpi-sb.mpg.de/ROCR_Talk_Tobias_Sing.ppt)]
  - A few pointers to the literature on classifier evaluation
 
-### Software by other groups which has components for classifier evaluation
-
- - [BioConductor](https://bioconductor.org) has a ROC package.
- - [Weka](https://www.cs.waikato.ac.nz/ml/) has an evaluation package, with a couple of performance measures.
 
 ## Contact
 Questions, comments, and suggestions are very welcome. Open an issue on GitHub and we can discuss. We are also interested in seeing how ROCR is used in publications. Thus, if you have prepared a paper using ROCR we'd be happy to know.
