@@ -75,16 +75,6 @@ plot(perf, col=rainbow(10))
  - Slide deck for a tutorial talk (feel free to re-use for teaching, but please give appropriate credits and write us an email) [[PPT](http://rocr.bioinf.mpi-sb.mpg.de/ROCR_Talk_Tobias_Sing.ppt)]
  - A few pointers to the literature on classifier evaluation
 
-### Studies using and citing ROCR (please let us know of any others!)
-
- - CH Lemon, DV Smith (2006) *The Journal of Neuroscience:* Influence of response variability on the coding performance of central gustatory neurons.
- - S Hartley, R Harris, PJ Lester (2006) *Ecology Letters:* Quantifying uncertainty in the potential distribution of an invasive species: climate and the Argentine ant.
- - SJ Li, BS Liu, Zeng R, et al (2006) *Computational Biology and Chemistry:* Predicting O-glycosylation sites in mammalian proteins by using SVMs
- - K Roomp, N Beerenwinkel, T Sing, et al (2006) *Springer Lecture Notes in Computer Science 4075:* Arevir: A secure platform for designing personalized antiretroviral therapies against HIV
- - I Antes, SWI Siu, T Lengauer (2006) *Bioinformatics:* DynaPred: A structure and sequence based method for the prediction of MHC class I binding peptide
- - X Guo, R Liu, CD Shriver et al (2006) *Bioinformatics:* Assessing semantic similarity measures for the characterization of human regulatory pathways
- - N Beerenwinkel, T Sing, T Lengauer et al (2005) *Bioinformatics:* Computational methods for the design of effective therapies against drug resistant HIV strains
-
 ### Software by other groups which has components for classifier evaluation
 
  - [BioConductor](bioconductor.org) has a ROC package.
