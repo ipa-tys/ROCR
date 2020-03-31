@@ -119,7 +119,11 @@ negatives), FP (\# false positives), FN (\# false negatives).
    measure cannot be combined with other measures into a parametric
    curve. The partial area under the ROC curve up to a given false
    positive rate can be calculated by passing the optional parameter
-   \code{fpr.stop=0.5} (or any other value between 0 and 1) to \code{performance}.}
+   \code{fpr.stop=0.5} (or any other value between 0 and 1) to 
+   \code{performance}.}
+ \item{\code{aucpr}:}{Area under the Precision/Recall curve. Since the output
+   of \code{aucpr} is cutoff-independent, this measure cannot be combined with
+   other measures into a parametric curve.}
  \item{\code{prbe}:}{Precision-recall break-even point. The cutoff(s) where
    precision and recall are equal. At this point, positive and negative
    predictions are made at the same rate as their prevalence in the
