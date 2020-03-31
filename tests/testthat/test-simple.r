@@ -165,6 +165,7 @@ test_that("simple:",{
   expect_error()
   
   pred <- prediction(some.predictions, some.labels)
+  expect_output(show(pred))
   actual <- prediction(some.predictions, factor(some.labels),
                        label.ordering = c(0,1))
   expect_equal(pred, actual)
