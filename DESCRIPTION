@@ -1,8 +1,8 @@
 Package: ROCR
 Authors@R: c(person("Tobias","Sing",
-                    email = "tobias.sing@mpi-sb.mpg.de",role="aut"),
+                    email = "tobias.sing@gmail.com",role="aut"),
              person("Oliver","Sander",
-                    email = "osander@mpi-sb.mpg.de",role="aut"),
+                    email = "osander@gmail.com",role="aut"),
              person("Niko","Beerenwinkel",
                     role="aut"),
              person("Thomas","Lengauer",
