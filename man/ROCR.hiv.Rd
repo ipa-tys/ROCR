@@ -25,9 +25,13 @@ library(ROCR)
 data(ROCR.hiv)
 attach(ROCR.hiv)
 pred.svm <- prediction(hiv.svm$predictions, hiv.svm$labels)
+pred.svm
 perf.svm <- performance(pred.svm, 'tpr', 'fpr')
+perf.svm
 pred.nn <- prediction(hiv.nn$predictions, hiv.svm$labels)
+pred.nn
 perf.nn <- performance(pred.nn, 'tpr', 'fpr')
+perf.nn
 plot(perf.svm, lty=3, col="red",main="SVMs and NNs for prediction of
 HIV-1 coreceptor usage")
 plot(perf.nn, lty=3, col="blue",add=TRUE)

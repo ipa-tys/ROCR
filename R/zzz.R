@@ -69,6 +69,23 @@ setClass("prediction",
                         n.pos.pred  = "list",
                         n.neg.pred  = "list"))
 
+setMethod("show","prediction",
+          function(object){
+              cat("A ", class(object), " instance\n", sep = "")
+              if(length(object@predictions) > 1L){
+                  cat("  with ", length(object@predictions)," cross ",
+                      "validation runs ", sep = "")
+                  if(length(unique(vapply(object@predictions,length,integer(1))))){
+                      cat("(equal lengths)", sep = "")
+                  } else {
+                      cat("(different lengths)", sep = "")
+                  }
+              } else {
+                  cat("  with ", length(object@predictions[[1L]]),
+                      " data points", sep = "")
+              }
+          })
+
 #' @name performance-class
 #' @aliases performance-class
 #'
@@ -142,6 +159,26 @@ setClass("performance",
                         x.values     = "list",
                         y.values     = "list",
                         alpha.values = "list" ))
+
+setMethod("show","performance",
+          function(object){
+              cat("A ", class(object), " instance\n", sep = "")
+              if(length(object@y.values[[1L]]) > 1L){
+                  cat("  '", object@x.name, "' vs. '", object@y.name,
+                      "' (alpha: '",object@alpha.name,"')\n", sep = "")
+              } else {
+                  cat("  '", object@y.name, "'\n", sep = "")
+              }
+              if(length(object@y.values) > 1L){
+                  cat("  for ", length(object@y.values)," cross ",
+                      "validation runs ", sep = "")
+              } else {
+                  if(length(object@y.values[[1L]]) > 1L){
+                      cat("  with ", length(object@y.values[[1L]])," data points",
+                          sep = "")
+                  }
+              }
+          })
 
 #' @name plot-methods
 #' @aliases plot,performance,missing-method plot.performance
@@ -240,7 +277,9 @@ setClass("performance",
 #' library(ROCR)
 #' data(ROCR.simple)
 #' pred <- prediction( ROCR.simple$predictions, ROCR.simple$labels )
+#' pred
 #' perf <- performance( pred, "tpr", "fpr" )
+#' perf
 #' plot( perf )
 #'
 #' # To entertain your children, make your plots nicer
@@ -328,9 +367,13 @@ setMethod("plot",
 #' data(ROCR.hiv)
 #' attach(ROCR.hiv)
 #' pred.svm <- prediction(hiv.svm$predictions, hiv.svm$labels)
+#' pred.svm
 #' perf.svm <- performance(pred.svm, 'tpr', 'fpr')
+#' perf.svm
 #' pred.nn <- prediction(hiv.nn$predictions, hiv.svm$labels)
+#' pred.nn
 #' perf.nn <- performance(pred.nn, 'tpr', 'fpr')
+#' perf.nn
 #' plot(perf.svm, lty=3, col="red",main="SVMs and NNs for prediction of
 #' HIV-1 coreceptor usage")
 #' plot(perf.nn, lty=3, col="blue",add=TRUE)
@@ -366,7 +409,9 @@ setMethod("plot",
 #' library(ROCR)
 #' data(ROCR.simple)
 #' pred <- prediction(ROCR.simple$predictions, ROCR.simple$labels)
+#' pred
 #' perf <- performance(pred,"tpr","fpr")
+#' perf
 #' plot(perf,colorize=TRUE)
 "ROCR.simple"
 
@@ -398,7 +443,9 @@ setMethod("plot",
 #' library(ROCR)
 #' data(ROCR.xval)
 #' pred <- prediction(ROCR.xval$predictions, ROCR.xval$labels)
+#' pred
 #' perf <- performance(pred,"tpr","fpr")
+#' perf
 #' plot(perf,col="grey82",lty=3)
 #' plot(perf,lwd=3,avg="vertical",spread.estimate="boxplot",add=TRUE)
 "ROCR.xval"
