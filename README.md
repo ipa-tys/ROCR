@@ -91,4 +91,4 @@ plot(perf, col=rainbow(10))
  - [Weka](https://www.cs.waikato.ac.nz/ml/) has an evaluation package, with a couple of performance measures.
 
 ## Contact
-Just send a mail to [Tobias Sing](mail:tobias.sing@mpi-sb.mpg.de) or [Oliver Sander](mail:osander@mpi-sb.mpg.de). Questions, comments, and suggestions are very welcome. We are also interested in seeing how ROCR is used in publications. Thus, if you have prepared a paper using ROCR we'd be happy to know.
+Questions, comments, and suggestions are very welcome. Open an issue on GitHub and we can discuss. We are also interested in seeing how ROCR is used in publications. Thus, if you have prepared a paper using ROCR we'd be happy to know.
