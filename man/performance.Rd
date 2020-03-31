@@ -102,15 +102,14 @@ negatives), FP (\# false positives), FN (\# false negatives).
    \eqn{\alpha=\frac{1}{2}}{alpha=1/2}, the mean is balanced. A
    frequent equivalent formulation is
    \eqn{F = \frac{(\beta^2+1) \cdot P \cdot R}{R + \beta^2 \cdot
-     P}}{F = (beta^2+1) * P * R / (R + beta^2 * P)}. In this formulation, the mean is
-   balanced if \eqn{\beta=1}{beta=1}. Currently, ROCR only accepts the
-   alpha version
-   as input (e.g. \eqn{\alpha=0.5}{alpha=0.5}). If no value for alpha is given, the mean will be
-   balanced by default.}
- \item{\code{rch}:}{ROC convex hull. A ROC (=\code{tpr} vs \code{fpr}) curve with concavities
-   (which represent suboptimal choices of cutoff) removed (Fawcett 2001). Since the
-   result is already a parametric performance curve, it cannot be
-   used in combination with other measures.}
+     P}}{F = (beta^2+1) * P * R / (R + beta^2 * P)}. In this formulation, the
+     mean is balanced if \eqn{\beta=1}{beta=1}. Currently, ROCR only accepts
+     the alpha version as input (e.g. \eqn{\alpha=0.5}{alpha=0.5}). If no 
+     value for alpha is given, the mean will be balanced by default.}
+ \item{\code{rch}:}{ROC convex hull. A ROC (=\code{tpr} vs \code{fpr}) curve 
+   with concavities (which represent suboptimal choices of cutoff) removed 
+   (Fawcett 2001). Since the result is already a parametric performance 
+   curve, it cannot be used in combination with other measures.}
  \item{\code{auc}:}{Area under the ROC curve. This is equal to the value of the
    Wilcoxon-Mann-Whitney test statistic and also the probability that the
    classifier will score are randomly drawn positive sample higher than a
@@ -122,8 +121,8 @@ negatives), FP (\# false positives), FN (\# false negatives).
    \code{fpr.stop=0.5} (or any other value between 0 and 1) to 
    \code{performance}.}
  \item{\code{aucpr}:}{Area under the Precision/Recall curve. Since the output
-   of \code{aucpr} is cutoff-independent, this measure cannot be combined with
-   other measures into a parametric curve.}
+   of \code{aucpr} is cutoff-independent, this measure cannot be combined 
+   with other measures into a parametric curve.}
  \item{\code{prbe}:}{Precision-recall break-even point. The cutoff(s) where
    precision and recall are equal. At this point, positive and negative
    predictions are made at the same rate as their prevalence in the

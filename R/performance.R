@@ -82,15 +82,14 @@
 #'    \eqn{\alpha=\frac{1}{2}}{alpha=1/2}, the mean is balanced. A
 #'    frequent equivalent formulation is
 #'    \eqn{F = \frac{(\beta^2+1) \cdot P \cdot R}{R + \beta^2 \cdot
-#'      P}}{F = (beta^2+1) * P * R / (R + beta^2 * P)}. In this formulation, the mean is
-#'    balanced if \eqn{\beta=1}{beta=1}. Currently, ROCR only accepts the
-#'    alpha version
-#'    as input (e.g. \eqn{\alpha=0.5}{alpha=0.5}). If no value for alpha is given, the mean will be
-#'    balanced by default.}
-#'  \item{\code{rch}:}{ROC convex hull. A ROC (=\code{tpr} vs \code{fpr}) curve with concavities
-#'    (which represent suboptimal choices of cutoff) removed (Fawcett 2001). Since the
-#'    result is already a parametric performance curve, it cannot be
-#'    used in combination with other measures.}
+#'      P}}{F = (beta^2+1) * P * R / (R + beta^2 * P)}. In this formulation, the
+#'      mean is balanced if \eqn{\beta=1}{beta=1}. Currently, ROCR only accepts
+#'      the alpha version as input (e.g. \eqn{\alpha=0.5}{alpha=0.5}). If no 
+#'      value for alpha is given, the mean will be balanced by default.}
+#'  \item{\code{rch}:}{ROC convex hull. A ROC (=\code{tpr} vs \code{fpr}) curve 
+#'    with concavities (which represent suboptimal choices of cutoff) removed 
+#'    (Fawcett 2001). Since the result is already a parametric performance 
+#'    curve, it cannot be used in combination with other measures.}
 #'  \item{\code{auc}:}{Area under the ROC curve. This is equal to the value of the
 #'    Wilcoxon-Mann-Whitney test statistic and also the probability that the
 #'    classifier will score are randomly drawn positive sample higher than a
