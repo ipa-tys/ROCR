@@ -71,7 +71,7 @@ plot(perf, col=rainbow(10))
 
 ## Documentation
 
- - Reference Manual [[PDF](https://CRAN.r-project.org/web/packages/ROCR/ROCR.pdf)]
+ - The Reference Manual found [here](https://CRAN.r-project.org/package=ROCR)
  - Slide deck for a tutorial talk (feel free to re-use for teaching, but please give appropriate credits and write us an email) [[PPT](http://rocr.bioinf.mpi-sb.mpg.de/ROCR_Talk_Tobias_Sing.ppt)]
  - A few pointers to the literature on classifier evaluation
 
