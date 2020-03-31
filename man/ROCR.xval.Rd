@@ -25,7 +25,9 @@ would be obtained from 10-fold cross-validation.
 library(ROCR)
 data(ROCR.xval)
 pred <- prediction(ROCR.xval$predictions, ROCR.xval$labels)
+pred
 perf <- performance(pred,"tpr","fpr")
+perf
 plot(perf,col="grey82",lty=3)
 plot(perf,lwd=3,avg="vertical",spread.estimate="boxplot",add=TRUE)
 }

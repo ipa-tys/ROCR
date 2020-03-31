@@ -99,46 +99,50 @@ test_that("simple:",{
                        fnr.reference * p.reference/length(some.labels) * 1)
   
   .get.performance.measures <- function(pred) {
+    .get.performance.measure.result <- function(pred, measure){
+      perf <- performance(pred, measure)
+      show(perf)
+      perf@y.values[[1]]
+    }
+    tpr <- .get.performance.measure.result(pred, "tpr")
+    fpr <- .get.performance.measure.result(pred, "fpr")
+    acc <- .get.performance.measure.result(pred, "acc")
+    err <- .get.performance.measure.result(pred, "err")
     
-    tpr <- performance(pred, "tpr")@y.values[[1]]
-    fpr <- performance(pred, "fpr")@y.values[[1]]
-    acc <- performance(pred, "acc")@y.values[[1]]
-    err <- performance(pred, "err")@y.values[[1]]
+    rec <- .get.performance.measure.result(pred, "rec")
+    sens<- .get.performance.measure.result(pred, "sens")
+    fnr <- .get.performance.measure.result(pred, "fnr")
+    tnr <- .get.performance.measure.result(pred, "tnr")
+    spec<- .get.performance.measure.result(pred, "spec")
+    ppv <- .get.performance.measure.result(pred, "ppv")
+    prec<- .get.performance.measure.result(pred, "prec")
+    npv <- .get.performance.measure.result(pred, "npv")
     
-    rec <- performance(pred, "rec")@y.values[[1]]
-    sens<- performance(pred, "sens")@y.values[[1]]
-    fnr <- performance(pred, "fnr")@y.values[[1]]
-    tnr <- performance(pred, "tnr")@y.values[[1]]
-    spec<- performance(pred, "spec")@y.values[[1]]
-    ppv <- performance(pred, "ppv")@y.values[[1]]
-    prec<- performance(pred, "prec")@y.values[[1]]
-    npv <- performance(pred, "npv")@y.values[[1]]
-    
-    fall<- performance(pred, "fall")@y.values[[1]]
-    miss<- performance(pred, "miss")@y.values[[1]]
-    pcfall <- performance(pred, "pcfall")@y.values[[1]]
-    pcmiss <- performance(pred, "pcmiss")@y.values[[1]]
-    rpp <- performance(pred, "rpp")@y.values[[1]]
-    rnp <- performance(pred, "rnp")@y.values[[1]]
+    fall<- .get.performance.measure.result(pred, "fall")
+    miss<- .get.performance.measure.result(pred, "miss")
+    pcfall <- .get.performance.measure.result(pred, "pcfall")
+    pcmiss <- .get.performance.measure.result(pred, "pcmiss")
+    rpp <- .get.performance.measure.result(pred, "rpp")
+    rnp <- .get.performance.measure.result(pred, "rnp")
     
     auc <- performance(pred, "auc")@y.values[[1]]
     aucpr <- performance(pred, "aucpr")@y.values[[1]]
     prbe<- performance(pred, "prbe")@y.values[[1]]
     rch <- performance(pred, "rch")@y.values[[1]]
+
+    mxe <- .get.performance.measure.result(pred, "mxe")
+    rmse<- .get.performance.measure.result(pred, "rmse")
     
-    mxe <- performance(pred, "mxe")@y.values[[1]]
-    rmse<- performance(pred, "rmse")@y.values[[1]]
-    
-    phi <- performance(pred, "phi")@y.values[[1]]
-    mat <- performance(pred, "mat")@y.values[[1]]
-    mi  <- performance(pred, "mi")@y.values[[1]]
-    chisq<- performance(pred, "chisq")@y.values[[1]]
-    odds<- performance(pred, "odds")@y.values[[1]]
-    lift<- performance(pred, "lift")@y.values[[1]]
-    f   <- performance(pred, "f")@y.values[[1]]
-    sar <- performance(pred,"sar")@y.values[[1]]
-    ecost  <- performance(pred, "ecost")@y.values[[1]]
-    cost  <- performance(pred, "cost")@y.values[[1]]
+    phi <- .get.performance.measure.result(pred, "phi")
+    mat <- .get.performance.measure.result(pred, "mat")
+    mi  <- .get.performance.measure.result(pred, "mi")
+    chisq<- .get.performance.measure.result(pred, "chisq")
+    odds<- .get.performance.measure.result(pred, "odds")
+    lift<- .get.performance.measure.result(pred, "lift")
+    f   <- .get.performance.measure.result(pred, "f")
+    sar <- .get.performance.measure.result(pred,"sar")
+    ecost  <- .get.performance.measure.result(pred, "ecost")
+    cost  <- .get.performance.measure.result(pred, "cost")
     return(list(tpr=tpr, fpr=fpr, acc=acc, err=err,
                 rec=rec, sens=sens, fnr=fnr, tnr=tnr,
                 spec=spec, ppv=ppv, prec=prec, npv=npv, 
@@ -163,6 +167,7 @@ test_that("simple:",{
   expect_error()
   
   pred <- prediction(some.predictions, some.labels)
+  expect_output(show(pred))
   actual <- prediction(some.predictions, factor(some.labels),
                        label.ordering = c(0,1))
   expect_equal(pred, actual)
@@ -180,8 +185,9 @@ test_that("simple:",{
   expect_error(ROCR:::.combine.performance.objects(actual,actual),
                "At least one of the two objects has already been merged")
   
-  measures <- expect_warning(.get.performance.measures(pred),
-                             "Chi-squared approximation may be incorrect")
+  measures <- expect_output(
+    expect_warning(.get.performance.measures(pred),
+                   "Chi-squared approximation may be incorrect"))
   attach(measures)
   
   expect_equal(tpr, tpr.reference)

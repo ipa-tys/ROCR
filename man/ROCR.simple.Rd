@@ -22,7 +22,9 @@ class labels.
 library(ROCR)
 data(ROCR.simple)
 pred <- prediction(ROCR.simple$predictions, ROCR.simple$labels)
+pred
 perf <- performance(pred,"tpr","fpr")
+perf
 plot(perf,colorize=TRUE)
 }
 \keyword{datasets}

@@ -44,7 +44,10 @@ Imports:
   stats
 Suggests:
   testthat,
-  vdiffr,
-  roxygen2
+  roxygen2,
+  knitr,
+  rmarkdown
 URL: http://rocr.bioinf.mpi-sb.mpg.de/
+BugReports: https://github.com/ipa-tys/ROCR/issues
 RoxygenNote: 7.1.0
+VignetteBuilder: knitr

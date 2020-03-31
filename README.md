@@ -1,6 +1,11 @@
-# ROCR
+# ROCR <img src="http://rocr.bioinf.mpi-sb.mpg.de/ROCR_small.png" align="right">
 
 *visualizing classifier performance in R, with only 3 commands*
+
+<!-- badges: start -->
+![R-CMD-check](https://github.com/FelixErnst/ROCR/workflows/R-CMD-check/badge.svg)
+[![codecov](https://codecov.io/gh/FelixErnst/ROCR/branch/master/graph/badge.svg)](https://codecov.io/gh/FelixErnst/ROCR)
+<!-- badges: end -->
 
 ![](http://rocr.bioinf.mpi-sb.mpg.de/ourplot_website.gif)
 
@@ -56,7 +61,7 @@ help(package=ROCR)
 
 ## Examples
 
-Using ROCR's 3 commands to produce a simple ROC plot
+Using ROCR's 3 commands to produce a simple ROC plot:
 
 ```
 pred <- prediction(predictions, labels)
@@ -86,4 +91,4 @@ plot(perf, col=rainbow(10))
  - [Weka](https://www.cs.waikato.ac.nz/ml/) has an evaluation package, with a couple of performance measures.
 
 ## Contact
-Just send a mail to [Tobias Sing](tobias.sing@mpi-sb.mpg.de) or [Oliver Sander](osander@mpi-sb.mpg.de). Questions, comments, and suggestions are very welcome. We are also interested in seeing how ROCR is used in publications. Thus, if you have prepared a paper using ROCR we'd be happy to know.
+Questions, comments, and suggestions are very welcome. Open an issue on GitHub and we can discuss. We are also interested in seeing how ROCR is used in publications. Thus, if you have prepared a paper using ROCR we'd be happy to know.

@@ -72,6 +72,7 @@
 #' library(ROCR)
 #' data(ROCR.simple)
 #' pred <- prediction(ROCR.simple$predictions,ROCR.simple$labels)
+#' pred
 prediction <- function(predictions, labels, label.ordering=NULL) {
 
   ## bring 'predictions' and 'labels' into list format,

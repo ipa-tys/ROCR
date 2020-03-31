@@ -64,6 +64,7 @@ error message.
 library(ROCR)
 data(ROCR.simple)
 pred <- prediction(ROCR.simple$predictions,ROCR.simple$labels)
+pred
 }
 \references{
 A detailed list of references can be found on the ROCR homepage at

@@ -1,4 +1,3 @@
-library(vdiffr)
 
 context("plot")
 test_that("plot:",{
@@ -62,17 +61,13 @@ test_that("plot:",{
     measures <- expect_warning(.get.performance(pred),
                                "Chi-squared approximation may be incorrect")
     actual1 <- measures[[1]]
-    
+    expect_error(plot(measures[[1]], colorize = TRUE),
+                 "Threshold coloring or labeling cannot be performed")
     for(i in seq_along(measures)){
-        message(i)
-        if(!(names(measures[i]) %in% c("auc","mxe","rmse"))){
-            expect_doppelganger(names(measures[i]), plot(measures[[i]]))
-        } else {
+        if(names(measures[i]) %in% c("auc","mxe","rmse")){
             expect_error(plot(measures[[i]]))
         }
     }
-    expect_error(plot(measures[[1]], colorize = TRUE),
-                 "Threshold coloring or labeling cannot be performed")
     
     data(ROCR.hiv)
     pp <- ROCR.hiv$hiv.svm$predictions
@@ -81,44 +76,29 @@ test_that("plot:",{
     expect_error(ROCR:::.combine.performance.objects(actual1,performance(pred, "fpr")),
                  "Only performance objects with identical number of cross-validation")
     perf <- performance(pred, "tpr", "fpr")
-    expect_doppelganger("ROC-curve",{
-        plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
-             main= "With ROCR you can produce standard plots like ROC curves ...")
-        plot(perf, lty=3, col="grey78", add=TRUE)
-    })
     expect_null({
         plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
              main= "With ROCR you can produce standard plots like ROC curves ...")
         plot(perf, lty=3, col="grey78", add=TRUE)
     })
-    perf <- performance(pred, "prec", "rec")
-    expect_doppelganger("Precision-Recall-graph",{
-        plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
-             main= "... Precision/Recall graphs ...")
-        plot(perf, lty=3, col="grey78", add=TRUE)
+    expect_null({
+        plot.performance(perf, avg= "threshold", colorize=TRUE, lwd= 3,
+             main= "With ROCR you can produce standard plots like ROC curves ...")
+        plot.performance(perf, lty=3, col="grey78", add=TRUE)
     })
+    perf <- performance(pred, "prec", "rec")
     expect_null({
         plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
              main= "... Precision/Recall graphs ...")
         plot(perf, lty=3, col="grey78", add=TRUE)
     })
     perf <- performance(pred, "sens", "spec")
-    expect_doppelganger("Sensitivity-Specificity-plots",{
-        plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
-             main="... Sensitivity/Specificity plots ...")
-        plot(perf, lty=3, col="grey78", add=TRUE)
-    })
     expect_null({
         plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
              main="... Sensitivity/Specificity plots ...")
         plot(perf, lty=3, col="grey78", add=TRUE)
     })
     perf <- performance(pred, "lift", "rpp")
-    expect_doppelganger("lift-chart",{
-        plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
-             main= "... and Lift charts.")
-        plot(perf, lty=3, col="grey78", add=TRUE)
-    })
     expect_null({
         plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
              main= "... and Lift charts.")
@@ -126,17 +106,17 @@ test_that("plot:",{
     })
     
     perf <- performance(pred, "tpr", "fpr")
-    expect_doppelganger("ROC-curve-downsampling1",{
+    expect_null({
         plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
              main= "With ROCR you can produce standard plots like ROC curves ...",
              downsampling = 0.5)
     })
-    expect_doppelganger("ROC-curve-downsampling2",{
+    expect_null({
         plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
              main= "With ROCR you can produce standard plots like ROC curves ...",
              downsampling = 0.9)
     })
-    expect_doppelganger("ROC-curve-downsampling3",{
+    expect_null({
         plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
              main= "With ROCR you can produce standard plots like ROC curves ...",
              downsampling = 1)
@@ -152,25 +132,148 @@ test_that("plot:",{
     pred <- prediction(pp,ll)
     perf <- performance(pred,'tpr','fpr')
     
-    expect_doppelganger("ROC-cross-valid",{
-        par(mfrow=c(2,2))
-        plot(perf, colorize=T, lwd=2,
+    expect_null({
+        plot(perf, colorize=TRUE, lwd=2,
              main='ROC curves from 10-fold cross-validation')
     })
-    expect_doppelganger("ROC-vertical-avg",{
-        par(mfrow=c(2,2))
+    expect_null({
         plot(perf, avg='vertical', spread.estimate='stderror',lwd=3,
              main='Vertical averaging + 1 standard error',col='blue')
     })
-    expect_doppelganger("ROC-horizontal-avg",{
-        par(mfrow=c(2,2))
+    expect_null({
+        plot(perf, avg='horizontal', spread.estimate='stderror',lwd=3,
+             main='Horizontal averaging + boxplots',col='blue')
+    })
+    expect_null({
         plot(perf, avg='horizontal', spread.estimate='boxplot',lwd=3,
              main='Horizontal averaging + boxplots',col='blue')
     })
-    expect_doppelganger("ROC-threshold-avg",{
-        par(mfrow=c(2,2))
+    expect_null({
+        plot(perf, avg='vertical', spread.estimate='boxplot',lwd=3,
+             main='Horizontal averaging + boxplots',col='blue')
+    })
+    expect_null({
         plot(perf, avg='threshold', spread.estimate='stddev',lwd=2,
              main='Threshold averaging + 1 standard deviation',colorize=TRUE)
     })
+    expect_null({
+        plot(perf, avg='threshold', spread.estimate='boxplot',lwd=2,
+             main='Threshold averaging + 1 standard deviation',colorize=TRUE)
+    })
+    expect_null({
+        plot(perf, avg='threshold', spread.estimate='boxplot',lwd=2,
+             main='Threshold averaging + 1 standard deviation',colorize=TRUE,
+             colorkey.pos="top")
+    })
+    expect_null({
+        plot(perf,
+             print.cutoffs.at=seq(0,1,by=0.2),
+             text.cex=0.8,
+             text.y=lapply(as.list(seq(0,0.5,by=0.05)),
+                           function(x) { rep(x,length(perf@x.values[[1]])) } ),
+             col= as.list(terrain.colors(10)),
+             text.col= as.list(terrain.colors(10)), 
+             points.col= as.list(terrain.colors(10)), 
+             main= "Cutoff stability")
+    })
+    
+   
+    
+    ############################################################################
+    # removed because vdiffr is not available on mac
+    ############################################################################
+    
+    # vdiffr
+    # skip_on_ci()
+    # skip_on_os("mac")
+    # skip_if_not_installed("vdiffr")
+    # for(i in seq_along(measures)){
+    #     if(!(names(measures[i]) %in% c("auc","mxe","rmse"))){
+    #         vdiffr::expect_doppelganger(names(measures[i]), plot(measures[[i]]))
+    #     } else {
+    #         expect_error(plot(measures[[i]]))
+    #     }
+    # }
+    # 
+    # data(ROCR.hiv)
+    # pp <- ROCR.hiv$hiv.svm$predictions
+    # ll <- ROCR.hiv$hiv.svm$labels
+    # pred <- prediction(pp, ll)
+    # expect_error(ROCR:::.combine.performance.objects(actual1,performance(pred, "fpr")),
+    #              "Only performance objects with identical number of cross-validation")
+    # perf <- performance(pred, "tpr", "fpr")
+    # vdiffr::expect_doppelganger("ROC-curve",{
+    #     plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
+    #          main= "With ROCR you can produce standard plots like ROC curves ...")
+    #     plot(perf, lty=3, col="grey78", add=TRUE)
+    # })
+    # perf <- performance(pred, "prec", "rec")
+    # vdiffr::expect_doppelganger("Precision-Recall-graph",{
+    #     plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
+    #          main= "... Precision/Recall graphs ...")
+    #     plot(perf, lty=3, col="grey78", add=TRUE)
+    # })
+    # perf <- performance(pred, "sens", "spec")
+    # vdiffr::expect_doppelganger("Sensitivity-Specificity-plots",{
+    #     plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
+    #          main="... Sensitivity/Specificity plots ...")
+    #     plot(perf, lty=3, col="grey78", add=TRUE)
+    # })
+    # perf <- performance(pred, "lift", "rpp")
+    # vdiffr::expect_doppelganger("lift-chart",{
+    #     plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
+    #          main= "... and Lift charts.")
+    #     plot(perf, lty=3, col="grey78", add=TRUE)
+    # })
+    # 
+    # perf <- performance(pred, "tpr", "fpr")
+    # vdiffr::expect_doppelganger("ROC-curve-downsampling1",{
+    #     plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
+    #          main= "With ROCR you can produce standard plots like ROC curves ...",
+    #          downsampling = 0.5)
+    # })
+    # vdiffr::expect_doppelganger("ROC-curve-downsampling2",{
+    #     plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
+    #          main= "With ROCR you can produce standard plots like ROC curves ...",
+    #          downsampling = 0.9)
+    # })
+    # vdiffr::expect_doppelganger("ROC-curve-downsampling3",{
+    #     plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
+    #          main= "With ROCR you can produce standard plots like ROC curves ...",
+    #          downsampling = 1)
+    # })
+    # expect_error(plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
+    #                   main= "With ROCR you can produce standard plots like ROC curves ...",
+    #                   downsampling = 1.1),
+    #              "'from' must be a finite number")
+    # dev.off()
+    # 
+    # data(ROCR.xval)
+    # pp <- ROCR.xval$predictions
+    # ll <- ROCR.xval$labels
+    # pred <- prediction(pp,ll)
+    # perf <- performance(pred,'tpr','fpr')
+    # 
+    # vdiffr::expect_doppelganger("ROC-cross-valid",{
+    #     plot(perf, colorize=TRUE, lwd=2,
+    #          main='ROC curves from 10-fold cross-validation')
+    # })
+    # vdiffr::expect_doppelganger("ROC-vertical-avg",{
+    #     plot(perf, avg='vertical', spread.estimate='stderror',lwd=3,
+    #          main='Vertical averaging + 1 standard error',col='blue')
+    # })
+    # vdiffr::expect_doppelganger("ROC-horizontal-avg",{
+    #     plot(perf, avg='horizontal', spread.estimate='boxplot',lwd=3,
+    #          main='Horizontal averaging + boxplots',col='blue')
+    # })
+    # vdiffr::expect_doppelganger("ROC-vertical-avg-box",{
+    #     plot(perf, avg='vertical', spread.estimate='boxplot',lwd=3,
+    #          main='Horizontal averaging + boxplots',col='blue')
+    # })
+    # vdiffr::expect_doppelganger("ROC-threshold-avg",{
+    #     plot(perf, avg='threshold', spread.estimate='stddev',
+    #                         lwd=2,
+    #          main='Threshold averaging + 1 standard deviation',colorize=TRUE)
+    # })
     
 })

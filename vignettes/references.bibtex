@@ -1,0 +1,72 @@
+
+@article{Sing2005,
+    author = {Sing, Tobias and Sander, Oliver and Beerenwinkel, Niko and Lengauer, Thomas},
+    title = "{ROCR: visualizing classifier performance in R}",
+    journal = {Bioinformatics},
+    volume = {21},
+    number = {20},
+    pages = {3940-3941},
+    year = {2005},
+    month = {08},
+    abstract = "{Summary: ROCR is a package for evaluating and visualizing the performance of scoring classifiers in the statistical language R. It features over 25 performance measures that can be freely combined to create two-dimensional performance curves. Standard methods for investigating trade-offs between specific performance measures are available within a uniform framework, including receiver operating characteristic (ROC) graphs, precision/recall plots, lift charts and cost curves. ROCR integrates tightly with R's powerful graphics capabilities, thus allowing for highly adjustable plots. Being equipped with only three commands and reasonable default values for optional parameters, ROCR combines flexibility with ease of usage.Availability:http://rocr.bioinf.mpi-sb.mpg.de. ROCR can be used under the terms of the GNU General Public License. Running within R, it is platform-independent.Contact:tobias.sing@mpi-sb.mpg.de}",
+    issn = {1367-4803},
+    doi = {10.1093/bioinformatics/bti623},
+    url = {https://doi.org/10.1093/bioinformatics/bti623},
+    eprint = {https://academic.oup.com/bioinformatics/article-pdf/21/20/3940/522867/bti623.pdf},
+}
+
+@book{Baldi2001,
+    author = {Pierre Baldi and Søren Brunak},
+    title = {Bioinformatics: The Machine Learning Approach.},
+    year = {2001},
+    publisher = {MIT Press, Cambridge, MA.}
+}
+
+@article{Beerenwinkel2003,
+    author = {Beerenwinkel, Niko and Däumer, Martin and Oette, Mark and Korn, Klaus and Hoffmann, Daniel and Kaiser, Rolf and Lengauer, Thomas and Selbig, Joachim and Walter, Hauke},
+    title = "{Geno2pheno: estimating phenotypic drug resistance from HIV-1 genotypes}",
+    journal = {Nucleic Acids Research},
+    volume = {31},
+    number = {13},
+    pages = {3850-3855},
+    year = {2003},
+    month = {07},
+    abstract = "{Therapeutic success of anti-HIV therapies is limited by the development of drug resistant viruses. These genetic variants display complex mutational patterns in their pol gene, which codes for protease and reverse transcriptase, the molecular targets of current antiretroviral therapy. Genotypic resistance testing depends on the ability to interpret such sequence data, whereas phenotypic resistance testing directly measures relative in vitro susceptibility to a drug. From a set of 650 matched genotype–phenotype pairs we construct regression models for the prediction of phenotypic drug resistance from genotypes. Since the range of resistance factors varies considerably between different drugs, two scoring functions are derived from different sets of predicted phenotypes. Firstly, we compare predicted values to those of samples derived from 178 treatment-naive patients and report the relative deviance. Secondly, estimation of the probability density of 2000 predicted phenotypes gives rise to an intrinsic definition of a susceptible and a resistant subpopulation. Thus, for a predicted phenotype, we calculate the probability of membership in the resistant subpopulation. Both scores provide standardized measures of resistance that can be calculated from the genotype and are comparable between drugs. The geno2pheno system makes these genotype interpretations available via the Internet (http://www.genafor.org/).}",
+    issn = {0305-1048},
+    doi = {10.1093/nar/gkg575},
+    url = {https://doi.org/10.1093/nar/gkg575},
+    eprint = {https://academic.oup.com/nar/article-pdf/31/13/3850/9487404/gkg575.pdf},
+}
+
+@article{Beerenwinkel2002,
+	author = {Beerenwinkel, Niko and Schmidt, Barbara and Walter, Hauke and Kaiser, Rolf and Lengauer, Thomas and Hoffmann, Daniel and Korn, Klaus and Selbig, Joachim},
+	title = {Diversity and complexity of HIV-1 drug resistance: A bioinformatics approach to predicting phenotype from genotype},
+	volume = {99},
+	number = {12},
+	pages = {8271--8276},
+	year = {2002},
+	doi = {10.1073/pnas.112177799},
+	publisher = {National Academy of Sciences},
+	abstract = {Drug resistance testing has been shown to be beneficial for clinical management of HIV type 1 infected patients. Whereas phenotypic assays directly measure drug resistance, the commonly used genotypic assays provide only indirect evidence of drug resistance, the major challenge being the interpretation of the sequence information. We analyzed the significance of sequence variations in the protease and reverse transcriptase genes for drug resistance and derived models that predict phenotypic resistance from genotypes. For 14 antiretroviral drugs, both genotypic and phenotypic resistance data from 471 clinical isolates were analyzed with a machine learning approach. Information profiles were obtained that quantify the statistical significance of each sequence position for drug resistance. For the different drugs, patterns of varying complexity were observed, including between one and nine sequence positions with substantial information content. Based on these information profiles, decision tree classifiers were generated to identify genotypic patterns characteristic of resistance or susceptibility to the different drugs. We obtained concise and easily interpretable models to predict drug resistance from sequence information. The prediction quality of the models was assessed in leave-one-out experiments in terms of the prediction error. We found prediction errors of 9.6{\textendash}15.5\% for all drugs except for zalcitabine, didanosine, and stavudine, with prediction errors between 25.4\% and 32.0\%. A prediction service is freely available at http://cartan.gmd.de/geno2pheno.html. HIV-1,HIV type 1;NRTIs,nucleoside inhibitors of the reverse transcriptase;ZDV,zidovudine;ddC,zalcitabine;ddI,didanosine;d4T,stavudine;3TC,lamivudine;ABC,abacavir;NNRTI,nonnucleoside reverse transcriptase inhibitors;NVP,nevirapine;DLV,delavirdine;EFV,efavirenz;PI,protease inhibitor;SQV,saquinavir;IDV,indinavir;RTV,ritonavir;NFV,nelfinavir;APV,amprenavir;RT,reverse transcriptase},
+	issn = {0027-8424},
+	URL = {https://www.pnas.org/content/99/12/8271},
+	eprint = {https://www.pnas.org/content/99/12/8271.full.pdf},
+	journal = {Proceedings of the National Academy of Sciences}
+}
+
+@inproceedings{Fawcett2004,
+    author = {T. Fawcett},
+    title = {ROC graphs: notes and practical considerations for researchers.},
+    booktitle = {HPL-2003-4.},
+    year = {2004},
+    pages = {89--96},
+    publisher = {HP Labs, Palo Alto, CA.}
+}
+
+@inproceedings{Sing04learningmixtures,
+    author = {Tobias Sing and Niko Beerenwinkel and Thomas Lengauer},
+    title = {Learning Mixtures of Localized Rules by Maximizing the Area Under the ROC Curve},
+    booktitle = {In et al José Hernández-Orallo, editor, 1st International Workshop on ROC Analysis in Artificial Intelligence},
+    year = {2004},
+    pages = {89--96}
+}

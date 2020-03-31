@@ -196,17 +196,21 @@
 #' library(ROCR)
 #' data(ROCR.simple)
 #' pred <- prediction( ROCR.simple$predictions, ROCR.simple$labels)
+#' pred
 #' perf <- performance(pred,"tpr","fpr")
+#' perf
 #' plot(perf)
 #'
 #' # precision/recall curve (x-axis: recall, y-axis: precision)
-#' perf1 <- performance(pred, "prec", "rec")
-#' plot(perf1)
+#' perf <- performance(pred, "prec", "rec")
+#' perf
+#' plot(perf)
 #'
 #' # sensitivity/specificity curve (x-axis: specificity,
 #' # y-axis: sensitivity)
-#' perf1 <- performance(pred, "sens", "spec")
-#' plot(perf1)
+#' perf <- performance(pred, "sens", "spec")
+#' perf
+#' plot(perf)
 performance <- function(prediction.obj,
                         measure,
                         x.measure="cutoff",

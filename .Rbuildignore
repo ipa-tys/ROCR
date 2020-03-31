@@ -1,2 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.github$
+^pkgdown$
+^docs$
+codecov.yml
