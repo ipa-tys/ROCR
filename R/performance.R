@@ -99,7 +99,11 @@
 #'    measure cannot be combined with other measures into a parametric
 #'    curve. The partial area under the ROC curve up to a given false
 #'    positive rate can be calculated by passing the optional parameter
-#'    \code{fpr.stop=0.5} (or any other value between 0 and 1) to \code{performance}.}
+#'    \code{fpr.stop=0.5} (or any other value between 0 and 1) to 
+#'    \code{performance}.}
+#'  \item{\code{aucpr}:}{Area under the Precision/Recall curve. Since the output
+#'    of \code{aucpr} is cutoff-independent, this measure cannot be combined 
+#'    with other measures into a parametric curve.}
 #'  \item{\code{prbe}:}{Precision-recall break-even point. The cutoff(s) where
 #'    precision and recall are equal. At this point, positive and negative
 #'    predictions are made at the same rate as their prevalence in the
@@ -413,6 +417,7 @@ performance <- function(prediction.obj,
   assign("rpp", "Rate of positive predictions", envir=long.unit.names)
   assign("rnp", "Rate of negative predictions", envir=long.unit.names)
   assign("auc","Area under the ROC curve", envir=long.unit.names)
+  assign("aucpr","Area under the Precision/Recall curve", envir=long.unit.names)
   assign("cal", "Calibration error", envir=long.unit.names)
   assign("mwp", "Median window position", envir=long.unit.names)
   assign("prbe","Precision/recall break-even point", envir=long.unit.names)
@@ -458,6 +463,7 @@ performance <- function(prediction.obj,
   assign("rnp", ".performance.rate.of.negative.predictions",
          envir=function.names)
   assign("auc", ".performance.auc", envir=function.names)
+  assign("aucpr", ".performance.aucpr", envir=function.names)
   assign("cal", ".performance.calibration.error", envir=function.names)
   assign("prbe", ".performance.precision.recall.break.even.point",
          envir=function.names)
@@ -483,6 +489,7 @@ performance <- function(prediction.obj,
   assign("rmse", "none", envir=obligatory.x.axis)
   assign("prbe", "none", envir=obligatory.x.axis)
   assign("auc", "none", envir=obligatory.x.axis)
+  assign("aucpr", "none", envir=obligatory.x.axis)
   assign("rch","none", envir=obligatory.x.axis)
   ## ecost requires probability cost function as x axis, which is handled
   ## implicitly, not as an explicit performance measure.

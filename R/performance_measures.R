@@ -252,6 +252,52 @@
     return(ans)
   }
 
+# written by Thomas Unterthiner (unterthiner@bioinf.jku.at)
+.performance.aucpr <-
+  function(predictions, labels, cutoffs, fp, tp, fn, tn,
+           n.pos, n.neg, n.pos.pred, n.neg.pred) {
+      
+      
+      tmp <- aggregate(list(fp=fp), by=list(tp=tp), min)
+      tp <- tmp$tp
+      fp <- tmp$fp
+      prec <- tp / (fp + tp)
+      rec <- tp / n.pos
+      if (fp[1] == 0 & tp[1] == 0) {
+          prec[1] = 1
+      }
+
+      finite.bool <- is.finite(prec) & is.finite(rec)
+      prec <- prec[ finite.bool ]
+      rec <- rec[ finite.bool ]	
+      if (length(rec) < 2) {
+          stop(paste("Not enough distinct predictions to compute area",
+                     "under the Precision/Recall curve."))
+      }
+            
+      # if two points are too distant from each other, we need to 
+      # correctly interpolate between them. This is done according to
+      # Davis & Goadrich, 
+      #"The Relationship Between Precision-Recall and ROC Curves", ICML'06
+      for (i in seq_along(rec[-length(rec)])) {
+          if (tp[i+1] - tp[i] > 2) {
+              skew = (fp[i+1]-fp[i]) / (tp[i+1]-tp[i])
+              x = seq(1, tp[i+1]-tp[i], by=1)
+              rec <- append(rec, (x+tp[i])/n.pos, after=i)
+              prec <- append(prec, (x+tp[i])/(tp[i]+fp[i]+x+ skew*x), after=i)
+          }
+      }
+
+      auc <- 0
+      for (i in seq.int(from = 2, to = length(rec))) {
+          auc <- auc + 0.5 * (rec[i] - rec[i-1]) * (prec[i] + prec[i-1])
+      }
+    
+      ans <- list( c(), auc)
+      names(ans) <- c("x.values","y.values")
+      return(ans)
+ }
+
 #' @importFrom stats uniroot approxfun
 .performance.precision.recall.break.even.point <-
   function(predictions, labels, cutoffs, fp, tp, fn, tn,
