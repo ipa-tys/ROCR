@@ -27,11 +27,11 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Introduction
+
 ```{r setup}
 library(ROCR)
 ```
-
-# Introduction
 
 Pattern classification has become a central tool in bioinformatics, offering
 rapid insights into large data sets [[@Baldi2001]](#References). While one area
