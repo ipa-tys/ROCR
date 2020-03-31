@@ -71,13 +71,13 @@ plot(perf, col=rainbow(10))
 
 ## Documentation
 
- - Reference Manual [[PDF](https://cran.r-project.org/web/packages/ROCR/ROCR.pdf)]
+ - Reference Manual [[PDF](https://CRAN.r-project.org/web/packages/ROCR/ROCR.pdf)]
  - Slide deck for a tutorial talk (feel free to re-use for teaching, but please give appropriate credits and write us an email) [[PPT](http://rocr.bioinf.mpi-sb.mpg.de/ROCR_Talk_Tobias_Sing.ppt)]
  - A few pointers to the literature on classifier evaluation
 
 ### Software by other groups which has components for classifier evaluation
 
- - [BioConductor](bioconductor.org) has a ROC package.
+ - [BioConductor](https://bioconductor.org) has a ROC package.
  - [Weka](https://www.cs.waikato.ac.nz/ml/) has an evaluation package, with a couple of performance measures.
 
 ## Contact

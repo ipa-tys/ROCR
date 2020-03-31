@@ -85,7 +85,7 @@ Although functions for drawing ROC graphs are provided by the Bioconductor
 project (http://www.bioconductor.org) or by the machine learning package Weka
 (http://www.cs.waikato.ac.nz/ml), for example, no comprehensive evaluation suite
 is available to date. ROCR is a flexible evaluation package for R
-(http://www.r-project.org), a statistical language that is widely used in
+(https://www.r-project.org), a statistical language that is widely used in
 biomedical data analysis. Our tool allows for creating cutoff-parametrized
 performance curves by freely combining two out of more than 25 performance
 measures (Table 1). Curves from different cross-validation or bootstrapping runs
