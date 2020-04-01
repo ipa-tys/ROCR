@@ -33,7 +33,6 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-  
 <body data-spy="scroll" data-target="#toc">
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -87,12 +86,12 @@
   <div class="contents col-md-9">
 <div id="rocr-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#rocr-" class="anchor"></a>ROCR <img src="http://rocr.bioinf.mpi-sb.mpg.de/ROCR_small.png" align="right">
+<a href="#rocr-" class="anchor"></a>ROCR <img src="https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/ROCR_small.png" align="right">
 </h1></div>
 <p><em>visualizing classifier performance in R, with only 3 commands</em></p>
 <!-- badges: start -->
 <p><img src="https://github.com/FelixErnst/ROCR/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"><a href="https://codecov.io/gh/FelixErnst/ROCR"><img src="https://codecov.io/gh/FelixErnst/ROCR/branch/master/graph/badge.svg" alt="codecov"></a> <!-- badges: end --></p>
-<p><img src="http://rocr.bioinf.mpi-sb.mpg.de/ourplot_website.gif"></p>
+<p><img src="https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/ourplot_website.gif"></p>
 <div id="please-support-our-work-by-citing-the-rocr-article-in-your-publications" class="section level3">
 <h3 class="hasAnchor">
 <a href="#please-support-our-work-by-citing-the-rocr-article-in-your-publications" class="anchor"></a>Please support our work by citing the ROCR article in your publications:</h3>
@@ -102,11 +101,11 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p>ROCR (with obvious pronounciation) is an R package for evaluating and visualizing classifier performance. It is…</p>
+<p>ROCR (with obvious pronounciation) is an R package for evaluating and visualizing classifier performance. It isâ¦</p>
 <ul>
-<li>…easy to use: adds only three new commands to R.</li>
-<li>…flexible: integrates tightly with R’s built-in graphics facilities.</li>
-<li>…powerful: Currently, 28 performance measures are implemented, which can be freely combined to form parametric curves such as ROC curves, precision/recall curves, or lift curves. Many options such as curve averaging (for cross-validation or bootstrap), augmenting the averaged curves by standard error bar or boxplots, labeling cutoffs to the curve, or coloring curves according to cutoff.</li>
+<li>â¦easy to use: adds only three new commands to R.</li>
+<li>â¦flexible: integrates tightly with Râs built-in graphics facilities.</li>
+<li>â¦powerful: Currently, 28 performance measures are implemented, which can be freely combined to form parametric curves such as ROC curves, precision/recall curves, or lift curves. Many options such as curve averaging (for cross-validation or bootstrap), augmenting the averaged curves by standard error bar or boxplots, labeling cutoffs to the curve, or coloring curves according to cutoff.</li>
 </ul>
 <div id="performance-measures-that-rocr-knows" class="section level3">
 <h3 class="hasAnchor">
@@ -130,7 +129,7 @@
 <div id="getting-started" class="section level2">
 <h2 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting started</h2>
-<p>from withing R …</p>
+<p>from withing R â¦</p>
 <pre><code><a href="https://rdrr.io/pkg/ROCR/man">library(ROCR)
 demo(ROCR)
 help(package=ROCR)</a></code></pre>
@@ -138,7 +137,7 @@ help(package=ROCR)</a></code></pre>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
-<p>Using ROCR’s 3 commands to produce a simple ROC plot:</p>
+<p>Using ROCRâs 3 commands to produce a simple ROC plot:</p>
 <pre><code>pred &lt;- prediction(predictions, labels)
 perf &lt;- performance(pred, measure = "tpr", x.measure = "fpr")
 plot(perf, col=rainbow(10))</code></pre>
@@ -149,14 +148,14 @@ plot(perf, col=rainbow(10))</code></pre>
 <ul>
 <li>The Reference Manual found <a href="https://CRAN.r-project.org/package=ROCR">here</a>
 </li>
-<li>Slide deck for a tutorial talk (feel free to re-use for teaching, but please give appropriate credits and write us an email) [<a href="http://rocr.bioinf.mpi-sb.mpg.de/ROCR_Talk_Tobias_Sing.ppt">PPT</a>]</li>
+<li>Slide deck for a tutorial talk (feel free to re-use for teaching, but please give appropriate credits and write us an email) [<a href="https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/ROCR_Talk_Tobias_Sing.ppt">PPT</a>]</li>
 <li>A few pointers to the literature on classifier evaluation</li>
 </ul>
 </div>
 <div id="contact" class="section level2">
 <h2 class="hasAnchor">
 <a href="#contact" class="anchor"></a>Contact</h2>
-<p>Questions, comments, and suggestions are very welcome. Open an issue on GitHub and we can discuss. We are also interested in seeing how ROCR is used in publications. Thus, if you have prepared a paper using ROCR we’d be happy to know.</p>
+<p>Questions, comments, and suggestions are very welcome. Open an issue on GitHub and we can discuss. We are also interested in seeing how ROCR is used in publications. Thus, if you have prepared a paper using ROCR weâd be happy to know.</p>
 </div>
 </div>
   </div>
