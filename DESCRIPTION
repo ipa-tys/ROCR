@@ -47,7 +47,7 @@ Suggests:
   roxygen2,
   knitr,
   rmarkdown
-URL: http://rocr.bioinf.mpi-sb.mpg.de/
+URL: http://ipa-tys.github.io/ROCR/
 BugReports: https://github.com/ipa-tys/ROCR/issues
 RoxygenNote: 7.1.0
 VignetteBuilder: knitr

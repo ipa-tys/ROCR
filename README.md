@@ -1,4 +1,4 @@
-# ROCR <img src="http://rocr.bioinf.mpi-sb.mpg.de/ROCR_small.png" align="right">
+# ROCR <img src="https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/ROCR_small.png" align="right">
 
 *visualizing classifier performance in R, with only 3 commands*
 
@@ -7,7 +7,7 @@
 [![codecov](https://codecov.io/gh/FelixErnst/ROCR/branch/master/graph/badge.svg)](https://codecov.io/gh/FelixErnst/ROCR)
 <!-- badges: end -->
 
-![](http://rocr.bioinf.mpi-sb.mpg.de/ourplot_website.gif)
+![](https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/ourplot_website.gif)
 
 ### Please support our work by citing the ROCR article in your publications:
 
@@ -72,7 +72,7 @@ plot(perf, col=rainbow(10))
 ## Documentation
 
  - The Reference Manual found [here](https://CRAN.r-project.org/package=ROCR)
- - Slide deck for a tutorial talk (feel free to re-use for teaching, but please give appropriate credits and write us an email) [[PPT](http://rocr.bioinf.mpi-sb.mpg.de/ROCR_Talk_Tobias_Sing.ppt)]
+ - Slide deck for a tutorial talk (feel free to re-use for teaching, but please give appropriate credits and write us an email) [[PPT](https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/ROCR_Talk_Tobias_Sing.ppt)]
  - A few pointers to the literature on classifier evaluation
 
 
