@@ -44,7 +44,6 @@ Imports:
   stats
 Suggests:
   testthat,
-  roxygen2,
   knitr,
   rmarkdown
 URL: http://ipa-tys.github.io/ROCR/
