@@ -4,6 +4,7 @@
 
 <!-- badges: start -->
 ![R-CMD-check](https://github.com/ipa-tys/ROCR/workflows/R-CMD-check/badge.svg)
+[![CRAN Status](https://www.r-pkg.org/badges/version/ROCR)](https://CRAN.r-project.org/package=ROCR)
 [![codecov](https://codecov.io/gh/ipa-tys/ROCR/branch/master/graph/badge.svg)](https://codecov.io/gh/ipa-tys/ROCR)
 <!-- badges: end -->
 
