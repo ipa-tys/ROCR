@@ -19,10 +19,8 @@ Bioinformatics 21(20):3940-1.***
 Free full text:
 http://bioinformatics.oxfordjournals.org/content/21/20/3940.full
 
-## Background
-
 ROCR was originally developed at the [Max Planck Institute for Informatics](https://www.mpi-inf.mpg.de/home/)   
-[<img src="https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/logo_mpi_430.png" align="left">](https://www.mpi-inf.mpg.de/home/)  
+[<img src="https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/logo_mpi_430.png">](https://www.mpi-inf.mpg.de/home/)  
 
 ## Introduction
 
