@@ -19,23 +19,27 @@ Bioinformatics 21(20):3940-1.***
 Free full text:
 http://bioinformatics.oxfordjournals.org/content/21/20/3940.full
 
+[<img src="https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/logo_mpi_430.png" align="right">](https://www.mpi-inf.mpg.de/home/) 
+
+`ROCR` was developed at the ROCR was originally developed at the [Max Planck Institute for Informatics](https://www.mpi-inf.mpg.de/home/) 
+
 ## Introduction
 
-ROCR (with obvious pronounciation) is an R package for evaluating and visualizing classifier performance. It is...
+`ROCR` (with obvious pronounciation) is an R package for evaluating and visualizing classifier performance. It is...
 
  - ...easy to use: adds only three new commands to R.
  - ...flexible: integrates tightly with R's built-in graphics facilities.
  - ...powerful: Currently, 28 performance measures are implemented, which can be freely combined to form parametric curves such as ROC curves, precision/recall curves, or lift curves. Many options such as curve averaging (for cross-validation or bootstrap), augmenting the averaged curves by standard error bar or boxplots, labeling cutoffs to the curve, or coloring curves according to cutoff.
 
-### Performance measures that ROCR knows:
+### Performance measures that `ROCR` knows:
 
 Accuracy, error rate, true positive rate, false positive rate, true negative rate, false negative rate, sensitivity, specificity, recall, positive predictive value, negative predictive value, precision, fallout, miss, phi correlation coefficient, Matthews correlation coefficient, mutual information, chi square statistic, odds ratio, lift value, precision/recall F measure, ROC convex hull, area under the ROC curve, precision/recall break-even point, calibration error, mean cross-entropy, root mean squared error, SAR measure, expected cost, explicit cost.
 
-### ROCR features:
+### `ROCR` features:
 
 ROC curves, precision/recall plots, lift charts, cost curves, custom curves by freely selecting one performance measure for the x axis and one for the y axis, handling of data from cross-validation or bootstrapping, curve averaging (vertically, horizontally, or by threshold), standard error bars, box plots, curves that are color-coded by cutoff, printing threshold values on the curve, tight integration with Rs plotting facilities (making it easy to adjust plots or to combine multiple plots), fully customizable, easy to use (only 3 commands).
 
-## Installation of ROCR
+## Installation of `ROCR`
 
 The most straightforward way to install and use `ROCR` is to install it from 
 `CRAN` by starting `R` and using the `install.packages` function:
