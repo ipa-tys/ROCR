@@ -3,7 +3,7 @@
 *visualizing classifier performance in R, with only 3 commands*
 
 <!-- badges: start -->
-![R-CMD-check](https://github.com/ipa-tys/ROCR/workflows/R-CMD-check/badge.svg)
+[![R-CMD-check](https://github.com/ipa-tys/ROCR/workflows/R-CMD-check/badge.svg)](https://github.com/ipa-tys/ROCR/actions?query=workflow:R-CMD-check)
 [![CRAN Status](https://www.r-pkg.org/badges/version/ROCR)](https://CRAN.r-project.org/package=ROCR)
 [![codecov](https://codecov.io/gh/ipa-tys/ROCR/branch/master/graph/badge.svg)](https://codecov.io/gh/ipa-tys/ROCR)
 <!-- badges: end -->
