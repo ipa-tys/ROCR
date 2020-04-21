@@ -1,12 +1,12 @@
 # ROCR <img src="https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/ROCR_small.png" align="right">
 
-*visualizing classifier performance in R, with only 3 commands*
-
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/ipa-tys/ROCR/workflows/R-CMD-check/badge.svg)](https://github.com/ipa-tys/ROCR/actions?query=workflow:R-CMD-check)
 [![CRAN Status](https://www.r-pkg.org/badges/version/ROCR)](https://CRAN.r-project.org/package=ROCR)
 [![codecov](https://codecov.io/gh/ipa-tys/ROCR/branch/master/graph/badge.svg)](https://codecov.io/gh/ipa-tys/ROCR)
 <!-- badges: end -->
+
+*visualizing classifier performance in R, with only 3 commands*
 
 ![](https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/ourplot_website.gif)
 
@@ -20,7 +20,7 @@ Free full text:
 http://bioinformatics.oxfordjournals.org/content/21/20/3940.full
 
 [<img src="https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/logo_mpi_430.png" align="right" width="300">](https://www.mpi-inf.mpg.de/home/)  
-ROCR was originally developed at the [Max Planck Institute for Informatics](https://www.mpi-inf.mpg.de/home/)   
+`ROCR` was originally developed at the [Max Planck Institute for Informatics](https://www.mpi-inf.mpg.de/home/)   
 
 
 ## Introduction
