@@ -75,6 +75,33 @@ test_that("plot:",{
     pred <- prediction(pp, ll)
     expect_error(ROCR:::.combine.performance.objects(actual1,performance(pred, "fpr")),
                  "Only performance objects with identical number of cross-validation")
+    # plot failures
+    perf <- performance(pred, "tpr", "fpr")
+    perf@x.values <- list(c(1))
+    expect_error(plot(perf),
+                 "Performance object cannot be plotted")
+    perf <- performance(pred, "tpr", "fpr")
+    perf@y.values <- list(c(1))
+    expect_error(plot(perf),
+                 "Performance object cannot be plotted")
+    perf <- performance(pred, "tpr", "fpr")
+    perf@alpha.values <- list()
+    expect_null({
+        plot <- plot(perf) # no error
+    })
+    expect_error(plot(perf,colorize = TRUE),
+                 "Threshold coloring or labeling cannot be performed")
+    expect_error(plot(perf,print.cutoffs.at = 0.5),
+                 "Threshold coloring or labeling cannot be performed")
+    perf <- performance(pred, "tpr", "fpr")
+    expect_null({
+        plot <- plot(perf,avg = "horizontal") # no error
+    })
+    expect_error(plot(perf,avg = "horizontal", colorize=TRUE),
+                 "Threshold coloring or labeling is only")
+    expect_error(plot(perf,avg = "horizontal", print.cutoffs.at=0.5),
+                 "Threshold coloring or labeling is only")
+    #
     perf <- performance(pred, "tpr", "fpr")
     expect_null({
         plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
@@ -121,10 +148,6 @@ test_that("plot:",{
              main= "With ROCR you can produce standard plots like ROC curves ...",
              downsampling = 1)
     })
-    expect_error(plot(perf, avg= "threshold", colorize=TRUE, lwd= 3,
-                      main= "With ROCR you can produce standard plots like ROC curves ...",
-                      downsampling = 1.1),
-                 "'from' must be a finite number")
     
     data(ROCR.xval)
     pp <- ROCR.xval$predictions

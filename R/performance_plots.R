@@ -32,6 +32,27 @@
   return(perf)
 }
 
+.check_performance_for_plotting <- function(perf, colorize, print.cutoffs.at,
+                                            avg){
+  if (length(perf@y.values) != length(perf@x.values)) {
+    stop("Performance object cannot be plotted. Length of x and y values ",
+         "does not match.",
+         call. = FALSE)
+  }
+  if ((is.null(perf@alpha.values) || length(perf@alpha.values) == 0L) && 
+      (colorize==TRUE || length(print.cutoffs.at) > 0L)) {
+    stop("Threshold coloring or labeling cannot be performed: ",
+         "performance object has no threshold information.",
+         call. = FALSE)
+  }
+  if ((avg=="vertical" || avg=="horizontal") &&
+      (colorize==TRUE || length(print.cutoffs.at) > 0L)) {
+    stop("Threshold coloring or labeling is only well-defined for",
+         "'no' or 'threshold' averaging.",
+         call. = FALSE)
+  }
+}
+
 #' @importFrom grDevices rainbow
 .plot.performance <-
   function(perf,
@@ -51,35 +72,31 @@
            },
            downsampling = 0,
            add = FALSE) {
-
+    # Input checks
+    .check_performance_for_plotting(perf, colorize, print.cutoffs.at, avg)
+    # getting the arguments
     arglist <- c(lapply(as.list(environment()), eval ), list(...) )
-
-    if (length(perf@y.values) != length(perf@x.values)) {
-      stop("Performance object cannot be plotted.")
-    }
-    if ((is.null(perf@alpha.values) || length(perf@alpha.values) == 0L) && 
-        (colorize==TRUE || length(print.cutoffs.at)>0)) {
-      stop(paste("Threshold coloring or labeling cannot be performed:",
-                 "performance object has no threshold information."))
-    }
-    if ((avg=="vertical" || avg=="horizontal") &&
-        (colorize==TRUE || length(print.cutoffs.at)>0)) {
-      stop(paste("Threshold coloring or labeling is only well-defined for",
-                 "'no' or 'threshold' averaging."))
-    }
 
     if (downsampling >0 ) perf <- .downsample( perf, downsampling)
 
     ## for infinite cutoff, assign maximal finite cutoff + mean difference
     ## between adjacent cutoff pairs
-    if (length(perf@alpha.values)!=0) perf@alpha.values <-
-        lapply(perf@alpha.values,
-               function(x) { isfin <- is.finite(x);
-               x[is.infinite(x)] <-
-                 (max(x[isfin]) +
-                    mean(abs(x[isfin][-1] -
-                               x[isfin][-length(x[isfin])])));
-               x } )
+    if (length(perf@alpha.values) != 0) {
+      FUN <- function(x) {
+        isfin <- is.finite(x)
+        # if only one finite is available the mean cannot be calculated without
+        # the first/last value, since the leaves no value
+        if(sum(isfin) > 1L){ 
+          inf_replace <- max(x[isfin]) + 
+            mean(abs(x[isfin][-1] - x[isfin][-length(x[isfin])]))
+        } else {
+          inf_replace <- 0
+        }
+        x[is.infinite(x)] <- inf_replace
+        x
+      }
+      perf@alpha.values <- lapply(perf@alpha.values,FUN)
+    }
     ## remove samples with x or y not finite
     for (i in 1:length(perf@x.values)) {
       ind.bool <- (is.finite(perf@x.values[[i]]) &
@@ -113,8 +130,8 @@
 #' @import graphics
 .performance.plot.canvas <- function(perf, avg, ...) {
 
-  requireNamespace("stats")
-  requireNamespace("graphics")
+  # requireNamespace("stats")
+  # requireNamespace("graphics")
 
   arglist <- list(...)
 
