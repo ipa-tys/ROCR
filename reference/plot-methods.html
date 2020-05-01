@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ROCR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0-10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0-11</span>
       </span>
     </div>
 
@@ -121,7 +121,7 @@
     </div>
 
     <pre class="usage"><span class='co'># S4 method for performance,missing</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(
   <span class='no'>x</span>,
   <span class='no'>y</span>,
   <span class='no'>...</span>,
@@ -141,7 +141,7 @@
 )
 
 <span class='co'># S3 method for performance</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -283,12 +283,12 @@ plot; otherwise a new plot is drawn.</p></td>
 #&gt;   with 200 data points</div><div class='input'><span class='no'>perf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='performance.html'>performance</a></span>( <span class='no'>pred</span>, <span class='st'>"tpr"</span>, <span class='st'>"fpr"</span> )
 <span class='no'>perf</span></div><div class='output co'>#&gt; A performance instance
 #&gt;   'False positive rate' vs. 'True positive rate' (alpha: 'Cutoff')
-#&gt;   with 201 data points</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>( <span class='no'>perf</span> )</div><div class='img'><img src='plot-methods-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt;   with 201 data points</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>( <span class='no'>perf</span> )</div><div class='img'><img src='plot-methods-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># To entertain your children, make your plots nicer</span>
 <span class='co'># using ROCR's flexible parameter passing mechanisms</span>
 <span class='co'># (much cheaper than a finger painting set)</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>bg</span><span class='kw'>=</span><span class='st'>"lightblue"</span>, <span class='kw'>mai</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1.2</span>,<span class='fl'>1.5</span>,<span class='fl'>1</span>,<span class='fl'>1</span>))
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>perf</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>"ROCR fingerpainting toolkit"</span>, <span class='kw'>colorize</span><span class='kw'>=</span><span class='fl'>TRUE</span>,
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>perf</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>"ROCR fingerpainting toolkit"</span>, <span class='kw'>colorize</span><span class='kw'>=</span><span class='fl'>TRUE</span>,
      <span class='kw'>xlab</span><span class='kw'>=</span><span class='st'>"Mary's axis"</span>, <span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>""</span>, <span class='kw'>box.lty</span><span class='kw'>=</span><span class='fl'>7</span>, <span class='kw'>box.lwd</span><span class='kw'>=</span><span class='fl'>5</span>,
      <span class='kw'>box.col</span><span class='kw'>=</span><span class='st'>"gold"</span>, <span class='kw'>lwd</span><span class='kw'>=</span><span class='fl'>17</span>, <span class='kw'>colorkey.relwidth</span><span class='kw'>=</span><span class='fl'>0.5</span>, <span class='kw'>xaxis.cex.axis</span><span class='kw'>=</span><span class='fl'>2</span>,
      <span class='kw'>xaxis.col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>xaxis.col.axis</span><span class='kw'>=</span><span class='st'>"blue"</span>, <span class='kw'>yaxis.col</span><span class='kw'>=</span><span class='st'>'green'</span>, <span class='kw'>yaxis.cex.axis</span><span class='kw'>=</span><span class='fl'>2</span>,

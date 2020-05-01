@@ -73,7 +73,7 @@ would be obtained from 10-fold cross-validation." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ROCR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0-10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0-11</span>
       </span>
     </div>
 
@@ -144,7 +144,7 @@ vector of true class labels corresponding to the predictions.</p>
 #&gt;   with 10 cross validation runs (equal lengths)</div><div class='input'><span class='no'>perf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='performance.html'>performance</a></span>(<span class='no'>pred</span>,<span class='st'>"tpr"</span>,<span class='st'>"fpr"</span>)
 <span class='no'>perf</span></div><div class='output co'>#&gt; A performance instance
 #&gt;   'False positive rate' vs. 'True positive rate' (alpha: 'Cutoff')
-#&gt;   for 10 cross validation runs </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>perf</span>,<span class='kw'>col</span><span class='kw'>=</span><span class='st'>"grey82"</span>,<span class='kw'>lty</span><span class='kw'>=</span><span class='fl'>3</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>perf</span>,<span class='kw'>lwd</span><span class='kw'>=</span><span class='fl'>3</span>,<span class='kw'>avg</span><span class='kw'>=</span><span class='st'>"vertical"</span>,<span class='kw'>spread.estimate</span><span class='kw'>=</span><span class='st'>"boxplot"</span>,<span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='img'><img src='ROCR.xval-1.png' alt='' width='700' height='433' /></div></pre>
+#&gt;   for 10 cross validation runs </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>perf</span>,<span class='kw'>col</span><span class='kw'>=</span><span class='st'>"grey82"</span>,<span class='kw'>lty</span><span class='kw'>=</span><span class='fl'>3</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>perf</span>,<span class='kw'>lwd</span><span class='kw'>=</span><span class='fl'>3</span>,<span class='kw'>avg</span><span class='kw'>=</span><span class='st'>"vertical"</span>,<span class='kw'>spread.estimate</span><span class='kw'>=</span><span class='st'>"boxplot"</span>,<span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='img'><img src='ROCR.xval-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

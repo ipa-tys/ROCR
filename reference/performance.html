@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ROCR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0-10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0-11</span>
       </span>
     </div>
 
@@ -160,7 +160,7 @@ a randomly drawn sample, respectively. We denote by
 negative class, respectively. Further, we use the following
 abbreviations for empirical quantities: P (\# positive
 samples), N (\# negative samples), TP (\# true positives), TN (\# true
-negatives), FP (\# false positives), FN (\# false negatives).</p><dl'>
+negatives), FP (\# false positives), FN (\# false negatives).</p><dl>
  <dt><code>acc</code>:</dt><dd><p>Accuracy. \(P(\hat{Y}=Y)\). Estimated
    as: \(\frac{TP+TN}{P+N}\).</p></dd>
  <dt><code>err</code>:</dt><dd><p>Error rate. \(P(\hat{Y}\ne Y)\). Estimated as: \(\frac{FP+FN}{P+N}\).</p></dd>
@@ -291,7 +291,7 @@ negatives), FP (\# false positives), FN (\# false negatives).</p><dl'>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Here is how to call <code>performance()</code> to create some standard
-evaluation plots:</p><dl'>
+evaluation plots:</p><dl>
   <dt>ROC curves:</dt><dd><p>measure="tpr", x.measure="fpr".</p></dd>
   <dt>Precision/recall graphs:</dt><dd><p>measure="prec", x.measure="rec".</p></dd>
   <dt>Sensitivity/specificity plots:</dt><dd><p>measure="sens", x.measure="spec".</p></dd>
@@ -319,18 +319,18 @@ evaluation plots:</p><dl'>
 #&gt;   with 200 data points</div><div class='input'><span class='no'>perf</span> <span class='kw'>&lt;-</span> <span class='fu'>performance</span>(<span class='no'>pred</span>,<span class='st'>"tpr"</span>,<span class='st'>"fpr"</span>)
 <span class='no'>perf</span></div><div class='output co'>#&gt; A performance instance
 #&gt;   'False positive rate' vs. 'True positive rate' (alpha: 'Cutoff')
-#&gt;   with 201 data points</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>perf</span>)</div><div class='img'><img src='performance-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt;   with 201 data points</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>perf</span>)</div><div class='img'><img src='performance-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># precision/recall curve (x-axis: recall, y-axis: precision)</span>
 <span class='no'>perf</span> <span class='kw'>&lt;-</span> <span class='fu'>performance</span>(<span class='no'>pred</span>, <span class='st'>"prec"</span>, <span class='st'>"rec"</span>)
 <span class='no'>perf</span></div><div class='output co'>#&gt; A performance instance
 #&gt;   'Recall' vs. 'Precision' (alpha: 'Cutoff')
-#&gt;   with 201 data points</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>perf</span>)</div><div class='img'><img src='performance-2.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt;   with 201 data points</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>perf</span>)</div><div class='img'><img src='performance-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># sensitivity/specificity curve (x-axis: specificity,</span>
 <span class='co'># y-axis: sensitivity)</span>
 <span class='no'>perf</span> <span class='kw'>&lt;-</span> <span class='fu'>performance</span>(<span class='no'>pred</span>, <span class='st'>"sens"</span>, <span class='st'>"spec"</span>)
 <span class='no'>perf</span></div><div class='output co'>#&gt; A performance instance
 #&gt;   'Specificity' vs. 'Sensitivity' (alpha: 'Cutoff')
-#&gt;   with 201 data points</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>perf</span>)</div><div class='img'><img src='performance-3.png' alt='' width='700' height='433' /></div></pre>
+#&gt;   with 201 data points</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>perf</span>)</div><div class='img'><img src='performance-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
