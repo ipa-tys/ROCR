@@ -351,7 +351,7 @@
     }
     bar.width <- .garg(arglist, 'spread.scale') * bar.width
 
-    suppressWarnings(do.call(gplots::plotCI,
+    suppressWarnings(do.call(.plot.CI,
                              .farg(.sarg(.get.arglist('plotCI', arglist),
                                          x=.garg(arglist,
                                                  'show.spread.at'),
@@ -430,7 +430,7 @@
     }
     bar.width <- .garg(arglist,'spread.scale') * bar.width
 
-    suppressWarnings(do.call(gplots::plotCI,
+    suppressWarnings(do.call(.plot.CI,
                              .farg(.sarg(.get.arglist('plotCI', arglist),
                                          x= rowMeans(
                                            show.spread.at.x.values),
@@ -522,7 +522,7 @@
     x.bar.width <- .garg(arglist,'spread.scale') * x.bar.width
     y.bar.width <- .garg(arglist,'spread.scale') * y.bar.width
 
-    suppressWarnings( do.call(gplots::plotCI,
+    suppressWarnings( do.call(.plot.CI,
                               .farg(.sarg(.get.arglist('plotCI', arglist),
                                           x= rowMeans(x.values.spread),
                                           y= rowMeans(y.values.spread),
@@ -533,7 +533,7 @@
                                     gap= 0,
                                     type= 'n')))
 
-    suppressWarnings( do.call(gplots::plotCI,
+    suppressWarnings( do.call(.plot.CI,
                               .farg(.sarg(.get.arglist('plotCI', arglist),
                                           x= rowMeans(x.values.spread),
                                           y= rowMeans(y.values.spread),
@@ -570,4 +570,130 @@
                                       perf= perf.avg,
                                       avg= 'none',
                                       add= TRUE))
+}
+
+# replacement function for gplots::plotCI because gplots is deprecated
+# 
+# Author Gregory R.Warnes
+.plot.CI <- function (x, y = NULL, uiw, liw = uiw, ui, li, err='y', ylim=NULL,
+                      xlim=NULL, type="p", col=par("col"), barcol=col,
+                      pt.bg = par("bg"), sfrac = 0.01, gap=1, lwd=par("lwd"),
+                      lty=par("lty"), labels=FALSE, add=FALSE, xlab, ylab, 
+                      minbar, maxbar, ...)
+{
+  ## input checks start
+  # split if list input; disregards y
+  if (is.list(x)) {
+    y <- x$y
+    x <- x$x
+  }
+  
+  # takes the the names x and y if labs are not set
+  if(invalid(xlab))
+    xlab <- deparse(substitute(x))
+  
+  if(invalid(ylab)){
+    if(is.null(y))
+    {
+      xlab  <- ""
+      ylab <- deparse(substitute(x))
+    }
+    else
+      ylab <- deparse(substitute(y))
+  }
+  # input check and formating, if only equal distance values are given 
+  # (y == empty)
+  if (is.null(y)) {
+    if (is.null(x))
+      stop("both x and y NULL")
+    y <- as.numeric(x)
+    x <- seq(along = x)
+  }
+  
+  
+  if(err=="y")
+    z  <- y
+  else
+    z  <- x
+  
+  if(invalid(uiw))
+    uiw <- NA
+  if(invalid(liw))
+    liw <- NA
+  
+  
+  if(invalid(ui))
+    ui <- z + uiw
+  if(invalid(li))
+    li <- z - liw
+  
+  if(!invalid(minbar))
+    li <- ifelse( li < minbar, minbar, li)
+  
+  if(!invalid(maxbar))
+    ui <- ifelse( ui > maxbar, maxbar, ui)
+  
+  if(err=="y")
+  {
+    if(is.null(ylim))
+      ylim <- range(c(y, ui, li), na.rm=TRUE)
+    if(is.null(xlim) && !is.R() )
+      xlim <- range( x, na.rm=TRUE)
+  }
+  else if(err=="x")
+  {
+    if(is.null(xlim))
+      xlim <- range(c(x, ui, li), na.rm=TRUE)
+    if(is.null(ylim) && !is.R() )
+      ylim <- range( x, na.rm=TRUE)
+  }
+  ## input check end
+  if(!add)
+  {
+    if(invalid(labels) || any(labels==FALSE) )
+      plot(x, y, ylim = ylim, xlim=xlim, col=col,
+           xlab=xlab, ylab=ylab, type="n", ...)
+    else
+    {
+      plot(x, y, ylim = ylim, xlim=xlim, col=col, type="n",
+           xlab=xlab, ylab=ylab,  ...)
+      text(x, y, label=labels, col=col, ... )
+    }
+  }
+  if(err=="y")
+  {
+    if(gap!=FALSE)
+      gap <- strheight("O") * gap
+    smidge <- par("fin")[1] * sfrac
+    
+    
+    # draw upper bar
+    if(!is.null(li))
+      arrows(x , li, x, pmax(y-gap,li), col=barcol, lwd=lwd,
+             lty=lty, angle=90, length=smidge, code=1)
+    # draw lower bar
+    if(!is.null(ui))
+      arrows(x , ui, x, pmin(y+gap,ui), col=barcol,
+             lwd=lwd, lty=lty, angle=90, length=smidge, code=1)
+  }
+  else
+  {
+    if(gap!=FALSE)
+      gap <- strwidth("O") * gap
+    smidge <- par("fin")[2] * sfrac
+    
+    # draw left bar
+    if(!is.null(li))
+      arrows(li, y, pmax(x-gap,li), y, col=barcol, lwd=lwd,
+             lty=lty, angle=90, length=smidge, code=1)
+    if(!is.null(ui))
+      arrows(ui, y, pmin(x+gap,ui), y, col=barcol, lwd=lwd,
+             lty=lty, angle=90, length=smidge, code=1)
+    
+  }
+  
+  ## _now_ draw the points (to avoid having lines drawn 'through' points)
+  points(x, y, col = col, lwd = lwd, bg = pt.bg, type = type, ...)
+  
+  invisible(list(x = x, y = y))
 }

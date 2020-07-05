@@ -40,7 +40,6 @@ Imports:
   methods,
   graphics,
   grDevices,
-  gplots,
   stats
 Suggests:
   testthat,
