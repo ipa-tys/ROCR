@@ -4,6 +4,7 @@
 \alias{plot-methods}
 \alias{plot,performance,missing-method}
 \alias{plot.performance}
+\alias{ggplot.performance}
 \title{Plot method for performance objects}
 \usage{
 \S4method{plot}{performance,missing}(
@@ -26,6 +27,26 @@
 )
 
 \method{plot}{performance}(...)
+
+\S4method{ggplot}{performance}(
+  data,
+  ...,
+  avg = "none",
+  spread.estimate = "none",
+  spread.scale = 1,
+  show.spread.at = c(),
+  colorize = FALSE,
+  colorize.palette = rev(grDevices::rainbow(256, start = 0, end = 4/6)),
+  colorkey = colorize,
+  colorkey.relwidth = 0.25,
+  colorkey.pos = "right",
+  print.cutoffs.at = c(),
+  cutoff.label.function = function(x) {     round(x, 2) },
+  downsampling = 0,
+  add = FALSE
+)
+
+\method{ggplot}{performance}(...)
 }
 \arguments{
 \item{x}{an object of class \code{performance}}

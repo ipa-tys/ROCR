@@ -32,6 +32,41 @@
   return(perf)
 }
 
+.norm_x_y_values <- function(perf){
+  ## remove samples with x or y not finite
+  for (i in 1:length(perf@x.values)) {
+    ind.bool <- (is.finite(perf@x.values[[i]]) &
+                   is.finite(perf@y.values[[i]]))
+    
+    if (length(perf@alpha.values)>0)
+      perf@alpha.values[[i]] <- perf@alpha.values[[i]][ind.bool]
+    
+    perf@x.values[[i]] <- perf@x.values[[i]][ind.bool]
+    perf@y.values[[i]] <- perf@y.values[[i]][ind.bool]
+  }
+  perf
+}
+
+## for infinite cutoff, assign maximal finite cutoff + mean difference
+## between adjacent cutoff pairs
+.norm_alpha_values <- function(perf){
+  FUN <- function(x) {
+    isfin <- is.finite(x)
+    # if only one finite is available the mean cannot be calculated without
+    # the first/last value, since the leaves no value
+    if(sum(isfin) > 1L){ 
+      inf_replace <- max(x[isfin]) + 
+        mean(abs(x[isfin][-1] - x[isfin][-length(x[isfin])]))
+    } else {
+      inf_replace <- 0
+    }
+    x[is.infinite(x)] <- inf_replace
+    x
+  }
+  perf@alpha.values <- lapply(perf@alpha.values,FUN)
+  perf
+}
+
 .check_performance_for_plotting <- function(perf, colorize, print.cutoffs.at,
                                             avg){
   if (length(perf@y.values) != length(perf@x.values)) {
@@ -74,40 +109,12 @@
            add = FALSE) {
     # Input checks
     .check_performance_for_plotting(perf, colorize, print.cutoffs.at, avg)
+    # Input norm
+    if (downsampling > 0) perf <- .downsample(perf, downsampling)
+    if (length(perf@alpha.values) != 0) perf <- .norm_alpha_values(perf)
+    perf <- .norm_x_y_values(perf)
     # getting the arguments
     arglist <- c(lapply(as.list(environment()), eval ), list(...) )
-
-    if (downsampling >0 ) perf <- .downsample( perf, downsampling)
-
-    ## for infinite cutoff, assign maximal finite cutoff + mean difference
-    ## between adjacent cutoff pairs
-    if (length(perf@alpha.values) != 0) {
-      FUN <- function(x) {
-        isfin <- is.finite(x)
-        # if only one finite is available the mean cannot be calculated without
-        # the first/last value, since the leaves no value
-        if(sum(isfin) > 1L){ 
-          inf_replace <- max(x[isfin]) + 
-            mean(abs(x[isfin][-1] - x[isfin][-length(x[isfin])]))
-        } else {
-          inf_replace <- 0
-        }
-        x[is.infinite(x)] <- inf_replace
-        x
-      }
-      perf@alpha.values <- lapply(perf@alpha.values,FUN)
-    }
-    ## remove samples with x or y not finite
-    for (i in 1:length(perf@x.values)) {
-      ind.bool <- (is.finite(perf@x.values[[i]]) &
-                     is.finite(perf@y.values[[i]]))
-
-      if (length(perf@alpha.values)>0)
-        perf@alpha.values[[i]] <- perf@alpha.values[[i]][ind.bool]
-
-      perf@x.values[[i]] <- perf@x.values[[i]][ind.bool]
-      perf@y.values[[i]] <- perf@y.values[[i]][ind.bool]
-    }
     arglist <- .sarg( arglist, perf=perf)
 
     if (add==FALSE) do.call( ".performance.plot.canvas", arglist )
