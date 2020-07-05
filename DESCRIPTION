@@ -12,8 +12,8 @@ Authors@R: c(person("Tobias","Sing",
              person("Felix G.M.","Ernst",
                     email = "felix.gm.ernst@outlook.com",role="cre",
                     comment = c(ORCID = "0000-0001-5064-0928")))
-Version: 1.0-11
-Date: 2020-05-01
+Version: 1.0-12
+Date: 2020-07-05
 Title: Visualizing the Performance of Scoring Classifiers
 Description: ROC graphs, sensitivity/specificity curves, lift charts,
   and precision/recall plots are popular examples of trade-off
@@ -40,6 +40,7 @@ Imports:
   methods,
   graphics,
   grDevices,
+  gtools,
   stats
 Suggests:
   testthat,

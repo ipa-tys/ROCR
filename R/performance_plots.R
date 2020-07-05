@@ -575,6 +575,7 @@
 # replacement function for gplots::plotCI because gplots is deprecated
 # 
 # Author Gregory R.Warnes
+#' @importFrom gtools invalid
 .plot.CI <- function (x, y = NULL, uiw, liw = uiw, ui, li, err='y', ylim=NULL,
                       xlim=NULL, type="p", col=par("col"), barcol=col,
                       pt.bg = par("bg"), sfrac = 0.01, gap=1, lwd=par("lwd"),
