@@ -126,7 +126,7 @@ standardized format." />
 standardized format.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>prediction</span>(<span class='no'>predictions</span>, <span class='no'>labels</span>, <span class='kw'>label.ordering</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/ROCR/man/prediction.html'>prediction</a></span>(<span class='kw'>predictions</span>, <span class='kw'>labels</span>, label.ordering = <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -189,17 +189,21 @@ error message.</p>
 <a href='http://rocr.bioinf.mpi-sb.mpg.de'>http://rocr.bioinf.mpi-sb.mpg.de</a>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='prediction-class.html'>prediction-class</a></code>,
-<code><a href='performance.html'>performance</a></code>,
-<code><a href='performance-class.html'>performance-class</a></code>,
-<code><a href='plot-methods.html'>plot.performance</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/ROCR/man/prediction-class.html'>prediction-class</a></code>,
+<code><a href='https://rdrr.io/pkg/ROCR/man/performance.html'>performance</a></code>,
+<code><a href='https://rdrr.io/pkg/ROCR/man/performance-class.html'>performance-class</a></code>,
+<code><a href='https://rdrr.io/pkg/ROCR/man/plot-methods.html'>plot.performance</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tobias Sing <a href='mailto:tobias.sing@gmail.com'>tobias.sing@gmail.com</a>, Oliver Sander
+<a href='mailto:osander@gmail.com'>osander@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># create a simple prediction object</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ROCR</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>ROCR.simple</span>)
-<span class='no'>pred</span> <span class='kw'>&lt;-</span> <span class='fu'>prediction</span>(<span class='no'>ROCR.simple</span>$<span class='no'>predictions</span>,<span class='no'>ROCR.simple</span>$<span class='no'>labels</span>)
-<span class='no'>pred</span></div><div class='output co'>#&gt; A prediction instance
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='http://ipa-tys.github.io/ROCR'>ROCR</a></span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>ROCR.simple</span>)
+<span class='kw'>pred</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/ROCR/man/prediction.html'>prediction</a></span>(<span class='kw'>ROCR.simple</span><span class='op'>$</span><span class='kw'>predictions</span>,<span class='kw'>ROCR.simple</span><span class='op'>$</span><span class='kw'>labels</span>)
+<span class='kw'>pred</span></div><div class='output co'>#&gt; A prediction instance
 #&gt;   with 200 data points</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

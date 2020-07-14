@@ -120,7 +120,7 @@
     <p>All kinds of predictor evaluations are performed using this function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>performance</span>(<span class='no'>prediction.obj</span>, <span class='no'>measure</span>, <span class='kw'>x.measure</span> <span class='kw'>=</span> <span class='st'>"cutoff"</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/ROCR/man/performance.html'>performance</a></span>(<span class='kw'>prediction.obj</span>, <span class='kw'>measure</span>, x.measure = <span class='st'>"cutoff"</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -290,7 +290,7 @@ negatives), FP (\# false positives), FN (\# false negatives).</p><dl>
 
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Here is how to call <code>performance()</code> to create some standard
+    <p>Here is how to call <code><a href='https://rdrr.io/pkg/ROCR/man/performance.html'>performance()</a></code> to create some standard
 evaluation plots:</p><dl>
   <dt>ROC curves:</dt><dd><p>measure="tpr", x.measure="fpr".</p></dd>
   <dt>Precision/recall graphs:</dt><dd><p>measure="prec", x.measure="rec".</p></dd>
@@ -305,32 +305,36 @@ evaluation plots:</p><dl>
 <a href='http://rocr.bioinf.mpi-sb.mpg.de'>http://rocr.bioinf.mpi-sb.mpg.de</a>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='prediction.html'>prediction</a></code>,
-<code><a href='prediction-class.html'>prediction-class</a></code>,
-<code><a href='performance-class.html'>performance-class</a></code>,
-<code><a href='plot-methods.html'>plot.performance</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/ROCR/man/prediction.html'>prediction</a></code>,
+<code><a href='https://rdrr.io/pkg/ROCR/man/prediction-class.html'>prediction-class</a></code>,
+<code><a href='https://rdrr.io/pkg/ROCR/man/performance-class.html'>performance-class</a></code>,
+<code><a href='https://rdrr.io/pkg/ROCR/man/plot-methods.html'>plot.performance</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Tobias Sing <a href='mailto:tobias.sing@gmail.com'>tobias.sing@gmail.com</a>, Oliver Sander
+<a href='mailto:osander@gmail.com'>osander@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># computing a simple ROC curve (x-axis: fpr, y-axis: tpr)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ROCR</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>ROCR.simple</span>)
-<span class='no'>pred</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='prediction.html'>prediction</a></span>( <span class='no'>ROCR.simple</span>$<span class='no'>predictions</span>, <span class='no'>ROCR.simple</span>$<span class='no'>labels</span>)
-<span class='no'>pred</span></div><div class='output co'>#&gt; A prediction instance
-#&gt;   with 200 data points</div><div class='input'><span class='no'>perf</span> <span class='kw'>&lt;-</span> <span class='fu'>performance</span>(<span class='no'>pred</span>,<span class='st'>"tpr"</span>,<span class='st'>"fpr"</span>)
-<span class='no'>perf</span></div><div class='output co'>#&gt; A performance instance
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='http://ipa-tys.github.io/ROCR'>ROCR</a></span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>ROCR.simple</span>)
+<span class='kw'>pred</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/ROCR/man/prediction.html'>prediction</a></span>( <span class='kw'>ROCR.simple</span><span class='op'>$</span><span class='kw'>predictions</span>, <span class='kw'>ROCR.simple</span><span class='op'>$</span><span class='kw'>labels</span>)
+<span class='kw'>pred</span></div><div class='output co'>#&gt; A prediction instance
+#&gt;   with 200 data points</div><div class='input'><span class='kw'>perf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/ROCR/man/performance.html'>performance</a></span>(<span class='kw'>pred</span>,<span class='st'>"tpr"</span>,<span class='st'>"fpr"</span>)
+<span class='kw'>perf</span></div><div class='output co'>#&gt; A performance instance
 #&gt;   'False positive rate' vs. 'True positive rate' (alpha: 'Cutoff')
-#&gt;   with 201 data points</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>perf</span>)</div><div class='img'><img src='performance-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt;   with 201 data points</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>perf</span>)</div><div class='img'><img src='performance-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># precision/recall curve (x-axis: recall, y-axis: precision)</span>
-<span class='no'>perf</span> <span class='kw'>&lt;-</span> <span class='fu'>performance</span>(<span class='no'>pred</span>, <span class='st'>"prec"</span>, <span class='st'>"rec"</span>)
-<span class='no'>perf</span></div><div class='output co'>#&gt; A performance instance
+<span class='kw'>perf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/ROCR/man/performance.html'>performance</a></span>(<span class='kw'>pred</span>, <span class='st'>"prec"</span>, <span class='st'>"rec"</span>)
+<span class='kw'>perf</span></div><div class='output co'>#&gt; A performance instance
 #&gt;   'Recall' vs. 'Precision' (alpha: 'Cutoff')
-#&gt;   with 201 data points</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>perf</span>)</div><div class='img'><img src='performance-2.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt;   with 201 data points</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>perf</span>)</div><div class='img'><img src='performance-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># sensitivity/specificity curve (x-axis: specificity,</span>
 <span class='co'># y-axis: sensitivity)</span>
-<span class='no'>perf</span> <span class='kw'>&lt;-</span> <span class='fu'>performance</span>(<span class='no'>pred</span>, <span class='st'>"sens"</span>, <span class='st'>"spec"</span>)
-<span class='no'>perf</span></div><div class='output co'>#&gt; A performance instance
+<span class='kw'>perf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/ROCR/man/performance.html'>performance</a></span>(<span class='kw'>pred</span>, <span class='st'>"sens"</span>, <span class='st'>"spec"</span>)
+<span class='kw'>perf</span></div><div class='output co'>#&gt; A performance instance
 #&gt;   'Specificity' vs. 'Sensitivity' (alpha: 'Cutoff')
-#&gt;   with 201 data points</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>perf</span>)</div><div class='img'><img src='performance-3.png' alt='' width='700' height='433' /></div></pre>
+#&gt;   with 201 data points</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>perf</span>)</div><div class='img'><img src='performance-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
