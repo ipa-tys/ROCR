@@ -38,12 +38,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/ROCR.html">Get started</a>
 </li>
 <li>
@@ -88,9 +82,8 @@
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://ipa-tys.github.io/ROCR">ROCR</a></span>)
-</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ipa-tys.github.io/ROCR/">ROCR</a></span><span class="op">)</span></code></pre></div>
 <p>Pattern classification has become a central tool in bioinformatics, offering rapid insights into large data sets <a href="#References"><span class="citation">(Baldi and Brunak 2001)</span></a>. While one area of our work involves predicting phenotypic properties of HIV-1 from genotypic information <a href="#References"><span class="citation">(Beerenwinkel et al. 2002, 2003; Sing, Beerenwinkel, and Lengauer 2004)</span></a>, scoring or ranking predictors are also vital in a wide range of other biological problems. Examples include microarray analysis (e.g. prediction of tissue condition based on gene expression), protein structural and functional characterization (remote homology detection, prediction of post-translational modifications and molecular function annotation based on sequence or structural motifs), genome annotation (gene finding and splice site identification), protein–ligand interactions (virtual screening and molecular docking) and structure–activity relationships (predicting bioavailability or toxicity of drug compounds). In many of these cases, considerable class skew, class-specific misclassification costs, and extensive noise due to variability in experimental assays complicate predictive modelling. Thus, careful predictor validation is compulsory.</p>
 <table class="table">
 <caption><em><strong>Table 1:</strong>Performance measures in the ROCR package</em></caption>
@@ -128,26 +121,24 @@
 <p>The real-valued output of scoring classifiers is turned into a binary class decision by choosing a cutoff. As no cutoff is optimal according to all possible performance criteria, cutoff choice involves a trade-off among different measures. Typically, a trade-off between a pair of criteria (e.g. sensitivity versus specificity) is visualized as a cutoff-parametrized curve in the plane spanned by the two measures. Popular examples of such trade-off visualizations include receiver operating characteristic (ROC) graphs, sensitivity/specificity curves, lift charts and precision/recall plots. <span class="citation">(Fawcett 2004)</span>(#References) provides a general introduction into evaluating scoring classifiers with a focus on ROC graphs.</p>
 <p>Although functions for drawing ROC graphs are provided by the Bioconductor project (<a href="http://www.bioconductor.org" class="uri">http://www.bioconductor.org</a>) or by the machine learning package Weka (<a href="http://www.cs.waikato.ac.nz/ml" class="uri">http://www.cs.waikato.ac.nz/ml</a>), for example, no comprehensive evaluation suite is available to date. ROCR is a flexible evaluation package for R (<a href="https://www.r-project.org" class="uri">https://www.r-project.org</a>), a statistical language that is widely used in biomedical data analysis. Our tool allows for creating cutoff-parametrized performance curves by freely combining two out of more than 25 performance measures (Table 1). Curves from different cross-validation or bootstrapping runs can be averaged by various methods. Standard deviations, standard errors and box plots are available to summarize the variability across the runs. The parametrization can be visualized by printing cutoff values at the corresponding curve positions, or by coloring the curve according to the cutoff. All components of a performance plot are adjustable using a flexible mechanism for dispatching optional arguments. Despite this flexibility, ROCR is easy to use, with only three commands and reasonable default values for all optional parameters.</p>
 <p>In the example below, we will briefly introduce ROCR’s three commands—prediction, performance and plot—applied to a 10-fold cross-validation set of predictions and corresponding class labels from a study on predicting HIV coreceptor usage from the sequence of the viral envelope protein. After loading the dataset, a prediction object is created from the raw predictions and class labels.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">ROCR.hiv</span>)
-<span class="kw">predictions</span> <span class="op">&lt;-</span> <span class="kw">ROCR.hiv</span><span class="op">$</span><span class="kw">hiv.svm</span><span class="op">$</span><span class="kw">predictions</span>
-<span class="kw">labels</span> <span class="op">&lt;-</span> <span class="kw">ROCR.hiv</span><span class="op">$</span><span class="kw">hiv.svm</span><span class="op">$</span><span class="kw">labels</span>
-<span class="kw">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prediction.html">prediction</a></span>(<span class="kw">predictions</span>, <span class="kw">labels</span>)
-<span class="kw">pred</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">ROCR.hiv</span><span class="op">)</span>
+<span class="va">predictions</span> <span class="op">&lt;-</span> <span class="va">ROCR.hiv</span><span class="op">$</span><span class="va">hiv.svm</span><span class="op">$</span><span class="va">predictions</span>
+<span class="va">labels</span> <span class="op">&lt;-</span> <span class="va">ROCR.hiv</span><span class="op">$</span><span class="va">hiv.svm</span><span class="op">$</span><span class="va">labels</span>
+<span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prediction.html">prediction</a></span><span class="op">(</span><span class="va">predictions</span>, <span class="va">labels</span><span class="op">)</span>
+<span class="va">pred</span>
 <span class="co">#&gt; A prediction instance</span>
-<span class="co">#&gt;   with 10 cross validation runs (equal lengths)</span>
-</pre></div>
+<span class="co">#&gt;   with 10 cross validation runs (equal lengths)</span></code></pre></div>
 <p>Performance measures or combinations thereof are computed by invoking the performance method on this prediction object. The resulting performance object can be visualized using the method plot. For example, an ROC curve that trades off the rate of true positives against the rate of false positives is obtained as follows:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw">perf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/performance.html">performance</a></span>(<span class="kw">pred</span>, <span class="st">"tpr"</span>, <span class="st">"fpr"</span>)
-<span class="kw">perf</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">perf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/performance.html">performance</a></span><span class="op">(</span><span class="va">pred</span>, <span class="st">"tpr"</span>, <span class="st">"fpr"</span><span class="op">)</span>
+<span class="va">perf</span>
 <span class="co">#&gt; A performance instance</span>
 <span class="co">#&gt;   'False positive rate' vs. 'True positive rate' (alpha: 'Cutoff')</span>
 <span class="co">#&gt;   for 10 cross validation runs</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">perf</span>,
-     avg=<span class="st">"threshold"</span>,
-     spread.estimate=<span class="st">"boxplot"</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">perf</span>,
+     avg<span class="op">=</span><span class="st">"threshold"</span>,
+     spread.estimate<span class="op">=</span><span class="st">"boxplot"</span><span class="op">)</span></code></pre></div>
 <p><img src="ROCR_files/figure-html/unnamed-chunk-4-1.png" width="480" style="display: block; margin: auto;"></p>
 <p>The optional parameter avg selects a particular form of performance curve averaging across the validation runs; the visualization of curve variability is determined with the parameter spread.estimate.</p>
 <div class="figure" style="text-align: center">
@@ -155,7 +146,7 @@
 <em><strong>Fig 1:</strong> Visualizations of classifier performance (HIV coreceptor usage data): (a) receiver operating characteristic (ROC) curve; (b) peak accuracy across a range of cutoffs; (c) absolute difference between empirical and predicted rate of positives for windowed cutoff ranges, in order to evaluate how well the scores are calibrated as probability estimates. Owing to the probabilistic interpretation, cutoffs need to be in the interval [0,1], in contrast to other performance plots. (d) Score density estimates for the negative (solid) and positive (dotted) class.</em>
 </p>
 </div>
-<p>Issuing <code><a href="https://rdrr.io/r/utils/demo.html">demo(ROCR)</a></code> starts a demonstration of further graphical capabilities of ROCR. The command <code><a href="https://rdrr.io/pkg/ROCR/man">help(package=ROCR)</a></code> points to the available help pages. In particular, a complete list of available performance measures can be obtained via help(performance). A reference manual can be downloaded from the ROCR website.</p>
+<p>Issuing <code><a href="https://rdrr.io/r/utils/demo.html">demo(ROCR)</a></code> starts a demonstration of further graphical capabilities of ROCR. The command <code><a href="http://ipa-tys.github.io/ROCR/reference">help(package=ROCR)</a></code> points to the available help pages. In particular, a complete list of available performance measures can be obtained via help(performance). A reference manual can be downloaded from the ROCR website.</p>
 <p>In conclusion, ROCR is a comprehensive tool for evaluating scoring classifiers and producing publication-quality figures. It allows for studying the intricacies inherent to many biological datasets and their implications on classifier performance.</p>
 <div id="additional-examples" class="section level2">
 <h2 class="hasAnchor">
@@ -164,140 +155,127 @@
 <div id="roc-curves-precisionrecall-graphs-and-more" class="section level3">
 <h3 class="hasAnchor">
 <a href="#roc-curves-precisionrecall-graphs-and-more" class="anchor"></a>ROC curves, Precision/Recall graphs and more …</h3>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw">perf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/performance.html">performance</a></span>(<span class="kw">pred</span>, <span class="st">"tpr"</span>, <span class="st">"fpr"</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">perf</span>,
-     avg= <span class="st">"threshold"</span>,
-     colorize=<span class="fl">TRUE</span>,
-     lwd= <span class="fl">3</span>,
-     main= <span class="st">"With ROCR you can produce standard plots\nlike ROC curves ..."</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">perf</span>,
-     lty=<span class="fl">3</span>,
-     col=<span class="st">"grey78"</span>,
-     add=<span class="fl">TRUE</span>)
-</pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">perf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/performance.html">performance</a></span><span class="op">(</span><span class="va">pred</span>, <span class="st">"tpr"</span>, <span class="st">"fpr"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">perf</span>,
+     avg<span class="op">=</span> <span class="st">"threshold"</span>,
+     colorize<span class="op">=</span><span class="cn">TRUE</span>,
+     lwd<span class="op">=</span> <span class="fl">3</span>,
+     main<span class="op">=</span> <span class="st">"With ROCR you can produce standard plots\nlike ROC curves ..."</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">perf</span>,
+     lty<span class="op">=</span><span class="fl">3</span>,
+     col<span class="op">=</span><span class="st">"grey78"</span>,
+     add<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="ROCR_files/figure-html/unnamed-chunk-6-1.png" width="480" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="kw">perf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/performance.html">performance</a></span>(<span class="kw">pred</span>, <span class="st">"prec"</span>, <span class="st">"rec"</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">perf</span>,
-     avg= <span class="st">"threshold"</span>,
-     colorize=<span class="fl">TRUE</span>,
-     lwd= <span class="fl">3</span>,
-     main= <span class="st">"... Precision/Recall graphs ..."</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">perf</span>,
-     lty=<span class="fl">3</span>,
-     col=<span class="st">"grey78"</span>,
-     add=<span class="fl">TRUE</span>)
-</pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">perf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/performance.html">performance</a></span><span class="op">(</span><span class="va">pred</span>, <span class="st">"prec"</span>, <span class="st">"rec"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">perf</span>,
+     avg<span class="op">=</span> <span class="st">"threshold"</span>,
+     colorize<span class="op">=</span><span class="cn">TRUE</span>,
+     lwd<span class="op">=</span> <span class="fl">3</span>,
+     main<span class="op">=</span> <span class="st">"... Precision/Recall graphs ..."</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">perf</span>,
+     lty<span class="op">=</span><span class="fl">3</span>,
+     col<span class="op">=</span><span class="st">"grey78"</span>,
+     add<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="ROCR_files/figure-html/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="kw">perf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/performance.html">performance</a></span>(<span class="kw">pred</span>, <span class="st">"sens"</span>, <span class="st">"spec"</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">perf</span>,
-     avg= <span class="st">"threshold"</span>,
-     colorize=<span class="fl">TRUE</span>,
-     lwd= <span class="fl">3</span>,
-     main=<span class="st">"... Sensitivity/Specificity plots ..."</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">perf</span>,
-     lty=<span class="fl">3</span>,
-     col=<span class="st">"grey78"</span>,
-     add=<span class="fl">TRUE</span>)
-</pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">perf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/performance.html">performance</a></span><span class="op">(</span><span class="va">pred</span>, <span class="st">"sens"</span>, <span class="st">"spec"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">perf</span>,
+     avg<span class="op">=</span> <span class="st">"threshold"</span>,
+     colorize<span class="op">=</span><span class="cn">TRUE</span>,
+     lwd<span class="op">=</span> <span class="fl">3</span>,
+     main<span class="op">=</span><span class="st">"... Sensitivity/Specificity plots ..."</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">perf</span>,
+     lty<span class="op">=</span><span class="fl">3</span>,
+     col<span class="op">=</span><span class="st">"grey78"</span>,
+     add<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="ROCR_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="kw">perf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/performance.html">performance</a></span>(<span class="kw">pred</span>, <span class="st">"lift"</span>, <span class="st">"rpp"</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">perf</span>,
-     avg= <span class="st">"threshold"</span>,
-     colorize=<span class="fl">TRUE</span>,
-     lwd= <span class="fl">3</span>,
-     main= <span class="st">"... and Lift charts."</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">perf</span>,
-     lty=<span class="fl">3</span>,
-     col=<span class="st">"grey78"</span>,
-     add=<span class="fl">TRUE</span>)
-</pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">perf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/performance.html">performance</a></span><span class="op">(</span><span class="va">pred</span>, <span class="st">"lift"</span>, <span class="st">"rpp"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">perf</span>,
+     avg<span class="op">=</span> <span class="st">"threshold"</span>,
+     colorize<span class="op">=</span><span class="cn">TRUE</span>,
+     lwd<span class="op">=</span> <span class="fl">3</span>,
+     main<span class="op">=</span> <span class="st">"... and Lift charts."</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">perf</span>,
+     lty<span class="op">=</span><span class="fl">3</span>,
+     col<span class="op">=</span><span class="st">"grey78"</span>,
+     add<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="ROCR_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;"></p>
 </div>
 <div id="averaging-over-multiple-predictions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#averaging-over-multiple-predictions" class="anchor"></a>Averaging over multiple predictions</h3>
 <p>Multiple batches of predictions can be analyzed at the same time.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">ROCR.xval</span>)
-<span class="kw">predictions</span> <span class="op">&lt;-</span> <span class="kw">ROCR.xval</span><span class="op">$</span><span class="kw">predictions</span>
-<span class="kw">labels</span> <span class="op">&lt;-</span> <span class="kw">ROCR.xval</span><span class="op">$</span><span class="kw">labels</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">predictions</span>)
-<span class="co">#&gt; [1] 10</span>
-</pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="kw">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prediction.html">prediction</a></span>(<span class="kw">predictions</span>, <span class="kw">labels</span>)
-<span class="kw">perf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/performance.html">performance</a></span>(<span class="kw">pred</span>,<span class="st">'tpr'</span>,<span class="st">'fpr'</span>)
-</pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">ROCR.xval</span><span class="op">)</span>
+<span class="va">predictions</span> <span class="op">&lt;-</span> <span class="va">ROCR.xval</span><span class="op">$</span><span class="va">predictions</span>
+<span class="va">labels</span> <span class="op">&lt;-</span> <span class="va">ROCR.xval</span><span class="op">$</span><span class="va">labels</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">predictions</span><span class="op">)</span>
+<span class="co">#&gt; [1] 10</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prediction.html">prediction</a></span><span class="op">(</span><span class="va">predictions</span>, <span class="va">labels</span><span class="op">)</span>
+<span class="va">perf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/performance.html">performance</a></span><span class="op">(</span><span class="va">pred</span>,<span class="st">'tpr'</span>,<span class="st">'fpr'</span><span class="op">)</span></code></pre></div>
 <p>This can be used for plotting averages using the <code>avg</code> argument.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">perf</span>,
-     colorize=<span class="fl">TRUE</span>,
-     lwd=<span class="fl">2</span>,
-     main=<span class="st">'ROC curves from 10-fold cross-validation'</span>)
-</pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">perf</span>,
+     colorize<span class="op">=</span><span class="cn">TRUE</span>,
+     lwd<span class="op">=</span><span class="fl">2</span>,
+     main<span class="op">=</span><span class="st">'ROC curves from 10-fold cross-validation'</span><span class="op">)</span></code></pre></div>
 <p><img src="ROCR_files/figure-html/unnamed-chunk-12-1.png" width="480" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">perf</span>,
-     avg=<span class="st">'vertical'</span>,
-     spread.estimate=<span class="st">'stderror'</span>,
-     lwd=<span class="fl">3</span>,main=<span class="st">'Vertical averaging + 1 standard error'</span>,
-     col=<span class="st">'blue'</span>)
-</pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">perf</span>,
+     avg<span class="op">=</span><span class="st">'vertical'</span>,
+     spread.estimate<span class="op">=</span><span class="st">'stderror'</span>,
+     lwd<span class="op">=</span><span class="fl">3</span>,main<span class="op">=</span><span class="st">'Vertical averaging + 1 standard error'</span>,
+     col<span class="op">=</span><span class="st">'blue'</span><span class="op">)</span></code></pre></div>
 <p><img src="ROCR_files/figure-html/unnamed-chunk-13-1.png" width="480" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">perf</span>,
-     avg=<span class="st">'horizontal'</span>,
-     spread.estimate=<span class="st">'boxplot'</span>,
-     lwd=<span class="fl">3</span>,
-     main=<span class="st">'Horizontal averaging + boxplots'</span>,
-     col=<span class="st">'blue'</span>)
-</pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">perf</span>,
+     avg<span class="op">=</span><span class="st">'horizontal'</span>,
+     spread.estimate<span class="op">=</span><span class="st">'boxplot'</span>,
+     lwd<span class="op">=</span><span class="fl">3</span>,
+     main<span class="op">=</span><span class="st">'Horizontal averaging + boxplots'</span>,
+     col<span class="op">=</span><span class="st">'blue'</span><span class="op">)</span></code></pre></div>
 <p><img src="ROCR_files/figure-html/unnamed-chunk-14-1.png" width="480" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">perf</span>,
-     avg=<span class="st">'threshold'</span>,
-     spread.estimate=<span class="st">'stddev'</span>,
-     lwd=<span class="fl">2</span>,
-     main=<span class="st">'Threshold averaging + 1 standard deviation'</span>,
-     colorize=<span class="fl">TRUE</span>)
-</pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">perf</span>,
+     avg<span class="op">=</span><span class="st">'threshold'</span>,
+     spread.estimate<span class="op">=</span><span class="st">'stddev'</span>,
+     lwd<span class="op">=</span><span class="fl">2</span>,
+     main<span class="op">=</span><span class="st">'Threshold averaging + 1 standard deviation'</span>,
+     colorize<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="ROCR_files/figure-html/unnamed-chunk-15-1.png" width="480" style="display: block; margin: auto;"></p>
 </div>
 <div id="cutoff-stacking" class="section level3">
 <h3 class="hasAnchor">
 <a href="#cutoff-stacking" class="anchor"></a>Cutoff stacking</h3>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">perf</span>,
-     print.cutoffs.at=<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">0</span>,<span class="fl">1</span>,by=<span class="fl">0.2</span>),
-     text.cex=<span class="fl">0.8</span>,
-     text.y=<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">0</span>,<span class="fl">0.5</span>,by=<span class="fl">0.05</span>)), <span class="fu">function</span>(<span class="kw">x</span>) { <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw">x</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">perf</span><span class="op">@</span>x.values[[<span class="fl">1</span>]])) } ),
-     col= <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span>(<span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">terrain.colors</a></span>(<span class="fl">10</span>)),
-     text.col= <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span>(<span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">terrain.colors</a></span>(<span class="fl">10</span>)), 
-     points.col= <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span>(<span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">terrain.colors</a></span>(<span class="fl">10</span>)), 
-     main= <span class="st">"Cutoff stability"</span>)
-</pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">perf</span>,
+     print.cutoffs.at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,by<span class="op">=</span><span class="fl">0.2</span><span class="op">)</span>,
+     text.cex<span class="op">=</span><span class="fl">0.8</span>,
+     text.y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0.5</span>,by<span class="op">=</span><span class="fl">0.05</span><span class="op">)</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">x</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">perf</span><span class="op">@</span><span class="va">x.values</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">}</span> <span class="op">)</span>,
+     col<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">terrain.colors</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span>,
+     text.col<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">terrain.colors</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span>, 
+     points.col<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">terrain.colors</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span>, 
+     main<span class="op">=</span> <span class="st">"Cutoff stability"</span><span class="op">)</span></code></pre></div>
 <p><img src="ROCR_files/figure-html/unnamed-chunk-16-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div id="combination-of-performance-measures" class="section level3">
 <h3 class="hasAnchor">
 <a href="#combination-of-performance-measures" class="anchor"></a>Combination of performance measures</h3>
 <p>Performance measures can be combined freely.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="kw">perf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/performance.html">performance</a></span>(<span class="kw">pred</span>,<span class="st">"pcmiss"</span>,<span class="st">"lift"</span>)
-</pre></div>
-<div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">perf</span>,
-     colorize=<span class="fl">TRUE</span>,
-     print.cutoffs.at=<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">0</span>,<span class="fl">1</span>,by=<span class="fl">0.1</span>),
-     text.adj=<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1.2</span>,<span class="fl">1.2</span>),
-     avg=<span class="st">"threshold"</span>,
-     lwd=<span class="fl">3</span>,
-     main= <span class="st">"You can freely combine performance measures ..."</span>)
-</pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">perf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/performance.html">performance</a></span><span class="op">(</span><span class="va">pred</span>,<span class="st">"pcmiss"</span>,<span class="st">"lift"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">perf</span>,
+     colorize<span class="op">=</span><span class="cn">TRUE</span>,
+     print.cutoffs.at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,by<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span>,
+     text.adj<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.2</span>,<span class="fl">1.2</span><span class="op">)</span>,
+     avg<span class="op">=</span><span class="st">"threshold"</span>,
+     lwd<span class="op">=</span><span class="fl">3</span>,
+     main<span class="op">=</span> <span class="st">"You can freely combine performance measures ..."</span><span class="op">)</span></code></pre></div>
 <p><img src="ROCR_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -346,7 +324,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
