@@ -56,7 +56,7 @@ R CMD INSTALL ROCR_*.tar.gz
 
 ## Getting started
 
-from withing R ...
+from within R ...
 
 ```
 library(ROCR)
