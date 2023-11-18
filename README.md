@@ -1,7 +1,7 @@
 # ROCR <img src="https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/ROCR_small.png" align="right">
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/ipa-tys/ROCR/workflows/R-CMD-check/badge.svg)](https://github.com/ipa-tys/ROCR/actions?query=workflow:R-CMD-check)
+<!-- [![R-CMD-check](https://github.com/ipa-tys/ROCR/workflows/R-CMD-check/badge.svg)](https://github.com/ipa-tys/ROCR/actions?query=workflow:R-CMD-check) -->
 [![CRAN Status](https://www.r-pkg.org/badges/version/ROCR)](https://CRAN.r-project.org/package=ROCR)
 [![codecov](https://codecov.io/gh/ipa-tys/ROCR/branch/master/graph/badge.svg)](https://codecov.io/gh/ipa-tys/ROCR)
 <!-- badges: end -->
