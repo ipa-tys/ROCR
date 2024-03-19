@@ -92,7 +92,7 @@ jobs:
           build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
         
       - name: Test coverage
-        if: github.ref == 'refs/heads/master' && runner.os == 'Linux' && runner.r == '4.3'
+        if: runner.os == 'Linux' && runner.r == '4.3'
         run: |
           covr::codecov(
             quiet = FALSE,
