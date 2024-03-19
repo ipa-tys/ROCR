@@ -34,6 +34,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -46,7 +48,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ROCR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0-11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0-11</span>
       </span>
     </div>
 
@@ -61,8 +63,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ipa-tys/ROCR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/ipa-tys/ROCR/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -78,79 +80,80 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="rocr-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#rocr-" class="anchor"></a>ROCR <img src="https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/ROCR_small.png" align="right">
+<div class="section level1">
+<div class="page-header"><h1 id="rocr-">ROCR <img src="https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/ROCR_small.png" align="right"><a class="anchor" aria-label="anchor" href="#rocr-"></a>
 </h1></div>
 <!-- badges: start -->
+<!-- [![R-CMD-check](https://github.com/ipa-tys/ROCR/workflows/R-CMD-check/badge.svg)](https://github.com/ipa-tys/ROCR/actions?query=workflow:R-CMD-check) -->
 
 <p><em>visualizing classifier performance in R, with only 3 commands</em></p>
 <p><img src="https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/ourplot_website.gif"></p>
-<div id="please-support-our-work-by-citing-the-rocr-article-in-your-publications" class="section level3">
-<h3 class="hasAnchor">
-<a href="#please-support-our-work-by-citing-the-rocr-article-in-your-publications" class="anchor"></a>Please support our work by citing the ROCR article in your publications:</h3>
+<div class="section level3">
+<h3 id="please-support-our-work-by-citing-the-rocr-article-in-your-publications">Please support our work by citing the ROCR article in your publications:<a class="anchor" aria-label="anchor" href="#please-support-our-work-by-citing-the-rocr-article-in-your-publications"></a>
+</h3>
 <p><strong><em>Sing T, Sander O, Beerenwinkel N, Lengauer T. [2005] ROCR: visualizing classifier performance in R. Bioinformatics 21(20):3940-1.</em></strong></p>
-<p>Free full text: <a href="http://bioinformatics.oxfordjournals.org/content/21/20/3940.full" class="uri">http://bioinformatics.oxfordjournals.org/content/21/20/3940.full</a></p>
-<p><a href="https://www.mpi-inf.mpg.de/home/"><img src="https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/logo_mpi_430.png" align="right" width="300"></a><br><code>ROCR</code> was originally developed at the <a href="https://www.mpi-inf.mpg.de/home/">Max Planck Institute for Informatics</a></p>
+<p>Free full text: <a href="http://bioinformatics.oxfordjournals.org/content/21/20/3940.full" class="external-link uri">http://bioinformatics.oxfordjournals.org/content/21/20/3940.full</a></p>
+<p><a href="https://www.mpi-inf.mpg.de/home/" class="external-link"><img src="https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/logo_mpi_430.png" align="right" width="300"></a><br><code>ROCR</code> was originally developed at the <a href="https://www.mpi-inf.mpg.de/home/" class="external-link">Max Planck Institute for Informatics</a></p>
 </div>
-<div id="introduction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h2>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
 <p><code>ROCR</code> (with obvious pronounciation) is an R package for evaluating and visualizing classifier performance. It is…</p>
 <ul>
 <li>…easy to use: adds only three new commands to R.</li>
 <li>…flexible: integrates tightly with R’s built-in graphics facilities.</li>
 <li>…powerful: Currently, 28 performance measures are implemented, which can be freely combined to form parametric curves such as ROC curves, precision/recall curves, or lift curves. Many options such as curve averaging (for cross-validation or bootstrap), augmenting the averaged curves by standard error bar or boxplots, labeling cutoffs to the curve, or coloring curves according to cutoff.</li>
 </ul>
-<div id="performance-measures-that-rocr-knows" class="section level3">
-<h3 class="hasAnchor">
-<a href="#performance-measures-that-rocr-knows" class="anchor"></a>Performance measures that <code>ROCR</code> knows:</h3>
+<div class="section level3">
+<h3 id="performance-measures-that-rocr-knows">Performance measures that <code>ROCR</code> knows:<a class="anchor" aria-label="anchor" href="#performance-measures-that-rocr-knows"></a>
+</h3>
 <p>Accuracy, error rate, true positive rate, false positive rate, true negative rate, false negative rate, sensitivity, specificity, recall, positive predictive value, negative predictive value, precision, fallout, miss, phi correlation coefficient, Matthews correlation coefficient, mutual information, chi square statistic, odds ratio, lift value, precision/recall F measure, ROC convex hull, area under the ROC curve, precision/recall break-even point, calibration error, mean cross-entropy, root mean squared error, SAR measure, expected cost, explicit cost.</p>
 </div>
-<div id="rocr-features" class="section level3">
-<h3 class="hasAnchor">
-<a href="#rocr-features" class="anchor"></a><code>ROCR</code> features:</h3>
+<div class="section level3">
+<h3 id="rocr-features">
+<code>ROCR</code> features:<a class="anchor" aria-label="anchor" href="#rocr-features"></a>
+</h3>
 <p>ROC curves, precision/recall plots, lift charts, cost curves, custom curves by freely selecting one performance measure for the x axis and one for the y axis, handling of data from cross-validation or bootstrapping, curve averaging (vertically, horizontally, or by threshold), standard error bars, box plots, curves that are color-coded by cutoff, printing threshold values on the curve, tight integration with Rs plotting facilities (making it easy to adjust plots or to combine multiple plots), fully customizable, easy to use (only 3 commands).</p>
 </div>
 </div>
-<div id="installation-of-rocr" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation-of-rocr" class="anchor"></a>Installation of <code>ROCR</code>
+<div class="section level2">
+<h2 id="installation-of-rocr">Installation of <code>ROCR</code>
+<a class="anchor" aria-label="anchor" href="#installation-of-rocr"></a>
 </h2>
 <p>The most straightforward way to install and use <code>ROCR</code> is to install it from <code>CRAN</code> by starting <code>R</code> and using the <code>install.packages</code> function:</p>
-<pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("ROCR")</a></code></pre>
+<pre><code><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ROCR"</span><span class="op">)</span></span></code></pre>
 <p>Alternatively you can install it from command line using the tar ball like this:</p>
 <pre><code>R CMD INSTALL ROCR_*.tar.gz</code></pre>
 </div>
-<div id="getting-started" class="section level2">
-<h2 class="hasAnchor">
-<a href="#getting-started" class="anchor"></a>Getting started</h2>
+<div class="section level2">
+<h2 id="getting-started">Getting started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
+</h2>
 <p>from within R …</p>
-<pre><code><a href="http://ipa-tys.github.io/ROCR/">library(ROCR)
-demo(ROCR)
-help(package=ROCR)</a></code></pre>
+<pre><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://ipa-tys.github.io/ROCR/" class="external-link">ROCR</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/demo.html" class="external-link">demo</a></span><span class="op">(</span><span class="va">ROCR</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/help.html" class="external-link">help</a></span><span class="op">(</span>package<span class="op">=</span><span class="va">ROCR</span><span class="op">)</span></span></code></pre>
 </div>
-<div id="examples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h2>
+<div class="section level2">
+<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
+</h2>
 <p>Using ROCR’s 3 commands to produce a simple ROC plot:</p>
-<pre><code>pred &lt;- prediction(predictions, labels)
-perf &lt;- performance(pred, measure = "tpr", x.measure = "fpr")
-plot(perf, col=rainbow(10))</code></pre>
+<pre><code><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/prediction.html">prediction</a></span><span class="op">(</span><span class="va">predictions</span>, <span class="va">labels</span><span class="op">)</span></span>
+<span><span class="va">perf</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/performance.html">performance</a></span><span class="op">(</span><span class="va">pred</span>, measure <span class="op">=</span> <span class="st">"tpr"</span>, x.measure <span class="op">=</span> <span class="st">"fpr"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">perf</span>, col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">rainbow</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code></pre>
 </div>
-<div id="documentation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#documentation" class="anchor"></a>Documentation</h2>
+<div class="section level2">
+<h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
+</h2>
 <ul>
-<li>The Reference Manual found <a href="https://CRAN.r-project.org/package=ROCR">here</a>
+<li>The Reference Manual found <a href="https://CRAN.r-project.org/package=ROCR" class="external-link">here</a>
 </li>
-<li>Slide deck for a tutorial talk (feel free to re-use for teaching, but please give appropriate credits and write us an email) [<a href="https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/ROCR_Talk_Tobias_Sing.ppt">PPT</a>]</li>
+<li>Slide deck for a tutorial talk (feel free to re-use for teaching, but please give appropriate credits and write us an email) [<a href="https://raw.githubusercontent.com/ipa-tys/ROCR/rocr-images/ROCR_Talk_Tobias_Sing.ppt" class="external-link">PPT</a>]</li>
 <li>A few pointers to the literature on classifier evaluation</li>
 </ul>
 </div>
-<div id="contact" class="section level2">
-<h2 class="hasAnchor">
-<a href="#contact" class="anchor"></a>Contact</h2>
+<div class="section level2">
+<h2 id="contact">Contact<a class="anchor" aria-label="anchor" href="#contact"></a>
+</h2>
 <p>Questions, comments, and suggestions are very welcome. Open an issue on GitHub and we can discuss. We are also interested in seeing how ROCR is used in publications. Thus, if you have prepared a paper using ROCR we’d be happy to know.</p>
 </div>
 </div>
@@ -158,30 +161,31 @@ plot(perf, col=rainbow(10))</code></pre>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=ROCR">https://​cloud.r-project.org/​package=ROCR</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/ipa-tys/ROCR/">https://​github.com/​ipa-tys/​ROCR/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/ipa-tys/ROCR/issues">https://​github.com/​ipa-tys/​ROCR/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=ROCR" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/ipa-tys/ROCR/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/ipa-tys/ROCR/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>GPL (&gt;= 2)</li>
 </ul>
 </div>
+
+
 <div class="citation">
-<h2>Citation</h2>
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html">Citing ROCR</a></li>
+<li><a href="authors.html#citation">Citing ROCR</a></li>
 </ul>
 </div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>
 <a href="mail:tobias.sing@gmail.com">Tobias Sing</a> <br><small class="roles"> Author </small>  </li>
@@ -190,29 +194,31 @@ plot(perf, col=rainbow(10))</code></pre>
 <li>Niko Beerenwinkel <br><small class="roles"> Author </small>  </li>
 <li>Thomas Lengauer <br><small class="roles"> Author </small>  </li>
 <li>
-<a href="mail:felix.gm.ernst@outlook.com">Felix G.M. Ernst</a> <br><small class="roles"> Maintainer </small> <a href="https://orcid.org/0000-0001-5064-0928" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li><a href="authors.html">All authors...</a></li>
+<a href="mail:felix.gm.ernst@outlook.com">Felix G.M. Ernst</a> <br><small class="roles"> Maintainer </small> <a href="https://orcid.org/0000-0001-5064-0928" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/ipa-tys/ROCR/actions?query=workflow:R-CMD-check"><img src="https://github.com/ipa-tys/ROCR/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://CRAN.r-project.org/package=ROCR"><img src="https://www.r-pkg.org/badges/version/ROCR" alt="CRAN Status"></a></li>
-<li><a href="https://codecov.io/gh/ipa-tys/ROCR"><img src="https://codecov.io/gh/ipa-tys/ROCR/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://CRAN.r-project.org/package=ROCR" class="external-link"><img src="https://www.r-pkg.org/badges/version/ROCR" alt="CRAN Status"></a></li>
+<li><a href="https://codecov.io/gh/ipa-tys/ROCR" class="external-link"><img src="https://codecov.io/gh/ipa-tys/ROCR/branch/master/graph/badge.svg" alt="codecov"></a></li>
 </ul>
 </div>
-</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="mail:tobias.sing@gmail.com">Tobias Sing</a>, <a href="mail:osander@gmail.com">Oliver Sander</a>, Niko Beerenwinkel, Thomas Lengauer, <a href="mail:felix.gm.ernst@outlook.com">Felix G.M. Ernst</a>.</p>
+  <p></p>
+<p>Developed by <a href="mail:tobias.sing@gmail.com">Tobias Sing</a>, <a href="mail:osander@gmail.com">Oliver Sander</a>, Niko Beerenwinkel, Thomas Lengauer, <a href="mail:felix.gm.ernst@outlook.com">Felix G.M. Ernst</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -220,6 +226,8 @@ plot(perf, col=rainbow(10))</code></pre>
 
   
 
+
+  
 
   </body>
 </html>
