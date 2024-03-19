@@ -6,22 +6,45 @@ name: pkgdown
 
 jobs:
   pkgdown:
-    runs-on: ubuntu-18.04
-    
-    name: Pkgdown (Ubuntu-18.04)
+    runs-on: ${{ matrix.config.os }}
+
+    name: Pkgdown (${{ matrix.config.os }}-${{ matrix.config.r }})
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: ubuntu-22.04, r: '4.3', rspm: "https://demo.rstudiopm.com/all/__linux__/jammy/latest"}
     
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
-      RSPM: "https://demo.rstudiopm.com/all/__linux__/bionic/latest"
-      GITHUB_PAT: ${{secrets.GITHUB_PAT}}
+      RSPM: "https://demo.rstudiopm.com/all/__linux__/jammy/latest"
+      TZ: UTC
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
       
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-      - uses: r-lib/actions/setup-r@master
+      - name: Setup R from r-lib
+        if: runner.os != 'Linux'
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.config.r }}
+          http-user-agent: ${{ matrix.config.http-user-agent }}
 
-      - uses: r-lib/actions/setup-pandoc@master
+      - name: Setup pandoc from r-lib
+        if: runner.os != 'Linux'
+        uses: r-lib/actions/setup-pandoc@v2
 
+      - name: Install R packages for CI
+        run: |
+          install.packages('remotes')
+          remotes::install_github('r-hub/sysreqs')
+        shell: Rscript {0}
+        
       - name: Install R packages for CI
         run: |
           install.packages('remotes')
@@ -30,28 +53,46 @@ jobs:
         
       - name: Query dependencies
         run: |
-          saveRDS(remotes::dev_package_deps(dependencies = TRUE), "depends.Rds", version = 2)
+          install.packages('remotes')
+          saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
         shell: Rscript {0}
 
-      - name: Cache R packages
-        uses: actions/cache@v1
+      - name: Restore R package cache
+        if: "!contains(github.event.head_commit.message, '/nocache') && runner.os != 'Linux'"
+        uses: actions/cache@v3
         with:
           path: ${{ env.R_LIBS_USER }}
-          key: ubuntu-r-3.6-pkgdown-${{ hashFiles('depends.Rds') }}
-          restore-keys: ubuntu-r-3.6-pkgdown-
+          key: ${{ env.cache-version }}-${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('.github/depends.Rds') }}
+          restore-keys: ${{ env.cache-version }}-${{ runner.os }}-r-${{ matrix.config.r }}-
+
+      - name: Cache R packages on Linux
+        if: "!contains(github.event.head_commit.message, '/nocache') && runner.os == 'Linux' "
+        uses: actions/cache@v3
+        with:
+          path: /home/runner/work/_temp/Library
+          key: ${{ env.cache-version }}-${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('.github/depends.Rds') }}
+          restore-keys: ${{ env.cache-version }}-${{ runner.os }}-r-${{ matrix.config.r }}-
           
-      - name: Install system dependencies
+       - name: Install system dependencies
+        if: runner.os == 'Linux'
         env:
           RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
         run: |
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
-          sudo -s eval "$sysreqs libcurl4-openssl-dev"
+          sudo -s eval "$sysreqs"
         
-      - name: Install dependencies
+      - name: Install R dependencies
         run: |
-          install.packages("remotes")
           remotes::install_deps(dependencies = TRUE)
-          remotes::install_dev("pkgdown")
+          remotes::install_cran("rcmdcheck")
+          remotes::install_cran("covr")
+        shell: Rscript {0}
+        
+      - name: Session info
+        run: |
+          options(width = 100)
+          pkgs <- installed.packages()[, "Package"]
+          sessioninfo::session_info(pkgs, include_base = TRUE)
         shell: Rscript {0}
 
       - name: Install package
@@ -60,6 +101,6 @@ jobs:
           git config --global user.name ${{secrets.GH_USER}}
           git config --global user.email ${{secrets.GH_EMAIL}}
 
-      - name: Deploy package
+      - name: Deploy Pkgdown to branch
         run: pkgdown::deploy_to_branch(new_process = FALSE)
         shell: Rscript {0}
