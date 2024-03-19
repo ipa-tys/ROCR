@@ -18,11 +18,11 @@ jobs:
     
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
-      RSPM: "https://demo.rstudiopm.com/all/__linux__/jammy/latest"
+      RSPM: ${{ matrix.config.rspm }}
       TZ: UTC
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
