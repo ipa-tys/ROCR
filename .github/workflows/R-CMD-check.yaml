@@ -56,7 +56,7 @@ jobs:
           needs: check
           
       - name: Query dependencies from r-lib (Linux)
-        if: runner.os == 'Linux' && runner.r == '4.3'
+        if: "runner.os == 'Linux' && matrix.config.r == '4.3' "
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::pkgdown, any::covr, local::.
@@ -92,7 +92,7 @@ jobs:
           build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
         
       - name: Test coverage
-        if: runner.os == 'Linux' && runner.r == '4.3'
+        if: "runner.os == 'Linux' && matrix.config.r == '4.3' "
         run: |
           covr::codecov(
             quiet = FALSE,
@@ -116,12 +116,12 @@ jobs:
           path: ${{ runner.temp }}/package
 
       - name: Build with Pkgdown
-        if: runner.os == 'Linux' && runner.r == '4.3'
+        if: "runner.os == 'Linux' && matrix.config.r == '4.3' "
         run: pkgdown::deploy_to_branch(new_process = FALSE, install = FALSE)
         shell: Rscript {0}
         
       - name: Deploy to GitHub pages 🚀
-        if: runner.os == 'Linux' && runner.r == '4.3'
+        if: "runner.os == 'Linux' && matrix.config.r == '4.3' "
         uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
           clean: false
