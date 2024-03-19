@@ -127,13 +127,13 @@ jobs:
           path: check
 
       - name: Install package
-        if: github.ref == 'refs/heads/master' && runner.os == 'ubuntu-22.04'
+        if: github.ref == 'refs/heads/master' && runner.os == 'ubuntu-22.04' && runner.r == '4.3'
         run: |
           R CMD INSTALL .
           git config --global user.name ${{secrets.GH_USER}}
           git config --global user.email ${{secrets.GH_EMAIL}}
 
       - name: Deploy Pkgdown to branch
-        if: github.ref == 'refs/heads/master' && runner.os == 'ubuntu-22.04'
+        if: github.ref == 'refs/heads/master' && runner.os == 'ubuntu-22.04' && runner.r == '4.3'
         run: pkgdown::deploy_to_branch(new_process = FALSE)
         shell: Rscript {0}
