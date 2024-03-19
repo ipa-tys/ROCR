@@ -49,12 +49,6 @@ jobs:
         if: runner.os != 'Linux'
         uses: r-lib/actions/setup-pandoc@v2
 
-      - name: Install R packages for CI
-        run: |
-          install.packages('remotes')
-          remotes::install_github('r-hub/sysreqs')
-        shell: Rscript {0}
-        
       - name: Query dependencies
         run: |
           install.packages('remotes')
