@@ -18,14 +18,11 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: '3.6'}
-          - {os: windows-latest, r: '4.3'}
+          - {os: windows-latest, r: 'release'}
           - {os: windows-latest, r: 'devel'}
-          - {os: macOS-latest, r: '3.6'}
-          - {os: macOS-latest, r: '4.3'}
+          - {os: macOS-latest, r: 'release'}
           - {os: macOS-latest, r: 'devel'}
-          - {os: ubuntu-latest, r: '3.6', rspm: "https://demo.rstudiopm.com/all/__linux__/jammy/latest"}
-          - {os: ubuntu-latest, r: '4.3', rspm: "https://demo.rstudiopm.com/all/__linux__/jammy/latest"}
+          - {os: ubuntu-latest, r: 'release'}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
@@ -56,7 +53,7 @@ jobs:
           needs: check
           
       - name: Query dependencies from r-lib (Linux)
-        if: "runner.os == 'Linux' && matrix.config.r == '4.3' "
+        if: "runner.os == 'Linux' && matrix.config.r == 'release' "
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::pkgdown, any::covr, local::.
@@ -92,7 +89,7 @@ jobs:
           build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
         
       - name: Test coverage
-        if: "runner.os == 'Linux' && matrix.config.r == '4.3' "
+        if: "runner.os == 'Linux' && matrix.config.r == 'release' "
         run: |
           covr::codecov(
             quiet = FALSE,
@@ -116,12 +113,12 @@ jobs:
           path: ${{ runner.temp }}/package
 
       - name: Build with Pkgdown
-        if: "runner.os == 'Linux' && matrix.config.r == '4.3' "
+        if: "runner.os == 'Linux' && matrix.config.r == 'release' "
         run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
         shell: Rscript {0}
         
       - name: Deploy to GitHub pages 🚀
-        if: "runner.os == 'Linux' && matrix.config.r == '4.3' "
+        if: "runner.os == 'Linux' && matrix.config.r == 'release' "
         uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
           clean: false
