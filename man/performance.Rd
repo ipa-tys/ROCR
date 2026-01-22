@@ -32,9 +32,9 @@ Here is the list of available performance measures. Let Y and
 a randomly drawn sample, respectively. We denote by
 \eqn{\oplus}{+} and \eqn{\ominus}{-} the positive and
 negative class, respectively. Further, we use the following
-abbreviations for empirical quantities: P (\# positive
-samples), N (\# negative samples), TP (\# true positives), TN (\# true
-negatives), FP (\# false positives), FN (\# false negatives).
+abbreviations for empirical quantities: P (# positive
+samples), N (# negative samples), TP (# true positives), TN (# true
+negatives), FP (# false positives), FN (# false negatives).
 \describe{
  \item{\code{acc}:}{Accuracy. \eqn{P(\hat{Y}=Y)}{P(Yhat = Y)}. Estimated
    as: \eqn{\frac{TP+TN}{P+N}}{(TP+TN)/(P+N)}.}

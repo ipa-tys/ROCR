@@ -2,17 +2,17 @@ citHeader("To cite ROCR in publications use:")
 
 bibentry(entry="article",
          title = "ROCR: visualizing classifier performance in R",
-         author = personList(as.person("T. Sing"),
-                             as.person("O. Sander"),
-		             as.person("N. Beerenwinkel"),
-                             as.person("T. Lengauer")),
-         year         = "2005", 
-         journal      = "Bioinformatics", 
-         volume       = 21, 
-	 number	      = 20, 
-         pages        = 3940--3941, 
-	 bibtype      = "Article",
-         url          = "http://rocr.bioinf.mpi-sb.mpg.de"         )
+         author = c(person("T. Sing"),
+                    person("O. Sander"),
+		            person("N. Beerenwinkel"),
+                    person("T. Lengauer")),
+         year = "2005", 
+         journal = "Bioinformatics", 
+         volume = 21, 
+	 number = 20, 
+         pages = 3940--3941, 
+	 bibtype = "Article",
+         url = "http://rocr.bioinf.mpi-sb.mpg.de"         )
 
 citFooter("We have invested a lot of time and effort in creating ROCR,",
           "please cite it when using it for data analysis.")

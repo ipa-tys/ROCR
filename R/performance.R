@@ -12,9 +12,9 @@
 #' a randomly drawn sample, respectively. We denote by
 #' \eqn{\oplus}{+} and \eqn{\ominus}{-} the positive and
 #' negative class, respectively. Further, we use the following
-#' abbreviations for empirical quantities: P (\# positive
-#' samples), N (\# negative samples), TP (\# true positives), TN (\# true
-#' negatives), FP (\# false positives), FN (\# false negatives).
+#' abbreviations for empirical quantities: P (# positive
+#' samples), N (# negative samples), TP (# true positives), TN (# true
+#' negatives), FP (# false positives), FN (# false negatives).
 #' \describe{
 #'  \item{\code{acc}:}{Accuracy. \eqn{P(\hat{Y}=Y)}{P(Yhat = Y)}. Estimated
 #'    as: \eqn{\frac{TP+TN}{P+N}}{(TP+TN)/(P+N)}.}
@@ -225,7 +225,7 @@ performance <- function(prediction.obj,
   default.values <- envir.list$default.values
 
   ## abort in case of misuse
-  if (class(prediction.obj) != 'prediction' ||
+  if (!is(prediction.obj, "prediction") ||
       !exists(measure, where=long.unit.names, inherits=FALSE) ||
       !exists(x.measure, where=long.unit.names, inherits=FALSE)) {
     stop(paste("Wrong argument types: First argument must be of type",
