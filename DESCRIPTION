@@ -48,5 +48,5 @@ Suggests:
   rmarkdown
 URL: https://ipa-tys.github.io/ROCR/
 BugReports: https://github.com/ipa-tys/ROCR/issues
-RoxygenNote: 7.1.0
+RoxygenNote: 7.3.3
 VignetteBuilder: knitr

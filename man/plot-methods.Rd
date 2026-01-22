@@ -20,7 +20,9 @@
   colorkey.relwidth = 0.25,
   colorkey.pos = "right",
   print.cutoffs.at = c(),
-  cutoff.label.function = function(x) {     round(x, 2) },
+  cutoff.label.function = function(x) {
+     round(x, 2)
+ },
   downsampling = 0,
   add = FALSE
 )
