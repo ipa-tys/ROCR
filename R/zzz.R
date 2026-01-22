@@ -43,7 +43,7 @@ NULL
 #'
 #' @references
 #' A detailed list of references can be found on the ROCR homepage at
-#' \url{http://rocr.bioinf.mpi-sb.mpg.de}.
+#' \url{https://ipa-tys.github.io/ROCR/}.
 #'
 #' @author
 #' Tobias Sing \email{tobias.sing@gmail.com}, Oliver Sander
@@ -139,7 +139,7 @@ setMethod("show","prediction",
 #'
 #' @references
 #' A detailed list of references can be found on the ROCR homepage at
-#' \url{http://rocr.bioinf.mpi-sb.mpg.de}.
+#' \url{https://ipa-tys.github.io/ROCR/}.
 #'
 #' @author
 #' Tobias Sing \email{tobias.sing@gmail.com}, Oliver Sander
@@ -258,7 +258,7 @@ setMethod("show","performance",
 #'
 #' @references
 #' A detailed list of references can be found on the ROCR homepage at
-#' \url{http://rocr.bioinf.mpi-sb.mpg.de}.
+#' \url{https://ipa-tys.github.io/ROCR/}.
 #'
 #' @author
 #' Tobias Sing \email{tobias.sing@gmail.com}, Oliver Sander

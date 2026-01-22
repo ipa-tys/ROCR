@@ -12,7 +12,7 @@ bibentry(entry="article",
 	 number = 20, 
          pages = 3940--3941, 
 	 bibtype = "Article",
-         url = "http://rocr.bioinf.mpi-sb.mpg.de"         )
+         url = "https://ipa-tys.github.io/ROCR/"         )
 
 citFooter("We have invested a lot of time and effort in creating ROCR,",
           "please cite it when using it for data analysis.")

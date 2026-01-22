@@ -206,7 +206,7 @@ plot(perf)
 }
 \references{
 A detailed list of references can be found on the ROCR homepage at
-\url{http://rocr.bioinf.mpi-sb.mpg.de}.
+\url{https://ipa-tys.github.io/ROCR/}.
 }
 \seealso{
 \code{\link{prediction}},
